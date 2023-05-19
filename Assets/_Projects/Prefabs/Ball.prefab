@@ -345,8 +345,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _clampReflection: {x: 20, y: 55}
+  _clampReflection: {x: 15, y: 85}
   _currentDegre: 0
+  _currentNormal: {x: 0, y: 0}
   _moveDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &2439647975965429612
 MonoBehaviour:

@@ -60,6 +60,5 @@ namespace Core
 
             newBall.gameObject.transform.SetParent(_ballsParent);
         }
-
     }
 }

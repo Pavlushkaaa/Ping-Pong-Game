@@ -7,49 +7,63 @@ namespace Core
     public class Ball : MonoBehaviour
     {
         public event Action<Ball> OnDie;
+        public Vector2 MoveDirection { get => _moveDirection; }
+        [field:SerializeField] public float ColliderRadius { get; private set; }
 
         [SerializeField] private float _speed;
-        [SerializeField] private Vector2 _clampReflection = new Vector2(30, 60);
+        [SerializeField] [ReadOnly] private Vector2 _moveDirection;
 
         [Space]
-        [SerializeField][ReadOnly] private float _currentDegre;
-        [SerializeField][ReadOnly] private Vector3 _moveDirection;
+        [SerializeField] [ReadOnly] private float _currentDegree;
+        [SerializeField] [ReadOnly] private Vector2 _currentNormal;
+        [SerializeField] [ReadOnly] private Vector2 _lastNormal;
+        [SerializeField] [ReadOnly] private float _sameNormals;
 
         private Transform _ball;
         private Rigidbody2D _ballRigidbody;
         private SpriteDestructor _destructor;
+        private BallSoundPlayer _soundPlayer;
 
-        private event Action _onReflect;
+        public static Vector2 Reflect(Vector2 inDirection, Vector2 inNormal)
+        {
+            float num = ClampReflectAngle(- 2F * Vector2.Dot(inNormal, inDirection));
+
+            return new Vector2(num * inNormal.x + inDirection.x, num * inNormal.y + inDirection.y);
+        }
+
+        public void SetMoveDirection(Vector2 direction) => _moveDirection = direction;
+
+        public void Die() { if (GameLoop.IsLooping) ForceDie(); }
+
+        public void ForceDie()
+        {
+            _ballRigidbody.velocity *= 0.15f; // we stop the ball so that the fragments scatter correctly
+            _destructor.Destruct();
+
+            OnDie?.Invoke(this);
+            Destroy(gameObject);
+        }
+
+        private static float ClampReflectAngle(float angle)
+        {
+            float minReflectAngle = 20;
+            var degAngale = angle * Mathf.Rad2Deg;
+
+            if (degAngale >= 0)
+                return Mathf.Clamp(degAngale, minReflectAngle, 180 - minReflectAngle) * Mathf.Deg2Rad;
+            else
+                return Mathf.Clamp(degAngale, -180 + minReflectAngle, -minReflectAngle) * Mathf.Deg2Rad;
+        }
 
         private void Update() => Move();
 
         private void Start()
         {
             _ball = transform;
+
             _ballRigidbody = GetComponent<Rigidbody2D>();
             _destructor = GetComponent<SpriteDestructor>();
-
-            _moveDirection = Vector2.up;
-
-            BallSoundPlayer ballSoundPlayer = GetComponent<BallSoundPlayer>();
-            _onReflect += ballSoundPlayer.PlayReflection;
-        }
-
-        [ContextMenu("Die")]
-        public void Die()
-        {
-            if (GameLoop.IsLooping) ForceDie();
-        }
-
-        public void ForceDie()
-        {
-            gameObject.AddComponent<BoxCollider2D>();
-
-            _ballRigidbody.velocity *= 0.1f;
-            _destructor.Destruct(gameObject);
-
-            OnDie?.Invoke(this);
-            Destroy(gameObject);
+            _soundPlayer = GetComponent<BallSoundPlayer>();
         }
 
         private void Move()
@@ -57,40 +71,59 @@ namespace Core
             _ballRigidbody.velocity = _moveDirection.normalized * _speed;
         }
 
-        private Vector3 Reflect(Vector3 inDirection, Vector3 inNormal)
+        private void FixAxisStick()
         {
-            float factor = -2F * Vector3.Dot(inNormal, inDirection);
+            if ((_lastNormal + _currentNormal).magnitude <= 0.05f)
+            {
+                if (_sameNormals >= 5)
+                {
+                    _moveDirection.x += 0.01f * Mathf.Sign(_moveDirection.x);
+                    _sameNormals = 0;
+                }
+                else
+                    _sameNormals++;
+            }
+            else
+                _sameNormals = 0;
 
-            factor = Mathf.Clamp(factor, _clampReflection.x * Mathf.Deg2Rad, _clampReflection.y * Mathf.Deg2Rad);
-            
-            _currentDegre = factor * Mathf.Rad2Deg;
+            _lastNormal = _currentNormal;
+        }
 
-            return new Vector3(factor * inNormal.x + inDirection.x,
-                factor * inNormal.y + inDirection.y,
-                factor * inNormal.z + inDirection.z);
+        private void FixSideStick(Vector2 normal)
+        {
+            _ball.position += (Vector3)normal * (ColliderRadius + 0.015f);
         }
 
         private void ChangeDirection(Vector2 normal)
         {
-            _moveDirection = Reflect(_moveDirection, normal);
+            _currentNormal = normal;
 
-            float fixOffset = 0.05f; //prevents sticking
-            _ball.position += _moveDirection.normalized * fixOffset;
+            #if UNITY_EDITOR
+            _currentDegree = -2F * Vector2.Dot(normal, _moveDirection) * Mathf.Rad2Deg;
+            #endif
+            
+            _moveDirection = Reflect(_moveDirection.normalized, normal);
+            
+            FixSideStick(normal);
+            FixAxisStick();
 
-            if (Mathf.Abs(_moveDirection.x) <= 0.05) _moveDirection.x += 0.05f * Mathf.Sign(_moveDirection.x);
-            else if (Mathf.Abs(_moveDirection.y) <= 0.05) _moveDirection.y += 0.05f * Mathf.Sign(_moveDirection.y);
-
-            _onReflect?.Invoke();
+            _soundPlayer.PlayReflection();
         }
-
-        private void OnCollisionStay2D(Collision2D collision) => ChangeDirection(collision.contacts[0].normal);
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.TryGetComponent<BasePoint>(out var point))
+            {
+                if(!point.IsLastTouch)
+                    ChangeDirection(collision.contacts[0].normal);
+
                 point.Contact();
+                return;
+            }
             else
             if (collision.gameObject.TryGetComponent<BallTrigger>(out var t)) t.OnTrigger();
+
+            ChangeDirection(collision.contacts[0].normal);
         }
     }
 }

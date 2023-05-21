@@ -64,7 +64,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Click"",
+                    ""name"": ""ClickDown"",
                     ""type"": ""PassThrough"",
                     ""id"": ""b1c05da1-437e-4893-a2ac-a8a98c358643"",
                     ""expectedControlType"": ""Button"",
@@ -445,18 +445,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""834e6d38-0499-4212-a553-1ef1b631df53"",
-                    ""path"": ""<Pen>/tip"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Click"",
+                    ""action"": ""ClickDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -467,7 +456,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Touch"",
-                    ""action"": ""Click"",
+                    ""action"": ""ClickDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -478,7 +467,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Click"",
+                    ""action"": ""ClickDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -548,7 +537,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         m_Control_Submit = m_Control.FindAction("Submit", throwIfNotFound: true);
         m_Control_Cancel = m_Control.FindAction("Cancel", throwIfNotFound: true);
         m_Control_Point = m_Control.FindAction("Point", throwIfNotFound: true);
-        m_Control_Click = m_Control.FindAction("Click", throwIfNotFound: true);
+        m_Control_ClickDown = m_Control.FindAction("ClickDown", throwIfNotFound: true);
         m_Control_ScrollWheel = m_Control.FindAction("ScrollWheel", throwIfNotFound: true);
         m_Control_MiddleClick = m_Control.FindAction("MiddleClick", throwIfNotFound: true);
         m_Control_RightClick = m_Control.FindAction("RightClick", throwIfNotFound: true);
@@ -617,7 +606,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Control_Submit;
     private readonly InputAction m_Control_Cancel;
     private readonly InputAction m_Control_Point;
-    private readonly InputAction m_Control_Click;
+    private readonly InputAction m_Control_ClickDown;
     private readonly InputAction m_Control_ScrollWheel;
     private readonly InputAction m_Control_MiddleClick;
     private readonly InputAction m_Control_RightClick;
@@ -631,7 +620,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         public InputAction @Submit => m_Wrapper.m_Control_Submit;
         public InputAction @Cancel => m_Wrapper.m_Control_Cancel;
         public InputAction @Point => m_Wrapper.m_Control_Point;
-        public InputAction @Click => m_Wrapper.m_Control_Click;
+        public InputAction @ClickDown => m_Wrapper.m_Control_ClickDown;
         public InputAction @ScrollWheel => m_Wrapper.m_Control_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_Control_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_Control_RightClick;
@@ -658,9 +647,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Point.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnPoint;
-                @Click.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnClick;
+                @ClickDown.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnClickDown;
+                @ClickDown.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnClickDown;
+                @ClickDown.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnClickDown;
                 @ScrollWheel.started -= m_Wrapper.m_ControlActionsCallbackInterface.OnScrollWheel;
                 @ScrollWheel.performed -= m_Wrapper.m_ControlActionsCallbackInterface.OnScrollWheel;
                 @ScrollWheel.canceled -= m_Wrapper.m_ControlActionsCallbackInterface.OnScrollWheel;
@@ -692,9 +681,9 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
+                @ClickDown.started += instance.OnClickDown;
+                @ClickDown.performed += instance.OnClickDown;
+                @ClickDown.canceled += instance.OnClickDown;
                 @ScrollWheel.started += instance.OnScrollWheel;
                 @ScrollWheel.performed += instance.OnScrollWheel;
                 @ScrollWheel.canceled += instance.OnScrollWheel;
@@ -720,7 +709,7 @@ public partial class @UserInput : IInputActionCollection2, IDisposable
         void OnSubmit(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
-        void OnClick(InputAction.CallbackContext context);
+        void OnClickDown(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);

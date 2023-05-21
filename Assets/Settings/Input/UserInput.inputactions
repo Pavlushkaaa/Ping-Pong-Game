@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Click",
+                    "name": "ClickDown",
                     "type": "PassThrough",
                     "id": "b1c05da1-437e-4893-a2ac-a8a98c358643",
                     "expectedControlType": "Button",
@@ -423,18 +423,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "834e6d38-0499-4212-a553-1ef1b631df53",
-                    "path": "<Pen>/tip",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Click",
+                    "action": "ClickDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -445,7 +434,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "Click",
+                    "action": "ClickDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -456,7 +445,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Click",
+                    "action": "ClickDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

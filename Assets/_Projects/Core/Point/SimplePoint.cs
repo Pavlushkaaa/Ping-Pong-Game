@@ -9,7 +9,7 @@ namespace Core
         public override void Contact()
         {
             Die();
-            _spriteDestructor.Destruct(gameObject);
+            _spriteDestructor.Destruct();
             Destroy(gameObject);
         }
 

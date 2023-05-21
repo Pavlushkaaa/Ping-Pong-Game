@@ -980,6 +980,10 @@ PrefabInstance:
       propertyPath: _view
       value: 
       objectReference: {fileID: 37669720}
+    - target: {fileID: 6561365101171880835, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 1280914964}
     - target: {fileID: 6561365101171880837, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _platform
       value: 

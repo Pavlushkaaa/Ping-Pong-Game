@@ -92,7 +92,7 @@ public class Explodable : MonoBehaviour
     {
         fragments = new List<GameObject>();
 
-        fragments = SpriteExploder.GenerateVoronoiPieces(gameObject, extraPoints, subshatterSteps);
+        //fragments = SpriteExploder.Explode(gameObject, extraPoints, subshatterSteps);
 
         //sets additional aspects of the fragments
         foreach (GameObject p in fragments)

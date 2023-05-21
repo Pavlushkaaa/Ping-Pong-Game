@@ -16,7 +16,12 @@ namespace Core.Game
         private Camera _camera;
         private SpriteDestructor _spriteDestructor;
 
-        public void Destroy() => _spriteDestructor.Destruct(gameObject);
+        private bool _isFreese;
+
+        public void FreezeMove()=> _isFreese = true;
+        public void StartMove()=> _isFreese = false;
+
+        public void Destroy() => _spriteDestructor.Destruct();
         public void HidePlatform() => _spriteDestructor.HideSprite();
         public void ShowPlatform() => _spriteDestructor.ShowSprite();
 
@@ -33,6 +38,8 @@ namespace Core.Game
 
         private void Move()
         {
+            if (_isFreese) return;
+
             Vector2 target = _camera.ScreenToWorldPoint(new(_input.PointerXAxisPosition, 0));
             target.y = _platform.position.y;
 

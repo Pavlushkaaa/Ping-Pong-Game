@@ -34,13 +34,12 @@ namespace Core
 
         private void PositionMenuElements()
         {
-            Vector2 buttonPosition = InputModule.CreateWorldScreenSize(_buttonOffset);
+            Vector2 buttonPosition = InputModule.WorlsScreenSize - _buttonOffset * Vector2.one;
             _pauseButton.position = buttonPosition;
             _settingsButton.position = buttonPosition;
 
             _backToMainMenuButton.position = new Vector2(0, -InputModule.WorlsScreenSize.y + _backButtonOffset);
         }
-
         private void PositionGameElements()
         {
             Vector2 screen = InputModule.WorlsScreenSize;
@@ -48,7 +47,6 @@ namespace Core
             _platform.position = new(0, -screen.y + _platformHeight);
             _ballDeadZone.position = new(0, -screen.y - _ballDeadZoneHeight);
         }
-
         private void PositionBorders()
         {
             Vector2 screen = InputModule.WorlsScreenSize;

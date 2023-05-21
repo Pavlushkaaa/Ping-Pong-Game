@@ -26,7 +26,7 @@ namespace Core
 
         private new void Start()
         { 
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             IsLastTouch = false;
 
             base.Start();

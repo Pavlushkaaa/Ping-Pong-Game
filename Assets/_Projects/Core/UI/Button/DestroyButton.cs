@@ -19,7 +19,7 @@ namespace Core.UI
             _spriteDestructor.HideSprite();
 
             var buttonTransform = transform;
-            var fragments = _spriteDestructor.Destruct(gameObject);
+            var fragments = _spriteDestructor.Destruct();
 
             foreach (var fragment in fragments)
                 fragment.transform.SetParent(buttonTransform);

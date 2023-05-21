@@ -1,260 +1,101 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Delaunay;
-using Delaunay.Geo;
+using Core;
 
-public static class SpriteExploder {
-    public static List<GameObject> GenerateTriangularPieces(GameObject source, int extraPoints = 0, int subshatterSteps = 0, Material mat = null)
+public static class SpriteExploder 
+{
+    public static List<GameObject> Explode(DestructInfo info)
     {
         List<GameObject> pieces = new List<GameObject>();
 
-        if (mat == null)
-        {
-            mat = createFragmentMaterial(source);
-        }
+        var mat = createFragmentMaterial(info);
 
         //get transform information
-        Vector3 origScale = source.transform.localScale;
-        source.transform.localScale = Vector3.one;
-        Quaternion origRotation = source.transform.localRotation;
-        source.transform.localRotation = Quaternion.identity;
-
-        //get rigidbody information
-        Vector2 origVelocity = source.GetComponent<Rigidbody2D>().velocity;
-
-        //get collider information
-        PolygonCollider2D sourcePolyCollider = source.GetComponent<PolygonCollider2D>();
-        BoxCollider2D sourceBoxCollider = source.GetComponent<BoxCollider2D>();
-        List<Vector2> points = new List<Vector2>();
-        List<Vector2> borderPoints = new List<Vector2>();
-
-        //add points from the present collider
-        if (sourcePolyCollider != null)
-        {
-            points = getPoints(sourcePolyCollider);
-            borderPoints = getPoints(sourcePolyCollider);
-        }
-        else if (sourceBoxCollider != null)
-        {
-            points = getPoints(sourceBoxCollider);
-            borderPoints = getPoints(sourceBoxCollider);
-        }
-
-        //create a bounding rectangle based on the polygon points
-        Rect rect = getRect(source);
-
-        //if the target polygon is a triangle, generate a point in the middle to allow for fracture
-        if (points.Count == 3)
-        {
-            points.Add((points[0] + points[1] + points[2]) / 3);
-        }
-
-        for (int i = 0; i < extraPoints; i++)
-        {
-            points.Add(new Vector2(Random.Range(rect.width / -2, rect.width / 2), Random.Range(rect.height / -2 + rect.center.y, rect.height / 2 + rect.center.y)));
-        }
-
-
-        Voronoi voronoi = new Delaunay.Voronoi(points, null, rect);
-        
-        List<List<Vector2>> clippedTriangles = new List<List<Vector2>>();
-        foreach (Triangle tri in voronoi.Triangles())
-        {
-            clippedTriangles = ClipperHelper.clip(borderPoints, tri);
-            foreach (List<Vector2> triangle in clippedTriangles)
-            {
-                pieces.Add(generateTriangularPiece(source, triangle, origVelocity, origScale, origRotation, mat));
-            }
-        }
-        List<GameObject> morePieces = new List<GameObject>();
-        if (subshatterSteps > 0)
-        {
-            subshatterSteps--;
-            foreach (GameObject piece in pieces)
-            {
-                morePieces.AddRange(SpriteExploder.GenerateTriangularPieces(piece, extraPoints, subshatterSteps, mat));
-                GameObject.DestroyImmediate(piece);
-            }
-        }
-        else
-        {
-            morePieces = pieces;
-        }
-
-        //reset transform information
-        source.transform.localScale = origScale;
-        source.transform.localRotation = origRotation;
-
-        Resources.UnloadUnusedAssets();
-
-        return morePieces;
-    }
-    private static GameObject generateTriangularPiece(GameObject source, List<Vector2> tri, Vector2 origVelocity, Vector3 origScale, Quaternion origRotation, Material mat)
-    {
-        //Create Game Object and set transform settings properly
-        GameObject piece = new GameObject(source.name + " piece");
-        piece.transform.position = source.transform.position;
-        piece.transform.rotation = source.transform.rotation;
-        piece.transform.localScale = source.transform.localScale;
-
-        //Create and Add Mesh Components
-        MeshFilter meshFilter = (MeshFilter)piece.AddComponent(typeof(MeshFilter));
-        piece.AddComponent(typeof(MeshRenderer));
-
-        Mesh uMesh = piece.GetComponent<MeshFilter>().sharedMesh;
-        if (uMesh == null)
-        {
-            meshFilter.mesh = new Mesh();
-            uMesh = meshFilter.sharedMesh;
-        }
-        Vector3[] vertices = new Vector3[3];
-        int[] triangles = new int[3];
-
-        vertices[0] = new Vector3(tri[0].x, tri[0].y, 0);
-        vertices[1] = new Vector3(tri[1].x, tri[1].y, 0);
-        vertices[2] = new Vector3(tri[2].x, tri[2].y, 0);
-		//triangles[0] = 0;
-		//triangles[1] = 1;
-		//triangles[2] = 2;
-		triangles[0] = 2;
-		triangles[1] = 1;
-		triangles[2] = 0;
-
-		uMesh.vertices = vertices;
-        uMesh.triangles = triangles;
-        if (source.GetComponent<SpriteRenderer>() != null)
-        {
-            uMesh.uv = calcUV(vertices, source.GetComponent<SpriteRenderer>(), source.transform);
-        }
-        else
-        {
-            uMesh.uv = calcUV(vertices, source.GetComponent<MeshRenderer>(), source.transform);
-        }
-
-        //set transform properties before fixing the pivot for easier rotation
-        piece.transform.localScale = origScale;
-        piece.transform.localRotation = origRotation;
-
-        Vector3 diff = calcPivotCenterDiff(piece);
-        centerMeshPivot(piece, diff);
-        uMesh.RecalculateBounds();
-		uMesh.RecalculateNormals();
-
-        //setFragmentMaterial(piece, source);
-        piece.GetComponent<MeshRenderer>().sharedMaterial = mat;
-
-        //assign mesh
-        meshFilter.mesh = uMesh;
-
-        //Create and Add Polygon Collider
-        PolygonCollider2D collider = piece.AddComponent<PolygonCollider2D>();
-        collider.SetPath(0, new Vector2[]{uMesh.vertices[0],uMesh.vertices[1],uMesh.vertices[2]});
-
-        //Create and Add Rigidbody
-        Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
-        rigidbody.velocity = origVelocity;
-
-        
-
-        return piece;
-    }
-
-    public static List<GameObject> GenerateVoronoiPieces(GameObject source, float force, int extraPoints = 0, int subshatterSteps = 0, Material mat = null)
-    {
-        List<GameObject> pieces = new List<GameObject>();
-
-        if (mat == null)
-        {
-            mat = createFragmentMaterial(source);
-        }
-
-        //get transform information
-        Vector3 origScale = source.transform.localScale;
-        source.transform.localScale = Vector3.one;
-        Quaternion origRotation = source.transform.localRotation;
-        source.transform.localRotation = Quaternion.identity;
+        Vector3 origScale = info.Transform.localScale;
+        info.Transform.localScale = Vector3.one;
+        Quaternion origRotation = info.Transform.localRotation;
+        info.Transform.localRotation = Quaternion.identity;
 
         Vector2 origVelocity = Vector2.zero;
 
-        if (source.TryGetComponent<Rigidbody2D>(out var temp))
-            origVelocity = temp.velocity;
-        
-        //get collider information
-        PolygonCollider2D sourcePolyCollider = source.GetComponent<PolygonCollider2D>();
-        BoxCollider2D sourceBoxCollider = source.GetComponent<BoxCollider2D>();
+        if (info.Rigidbody != null)
+            origVelocity = info.Rigidbody.velocity;
+
         List<Vector2> points = new List<Vector2>();
         List<Vector2> borderPoints = new List<Vector2>();
 
-        if (sourcePolyCollider != null)
+        if (info.PolygonCollider != null)
         {
-            points = getPoints(sourcePolyCollider);
-            borderPoints = getPoints(sourcePolyCollider);
+            points = getPoints(info.PolygonCollider);
+            borderPoints = getPoints(info.PolygonCollider);
         }
-        else if (sourceBoxCollider != null)
+        else
         {
-            points = getPoints(sourceBoxCollider);
-            borderPoints = getPoints(sourceBoxCollider);
+            points = getPoints(info.BoxCollider);
+            borderPoints = getPoints(info.BoxCollider);
         }
 
-        Rect rect = getRect(source);
+        Rect rect = getRect(info);
 
-        for (int i = 0; i < extraPoints; i++)
+        for (int i = 0; i < info.FragmentsNumber; i++)
         {
             points.Add(new Vector2(Random.Range(
-				rect.width / -2 + rect.center.x, rect.width / 2 + rect.center.x), 
-				Random.Range(rect.height / -2 + rect.center.y, rect.height / 2 + rect.center.y)
-				));
-		}
+                rect.width / -2 + rect.center.x, rect.width / 2 + rect.center.x),
+                Random.Range(rect.height / -2 + rect.center.y, rect.height / 2 + rect.center.y)
+                ));
+        }
 
-
-		Voronoi voronoi = new Delaunay.Voronoi(points, null, rect);
+        Voronoi voronoi = new Voronoi(points, null, rect);
         List<List<Vector2>> clippedRegions = new List<List<Vector2>>();
         foreach (List<Vector2> region in voronoi.Regions())
         {
             clippedRegions = ClipperHelper.clip(borderPoints, region);
             foreach (List<Vector2> clippedRegion in clippedRegions)
-            {
-                pieces.Add(generateVoronoiPiece(source, clippedRegion, origVelocity, origScale, origRotation, mat, force));
-            }
+                pieces.Add(generateVoronoiPiece(info, clippedRegion, origVelocity, origScale, origRotation, mat));
         }
 
         List<GameObject> morePieces = new List<GameObject>();
-        if (subshatterSteps > 0)
-        {
-            subshatterSteps--;
-            foreach (GameObject piece in pieces)
-            {
-                morePieces.AddRange(SpriteExploder.GenerateVoronoiPieces(piece, force, extraPoints, subshatterSteps));
-                GameObject.DestroyImmediate(piece);
-            }
-        }
-        else
-        {
-            morePieces = pieces;
-        }
+        //if (subshatterSteps > 0)
+        //{
+        //    subshatterSteps--;pu
+        //    foreach (GameObject piece in pieces)
+        //    {
+        //        morePieces.AddRange(SpriteExploder.Explode(piece, force, extraPoints, subshatterSteps));
+        //        GameObject.DestroyImmediate(piece);
+        //    }
+        //}
+        //else
+        morePieces = pieces;
 
         //reset transform information
-        source.transform.localScale = origScale;
-        source.transform.localRotation = origRotation;
+        info.Transform.localScale = origScale;
+        info.Transform.localRotation = origRotation;
 
         Resources.UnloadUnusedAssets();
 
+        foreach (var piece in morePieces)
+        {
+            piece.AddComponent<AutoDestroy>();
+            piece.layer = info.LayerId;
+        }
+
         return morePieces;
     }
-    private static GameObject generateVoronoiPiece(GameObject source, List<Vector2> region, Vector2 origVelocity, Vector3 origScale, Quaternion origRotation, Material mat, float force)
+
+    private static GameObject generateVoronoiPiece(DestructInfo info, List<Vector2> region, Vector2 origVelocity, Vector3 origScale, Quaternion origRotation, Material mat)
     {
         //Create Game Object and set transform settings properly
-        GameObject piece = new GameObject(source.name + " piece");
-        piece.transform.position = source.transform.position;
-        piece.transform.rotation = source.transform.rotation;
-        piece.transform.localScale = source.transform.localScale;
+        GameObject piece = new GameObject(info.GameObject.name + " piece");
+        piece.transform.position = info.Transform.position;
+        piece.transform.rotation = info.Transform.rotation;
+        piece.transform.localScale = info.Transform.localScale;
 
         //Create and Add Mesh Components
         MeshFilter meshFilter = (MeshFilter)piece.AddComponent(typeof(MeshFilter));
-        piece.AddComponent(typeof(MeshRenderer));
+        MeshRenderer meshRenderer = (MeshRenderer)piece.AddComponent(typeof(MeshRenderer));
 
-        Mesh uMesh = piece.GetComponent<MeshFilter>().sharedMesh;
+        Mesh uMesh = meshFilter.sharedMesh;
         if (uMesh == null)
         {
             meshFilter.mesh = new Mesh();
@@ -268,14 +109,10 @@ public static class SpriteExploder {
 
         uMesh.vertices = vertices;
         uMesh.triangles = triangles;
-        if (source.GetComponent<SpriteRenderer>() != null)
-        {
-            uMesh.uv = calcUV(vertices, source.GetComponent<SpriteRenderer>(), source.transform);
-        }
-        else
-        {
-            uMesh.uv = calcUV(vertices, source.GetComponent<MeshRenderer>(), source.transform);
-        }
+        //if (source.GetComponent<SpriteRenderer>() != null)
+            uMesh.uv = calcUV(vertices, info.SpriteRenderer, info.Transform);
+        //else
+        //    uMesh.uv = calcUV(vertices, source.GetComponent<MeshRenderer>(), source.transform);
 
         //set transform properties before fixing the pivot for easier rotation
         piece.transform.localScale = origScale;
@@ -287,7 +124,7 @@ public static class SpriteExploder {
 		uMesh.RecalculateNormals();
 
         //setFragmentMaterial(piece, source);
-        piece.GetComponent<MeshRenderer>().sharedMaterial = mat;
+        meshRenderer.sharedMaterial = mat;
 
         //assign mesh
         meshFilter.mesh = uMesh;
@@ -298,7 +135,7 @@ public static class SpriteExploder {
 
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
-        rigidbody.AddForce((rigidbody.transform.position - source.transform.position).normalized * force);
+        rigidbody.AddForce((rigidbody.transform.position - info.Transform.position).normalized * info.Force);
 
         return piece;
     }
@@ -341,27 +178,17 @@ public static class SpriteExploder {
 
         return points;
     }
-    private static List<Vector2> getRendererPoints(GameObject source)
-    {
-        List<Vector2> points = new List<Vector2>();
-        Bounds bounds = source.GetComponent<Renderer>().bounds;
-        points.Add(new Vector2(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y) - (Vector2)source.transform.position);
-        points.Add(new Vector2(bounds.center.x + bounds.extents.x, bounds.center.y - bounds.extents.y) - (Vector2)source.transform.position);
-        points.Add(new Vector2(bounds.center.x + bounds.extents.x, bounds.center.y + bounds.extents.y) - (Vector2)source.transform.position);
-        points.Add(new Vector2(bounds.center.x - bounds.extents.x, bounds.center.y + bounds.extents.y) - (Vector2)source.transform.position);
-        return points;
-    }
 
     /// <summary>
     /// generates a rectangle based on the rendering bounds of the object
     /// </summary>
     /// <param name="source">gameobject to get the rectangle from</param>
     /// <returns>a Rectangle representing the rendering bounds of the object</returns>
-    private static Rect getRect(GameObject source)
+    private static Rect getRect(DestructInfo info)
     {
-		Bounds bounds = source.GetComponent<Renderer>().bounds;
+		Bounds bounds = info.SpriteRenderer.bounds;
 		Rect rect = new Rect(bounds.extents.x * -1, bounds.extents.y * -1, bounds.size.x, bounds.size.y);
-		rect.center = new Vector2(rect.center.x + bounds.center.x - source.transform.position.x, rect.center.y + bounds.center.y - source.transform.position.y);
+		rect.center = new Vector2(rect.center.x + bounds.center.x - info.Transform.position.x, rect.center.y + bounds.center.y - info.Transform.position.y);
 		return rect;
     }
     private static Rect getRect(List<Vector2> region)
@@ -559,44 +386,16 @@ public static class SpriteExploder {
         target.transform.localPosition = target.transform.TransformPoint(pivot - diff);
         
     }
-
     /// <summary>
     /// assigns a new material for a fragment
     /// </summary>
     /// <param name="newSprite">sprite of the fragment</param>
     /// <param name="source">original gameobject that was shattered</param>
-    private static void setFragmentMaterial(GameObject newSprite, GameObject source)
+    private static Material createFragmentMaterial(DestructInfo info)
     {
-        
-        //Material mat = new Material(Shader.Find("Sprites/Default"));
-		Material mat = new Material(source.GetComponent<Renderer>().sharedMaterial);
-        
-        SpriteRenderer sRend = source.GetComponent<SpriteRenderer>();
-        if (sRend != null)
-        {
-            mat.SetTexture("_MainTex", sRend.sprite.texture);
-            mat.color = sRend.color;
-        }
-        else
-        {
-            mat = source.GetComponent<MeshRenderer>().sharedMaterial;
-        }
-        newSprite.GetComponent<MeshRenderer>().sharedMaterial = mat;
-    }
-    private static Material createFragmentMaterial(GameObject source)
-    {
-        SpriteRenderer sRend = source.GetComponent<SpriteRenderer>();
-        if (sRend != null)
-        {
-            Material mat = new Material(sRend.sharedMaterial);
-            mat.SetTexture("_MainTex", sRend.sprite.texture);
-            mat.color = sRend.color;
-            return mat;
-        }
-        else
-        {
-            return source.GetComponent<MeshRenderer>().sharedMaterial;
-        }
-
+        Material mat = new Material(info.SpriteRenderer.sharedMaterial);
+        mat.SetTexture("_MainTex", info.SpriteRenderer.sprite.texture);
+        mat.color = info.DestroyCcolor;
+        return mat;
     }
 }

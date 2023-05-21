@@ -29,6 +29,8 @@ namespace Core
 
             IsLooping = true;
 
+            _platform.FreezeMove();
+
             _inputModule.Reset();
             _ballSystem.Reset();
             _gameZone.CreateZone();
@@ -40,6 +42,8 @@ namespace Core
         public void StartLoop()
         {
             IsLooping = true;
+
+            _platform.FreezeMove();
 
             _inputModule.Reset();
             _ballSystem.Reset();
@@ -60,6 +64,7 @@ namespace Core
 
         public void ContinueLoop()
         {
+            _platform.FreezeMove();
             _ballSystem.Reset();
             _timeManager.DoSlowmotion(1.5f);
             OnContinueLoop?.Invoke();
@@ -89,6 +94,8 @@ namespace Core
             _ballSystem = GetComponent<BallSystem>();
 
             _platform.HidePlatform();
+
+            _ballSystem.OnTrajectoryChoose += _platform.StartMove;
         }
     }
 }

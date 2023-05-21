@@ -12,7 +12,7 @@ namespace Core
         public void Start()
         {
             _maxYPosition = -InputModule.WorlsScreenSize.y - 1;
-            _transform = GetComponent<Transform>();
+            _transform = transform;
             StartCoroutine(CheckPosition());
         }
 

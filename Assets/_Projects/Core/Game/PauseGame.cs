@@ -36,6 +36,7 @@ namespace Core
             _time = GetComponentInParent<TimeManager>();
 
             _view.OnDoPause += ApplyPause;
+            _view.OnRetryGame += () => { CanselPause(); _gameLoop.Restart(); };
             _view.OnContinueGame += CanselPause;
             _view.OnBackToMainMenu += Reset;
             _view.OnQiutGame += QuitGame.Quit;

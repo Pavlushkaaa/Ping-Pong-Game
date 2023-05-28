@@ -10,6 +10,7 @@ namespace Core
         [Space]
         [SerializeField] private Transform _settingsButton;
         [SerializeField] private Transform _pauseButton;
+        [SerializeField] private Transform _retryButton;
         [SerializeField] private Transform _backToMainMenuButton;
 
         [Space]
@@ -24,19 +25,18 @@ namespace Core
         [SerializeField] private float _buttonOffset = 0.5f;
         [SerializeField] private float _backButtonOffset = 1.5f;
 
-
         private void Start()
         {
             PositionMenuElements();
             PositionGameElements();
             PositionBorders();
         }
-
         private void PositionMenuElements()
         {
             Vector2 buttonPosition = InputModule.WorlsScreenSize - _buttonOffset * Vector2.one;
             _pauseButton.position = buttonPosition;
             _settingsButton.position = buttonPosition;
+            _retryButton.position = buttonPosition;
 
             _backToMainMenuButton.position = new Vector2(0, -InputModule.WorlsScreenSize.y + _backButtonOffset);
         }

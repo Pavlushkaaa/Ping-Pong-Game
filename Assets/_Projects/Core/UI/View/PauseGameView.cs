@@ -8,6 +8,7 @@ namespace Core
     public class PauseGameView : MonoBehaviour
     {
         public event Action OnDoPause;
+        public event Action OnRetryGame;
         public event Action OnContinueGame;
         public event Action OnBackToMainMenu;
         public event Action OnQiutGame;
@@ -19,6 +20,8 @@ namespace Core
 
         public void ShowButton() => _pauseButton.ShowButton();
         public void HideButton() => _pauseButton.Destroy();
+
+        public void HideSpriteButton() => _pauseButton.HideButton();
         public void ShowPanel()
         {
             _pausePanel.Show();
@@ -29,7 +32,6 @@ namespace Core
             _back.enabled = false;
             _pausePanel.Destroy();
         }
-
         public void HideAll()
         {
             _pauseButton.Destroy();
@@ -41,15 +43,22 @@ namespace Core
         {
             if (TimeManager.IsSlowmotionPlaying) return;
 
+            HideSpriteButton();
             ShowPanel(); 
             OnDoPause?.Invoke();
+        }
+        public void OnRetryGameClick()
+        {
+            HidePanel();
+            ShowButton();
+            OnRetryGame?.Invoke();
         }
         public void OnContinueGameClick()
         {
             HidePanel();
+            ShowButton();
             OnContinueGame?.Invoke();
         }
-
         public void OnBackToMainMenuClick()
         {
             HideAll();

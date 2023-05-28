@@ -657,6 +657,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935032547}
   m_CullTransparentMesh: 1
+--- !u!4 &2027305170 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2027305170, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+  m_PrefabInstance: {fileID: 872354904977935686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2123086705 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2123086705, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
@@ -928,6 +933,26 @@ PrefabInstance:
       propertyPath: _view
       value: 
       objectReference: {fileID: 2123086705}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _bounds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _offset
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _endColor.b
+      value: 0.23584908
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _endColor.g
+      value: 0.19663082
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _endColor.r
+      value: 0.03648984
+      objectReference: {fileID: 0}
     - target: {fileID: 6561365101171880832, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: m_Name
       value: === GAME SYSTEMS ===
@@ -1016,6 +1041,10 @@ PrefabInstance:
       propertyPath: _pauseButton
       value: 
       objectReference: {fileID: 599952237}
+    - target: {fileID: 6561365101171880839, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _retryButton
+      value: 
+      objectReference: {fileID: 2027305170}
     - target: {fileID: 6561365101171880839, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _ballDeadZone
       value: 

@@ -47,7 +47,7 @@ namespace Core
         {
             _view.OnWatchAd += WatchAd;
 
-            _view.OnPlayAgain += () => { _gameLoop.Restart();  };
+            _view.OnPlayAgain += _gameLoop.Restart; 
             _view.OnBackToMainMenu += ForceEndFail;
         }
     }

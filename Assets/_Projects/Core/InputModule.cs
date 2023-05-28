@@ -84,7 +84,7 @@ namespace Core
 
             if (hit.collider != null && hit.collider.TryGetComponent<IClickHandler>(out IClickHandler handler))
             {
-                handler.OnClick();
+                handler.OnClicked();
                 return true;
             }
 

@@ -1,4 +1,5 @@
-﻿using Core.UI;
+﻿using Core.Game;
+using Core.UI;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,64 +8,63 @@ namespace Core
 {
     public class PauseGameView : MonoBehaviour
     {
-        public event Action OnDoPause;
-        public event Action OnRetryGame;
-        public event Action OnContinueGame;
-        public event Action OnBackToMainMenu;
-        public event Action OnQiutGame;
+        public event Action AppliedPause;
+        public event Action RestartedGame;
+        public event Action PlayedAgain;
+        public event Action ReturnedToMainMenu;
 
-        [SerializeField] private DestroyButton _pauseButton;
-        [SerializeField] private Image _back;
+        [SerializeField] private DestructibleButton _pauseButton;
+        [SerializeField] private Image _background;
 
         private Panel _pausePanel;
 
-        public void ShowButton() => _pauseButton.ShowButton();
-        public void HideButton() => _pauseButton.Destroy();
+        public void ShowPauseButton() => _pauseButton.Show();
+        public void DestructPauseButton() => _pauseButton.Destruct();
+        public void HidePauseButton() => _pauseButton.Hide();
 
-        public void HideSpriteButton() => _pauseButton.HideButton();
         public void ShowPanel()
         {
             _pausePanel.Show();
-            _back.enabled = true;
+            _background.enabled = true;
         }
         public void HidePanel()
         {
-            _back.enabled = false;
+            _background.enabled = false;
             _pausePanel.Destroy();
         }
         public void HideAll()
         {
-            _pauseButton.Destroy();
+            _pauseButton.Destruct();
             HidePanel();
         }
 
         #region Button
-        public void OnDoPauseClick()
+        public void OnAppliedPause()
         {
             if (TimeManager.IsSlowmotionPlaying) return;
 
-            HideSpriteButton();
+            HidePauseButton();
             ShowPanel(); 
-            OnDoPause?.Invoke();
+            AppliedPause?.Invoke();
         }
-        public void OnRetryGameClick()
+        public void OnRestartedGame()
         {
             HidePanel();
-            ShowButton();
-            OnRetryGame?.Invoke();
+            ShowPauseButton();
+            RestartedGame?.Invoke();
         }
-        public void OnContinueGameClick()
+        public void OnPlayedAgain()
         {
             HidePanel();
-            ShowButton();
-            OnContinueGame?.Invoke();
+            ShowPauseButton();
+            PlayedAgain?.Invoke();
         }
-        public void OnBackToMainMenuClick()
+        public void OnReturnedToMainMenu()
         {
             HideAll();
-            OnBackToMainMenu?.Invoke();
+            ReturnedToMainMenu?.Invoke();
         }
-        public void OnQiutGameClick() => OnQiutGame?.Invoke();  
+        public void OnQuitedGame() => QuitGame.Quit();
         #endregion
 
         private void Start() => _pausePanel = GetComponent<Panel>();

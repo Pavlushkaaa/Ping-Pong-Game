@@ -2,10 +2,10 @@
 
 namespace Core
 {
-    [RequireComponent(typeof(SpriteDestructor))]
+    [RequireComponent(typeof(DestructibleSprite))]
     public class SimplePoint : BasePoint
     {
-        private SpriteDestructor _spriteDestructor;
+        private DestructibleSprite _spriteDestructor;
         public override void Contact()
         {
             Die();
@@ -15,7 +15,7 @@ namespace Core
 
         protected void Start()
         {
-            _spriteDestructor = GetComponent<SpriteDestructor>();
+            _spriteDestructor = GetComponent<DestructibleSprite>();
         }
 
         [ContextMenu("Destroy Point")]

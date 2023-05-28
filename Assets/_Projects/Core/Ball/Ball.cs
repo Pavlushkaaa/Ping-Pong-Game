@@ -6,7 +6,7 @@ namespace Core
 {
     public class Ball : MonoBehaviour
     {
-        public event Action<Ball> OnDie;
+        public event Action<Ball> Died;
         public Vector2 MoveDirection { get => _moveDirection; }
         [field:SerializeField] public float ColliderRadius { get; private set; }
 
@@ -21,7 +21,7 @@ namespace Core
 
         private Transform _ball;
         private Rigidbody2D _ballRigidbody;
-        private SpriteDestructor _destructor;
+        private DestructibleSprite _destructor;
         private BallSoundPlayer _soundPlayer;
 
         public static Vector2 Reflect(Vector2 inDirection, Vector2 inNormal)
@@ -40,7 +40,7 @@ namespace Core
             _ballRigidbody.velocity *= 0.15f; // we stop the ball so that the fragments scatter correctly
             _destructor.Destruct();
 
-            OnDie?.Invoke(this);
+            Died?.Invoke(this);
             Destroy(gameObject);
         }
 
@@ -62,7 +62,7 @@ namespace Core
             _ball = transform;
 
             _ballRigidbody = GetComponent<Rigidbody2D>();
-            _destructor = GetComponent<SpriteDestructor>();
+            _destructor = GetComponent<DestructibleSprite>();
             _soundPlayer = GetComponent<BallSoundPlayer>();
         }
 

@@ -1,5 +1,4 @@
 ﻿using Core.Game;
-using Core.UI;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,46 +7,46 @@ namespace Core
 {
     public class EndGameView : MonoBehaviour
     {
-        public event Action OnPlayAgain;
-        public event Action OnBackToMainMenu;
-        public event Action OnWatchAd;
+        public event Action PlayedAgain;
+        public event Action ReturnedToMainMenu;
+        public event Action WatchedAd;
 
         [SerializeField] private Panel _donePanel;
         [SerializeField] private Panel _failPanel;
-        [SerializeField] private Image _backImage;
+        [SerializeField] private Image _backgroundImage;
 
         private Panel _currentShowed;
 
         public void Hide()
         {
             _currentShowed.Destroy();
-            _backImage.enabled = false;
+            _backgroundImage.enabled = false;
         }
+
         public void ShowDonePanel()
         {
             _donePanel.Show();
             _currentShowed = _donePanel;
-            _backImage.enabled = true;
+            _backgroundImage.enabled = true;
         }
         public void ShowFailPanel()
         {
-            _backImage.enabled = true;
+            _backgroundImage.enabled = true;
             _failPanel.Show();
             _currentShowed = _failPanel;
         }
 
-        public void OnWatchAdClick() => OnWatchAd?.Invoke();
-        public void OnBackToMainMenuClick()
+        public void OnWatchedAd() => WatchedAd?.Invoke();
+        public void OnReturnedToMainMenu()
         {
-            OnBackToMainMenu?.Invoke();
+            ReturnedToMainMenu?.Invoke();
             Hide();
         }
-        public void OnPlayAgainClick()
+        public void OnPlayedAgain()
         {
-            OnPlayAgain?.Invoke();
+            PlayedAgain?.Invoke();
             Hide();
         }
-
-        public void OnQuitGameClick() => QuitGame.Quit();
+        public void OnQuitedGame() => QuitGame.Quit();
     }
 }

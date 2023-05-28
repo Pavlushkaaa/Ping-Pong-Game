@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class SpriteDestructor : MonoBehaviour
+    public class DestructibleSprite : MonoBehaviour
     {
         [SerializeField] [Range(0, 50)] private int _fragmentsNumber = 5;
         [SerializeField] private float _force = 250;
@@ -13,54 +13,72 @@ namespace Core
         [Space]
         [SerializeField] private int _layerId = 7;
 
-        private List<GameObject> _fragments;
-
-        private SpriteRenderer _spriteRenderer;
+        private DestructInfo _destructInfo;
         private Collider2D _collider;
 
-        private DestructInfo _destructInfo;
-
-        [ContextMenu("Hide Sprite")]
-        public void HideSprite()
+        [ContextMenu("Hide")]
+        public void Hide()
         {
-            _spriteRenderer.enabled = false;
+            _destructInfo.SpriteRenderer.enabled = false;
             _collider.enabled = false;
         }
 
-        [ContextMenu("Show Sprite")]
-        public void ShowSprite()
+        [ContextMenu("Show")]
+        public void Show()
         {
-            _spriteRenderer.enabled = true;
+            _destructInfo.SpriteRenderer.enabled = true;
             _collider.enabled = true;
         }
 
-        public List<GameObject> Destruct() => SpriteExploder.Explode(_destructInfo);
+        public List<GameObject> Destruct()
+        {
+            Hide();
+            return SpriteExploder.Explode(_destructInfo);
+        }
+        public List<GameObject> Destruct(Transform parent)
+        {
+            Hide();
 
-        [ContextMenu("Init")]
+            var fragments = SpriteExploder.Explode(_destructInfo);
+
+            foreach (var fragment in fragments)
+                fragment.transform.SetParent(parent);
+
+            return fragments;
+        }
+
         private void Awake()
         {
-            if(TryGetComponent<SpriteRenderer>(out var sprite))
-                _spriteRenderer = sprite;
+            if (TryGetComponent<SpriteRenderer>(out var sprite))
+                _destructInfo.SpriteRenderer = sprite;
             else
-                _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+                _destructInfo.SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-            _collider = GetComponent<Collider2D>();
+            var collider = GetComponent<Collider2D>();
 
-            if (_collider is PolygonCollider2D)
-                _destructInfo.PolygonCollider = (PolygonCollider2D)_collider;
-            else if (_collider is BoxCollider2D)
-                _destructInfo.BoxCollider = (BoxCollider2D)_collider;
+            if (collider is PolygonCollider2D)
+            {
+                _destructInfo.PolygonCollider = (PolygonCollider2D)collider;
+                _collider = _destructInfo.PolygonCollider;
+            }
+            else if (collider is BoxCollider2D)
+            {
+                _destructInfo.BoxCollider = (BoxCollider2D)collider;
+                _collider = _destructInfo.BoxCollider;
+            }
             else
             {
                 _destructInfo.BoxCollider = gameObject.AddComponent<BoxCollider2D>();
                 _destructInfo.BoxCollider.enabled = false;
+                _collider = _destructInfo.BoxCollider;
             }
+        }
 
-
+        private void Start()
+        {
             _destructInfo.GameObject = gameObject;
             _destructInfo.Transform = transform;
             _destructInfo.Rigidbody = GetComponent<Rigidbody2D>();
-            _destructInfo.SpriteRenderer = _spriteRenderer;
 
             _destructInfo.LayerId = _layerId;
             _destructInfo.DestroyCcolor = _destroyColor;
@@ -72,7 +90,7 @@ namespace Core
         [ContextMenu("Destruct")]
         private void InspectorDestroy()
         {
-            Awake();
+            Start();
             Destruct();
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Core.Game
 {
-    [RequireComponent(typeof(SpriteDestructor))]
+    [RequireComponent(typeof(DestructibleSprite))]
     public class Platform : MonoBehaviour
     {
         [SerializeField] private InputModule _input;
@@ -14,28 +14,28 @@ namespace Core.Game
 
         private Transform _platform;
         private Camera _camera;
-        private SpriteDestructor _spriteDestructor;
+        private DestructibleSprite _destructor;
 
         private bool _isFreese;
 
         public void FreezeMove()=> _isFreese = true;
         public void StartMove()=> _isFreese = false;
 
-        public void Destroy() => _spriteDestructor.Destruct();
-        public void HidePlatform() => _spriteDestructor.HideSprite();
-        public void ShowPlatform() => _spriteDestructor.ShowSprite();
+        public void Destroy() => _destructor.Destruct();
+        public void HidePlatform() => _destructor.Hide();
+        public void ShowPlatform() => _destructor.Show();
 
-        private void Update() => Move();
-
-        private void Awake()
+        private void Awake() => _destructor = GetComponent<DestructibleSprite>();
+        private void Start()
         {
             _camera = Camera.main;
             _platform = GetComponent<Transform>();
-            _spriteDestructor = GetComponent<SpriteDestructor>();
+            _destructor = GetComponent<DestructibleSprite>();
 
             _xAxisLimit = InputModule.WorlsScreenSize.x - transform.localScale.x / 2;
         }
 
+        private void Update() => Move();
         private void Move()
         {
             if (_isFreese) return;

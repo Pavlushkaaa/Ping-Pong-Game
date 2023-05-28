@@ -1,6 +1,4 @@
-﻿using Core.UI;
-using System;
-using System.Collections;
+﻿using System;
 using UnityEngine;
 
 namespace Core
@@ -45,10 +43,10 @@ namespace Core
 
         private void Start()
         {
-            _view.OnWatchAd += WatchAd;
+            _view.WatchedAd += WatchAd;
 
-            _view.OnPlayAgain += _gameLoop.Restart; 
-            _view.OnBackToMainMenu += ForceEndFail;
+            _view.PlayedAgain += _gameLoop.Restart; 
+            _view.ReturnedToMainMenu += ForceEndFail;
         }
     }
 }

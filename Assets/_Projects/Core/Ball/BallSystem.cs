@@ -1,5 +1,4 @@
 ﻿using Core.Game;
-using Core.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ namespace Core
         public event Action OnTrajectoryChoose;
 
         [SerializeField] private InputModule _input;
+        [SerializeField] private Platform _platform;
         [SerializeField] private TimeManager _timeManager;
         [SerializeField] private BallTrajectory _trajectory;
         [SerializeField] private Ball _ballPrefab;
@@ -32,7 +32,7 @@ namespace Core
             {
                 foreach (var ball in _balls)
                 {
-                    ball.OnDie -= UpdateSystem;
+                    ball.Died -= UpdateSystem;
                     ball.ForceDie();
                 }
 
@@ -49,7 +49,7 @@ namespace Core
         {
             _endGame = GetComponent<EndGame>();
 
-            _ballSpawnPosition = FindObjectOfType<Platform>().gameObject.transform.position;
+            _ballSpawnPosition = _platform.transform.position;
             _ballSpawnPosition.y += 1;
 
             SpawnRandomBall();
@@ -67,7 +67,7 @@ namespace Core
             Ball newBall = Instantiate(_ballPrefab, position, Quaternion.identity);
 
             _balls.Add(newBall);
-            newBall.OnDie += UpdateSystem;
+            newBall.Died += UpdateSystem;
 
             newBall.gameObject.transform.SetParent(_ballsParent);
 

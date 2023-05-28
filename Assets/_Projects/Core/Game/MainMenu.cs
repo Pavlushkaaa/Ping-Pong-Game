@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.UI
+namespace Core
 {
     public class MainMenu : MonoBehaviour
     {
@@ -11,11 +11,17 @@ namespace Core.UI
         public void Show() => _view.ShowPanel();
         private void Hide() => _view.HidePanel();
 
+        private void StartGame()
+        {
+            Hide(); 
+            _gameLoop.StartLoop();
+        }
+
         private void Start()
         {
             _gameLoop= GetComponentInParent<GameLoop>();
 
-            _view.OnStartGame += () => { Hide(); _gameLoop.StartLoop(); };
+            _view.StartedGame += StartGame;
         }
     }
 }

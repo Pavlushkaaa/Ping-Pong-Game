@@ -790,6 +790,14 @@ PrefabInstance:
       propertyPath: _view
       value: 
       objectReference: {fileID: 2123086705}
+    - target: {fileID: 6561365100226796334, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: m_Name
+      value: Dead Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365101171880056, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _effectSystem
+      value: 
+      objectReference: {fileID: 6561365100310737530}
     - target: {fileID: 6561365101171880832, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: m_Name
       value: === GAME SYSTEMS ===
@@ -846,6 +854,10 @@ PrefabInstance:
       propertyPath: _input
       value: 
       objectReference: {fileID: 1280914964}
+    - target: {fileID: 6561365101171880835, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _platform
+      value: 
+      objectReference: {fileID: 1720278052}
     - target: {fileID: 6561365101171880837, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _platform
       value: 
@@ -880,6 +892,53 @@ PrefabInstance:
       objectReference: {fileID: 1408556847}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+--- !u!1 &6561365100310737529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6561365101171880832, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+  m_PrefabInstance: {fileID: 6561365100310737528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6561365100310737530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365100310737529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d30eacae7679b945a736632417aaf56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectApplier: {fileID: 6561365100310737540}
+  _effectPrefab: {fileID: 5634515632341587168, guid: 68b365d509376224081c745435a48979, type: 3}
+  _effects:
+  - {fileID: 11400000, guid: 8a4fe992de5844840a766dd6f8bc42e6, type: 2}
+  - {fileID: 11400000, guid: f3d9fe6a751e6064fa64e27a46a0c113, type: 2}
+  _dropChanceIds: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000010000000100000001000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+--- !u!114 &6561365100310737540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365100310737529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1e7c3b308a2d54d859b272c0e1b146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ballSystem: {fileID: 6561365100310737548}
+--- !u!114 &6561365100310737548 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6561365101171880835, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+  m_PrefabInstance: {fileID: 6561365100310737528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365100310737529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6f2666ac5071a4b989df8351a28f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9206810075539877635
 PrefabInstance:
   m_ObjectHideFlags: 0

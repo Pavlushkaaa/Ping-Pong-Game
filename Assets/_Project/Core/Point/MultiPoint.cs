@@ -25,11 +25,11 @@ namespace Core
         }
 
         private new void Start()
-        { 
+        {
+            base.Start();
+
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             IsLastTouch = false;
-
-            base.Start();
         }
     }
 }

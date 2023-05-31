@@ -8,6 +8,7 @@ namespace Core
     public class EffectApplier : MonoBehaviour
     {
         [SerializeField] private BallSystem _ballSystem;
+        [SerializeField] private PlatformScaler _platformScaler;
 
         private Dictionary<EffectName, Action> _effect;
 
@@ -20,12 +21,17 @@ namespace Core
         private void MultiplyBallsBy2() => _ballSystem.MultiplyBalls(2);
         private void MultiplyBallsBy3() => _ballSystem.MultiplyBalls(3);
 
+        private void ChangePlatformLenghtBy2() => _platformScaler.Increase();
+        private void ChangePlatformLenghtByD2() => _platformScaler.Decrease();
+
         private void Start()
         {
             _effect = new Dictionary<EffectName, Action>
             {
                 { EffectName.BallMultiplierX2, MultiplyBallsBy2 },
-                { EffectName.BallMultiplierX3, MultiplyBallsBy3 }
+                { EffectName.BallMultiplierX3, MultiplyBallsBy3 },
+                { EffectName.PlatformLenghtX2, ChangePlatformLenghtBy2 },
+                { EffectName.PlatformLenghtDX2, ChangePlatformLenghtByD2 }
             };
         }
 

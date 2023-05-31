@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98dcca39185ef87419f541953e73d495, type: 3}
-  m_Name: Ball Multiplier X2
+  m_Script: {fileID: 11500000, guid: 41a2dcdb843585a43a7586e68e612e42, type: 3}
+  m_Name: Platform Scaler Settings
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: BallMultiplierX2
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 980671eb1e65af14faeeedea92b4805b, type: 3}
-  <DropChance>k__BackingField: 10
-  Id: 0
+  <NormalLength>k__BackingField: 1.8
+  <Height>k__BackingField: 0.08
+  <MinLength>k__BackingField: 0.8
+  <MaxLength>k__BackingField: 2.8

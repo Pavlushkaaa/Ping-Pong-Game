@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98dcca39185ef87419f541953e73d495, type: 3}
-  m_Name: Ball Multiplier X2
+  m_Name: Platform Lenght X2
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: BallMultiplierX2
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 980671eb1e65af14faeeedea92b4805b, type: 3}
-  <DropChance>k__BackingField: 10
+  <Name>k__BackingField: PlatformLenghtX2
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 542055f5ba439ba4e8d02082370a95bb, type: 3}
+  <DropChance>k__BackingField: 5
   Id: 0

@@ -27,6 +27,8 @@ namespace Core
             IsLooping = true;
 
             _platform.FreezeMove();
+            _platform.Destroy();
+            _platform.ShowPlatform();
 
             _inputModule.Reset();
             _ballSystem.Reset();

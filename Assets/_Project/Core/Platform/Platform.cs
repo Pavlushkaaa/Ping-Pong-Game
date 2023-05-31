@@ -10,18 +10,22 @@ namespace Core
         [Space]
         [SerializeField] private float _speed;
 
-        private float _xAxisLimit;
-
         private Transform _platform;
         private Camera _camera;
         private DestructibleSprite _destructor;
+        private PlatformScaler _scaler;
 
+        private float _xAxisLimit { get => InputModule.WorlsScreenSize.x - _platform.localScale.x / 2; }
         private bool _isFreese;
 
         public void FreezeMove()=> _isFreese = true;
         public void StartMove()=> _isFreese = false;
 
-        public void Destroy() => _destructor.Destruct();
+        public void Destroy()
+        {
+            _destructor.Destruct();
+            _scaler.Reset();
+        }
         public void HidePlatform() => _destructor.Hide();
         public void ShowPlatform() => _destructor.Show();
 
@@ -31,8 +35,7 @@ namespace Core
             _camera = Camera.main;
             _platform = GetComponent<Transform>();
             _destructor = GetComponent<DestructibleSprite>();
-
-            _xAxisLimit = InputModule.WorlsScreenSize.x - transform.localScale.x / 2;
+            _scaler = GetComponent<PlatformScaler>();
         }
 
         private void Update() => Move();

@@ -95,14 +95,13 @@ namespace Core
             TouchDirection = _touchDownPoint - f.screenPosition;
 
             if (Touch.activeTouches.Count == 1)
-                if (!CheckTouch(f.screenPosition))
                     PointerXAxisPosition = Mathf.Clamp(PointerXAxisPosition + Touch.activeTouches[0].delta.x * _sensivity, 0, Camera.main.pixelWidth);
         }
         private void UpdateTouchDown(Finger f)
         {
             _touchDownPoint = f.screenPosition;
 
-            UpdateTouchMove(f);
+            CheckTouch(f.screenPosition);
             PointerXAxisPosition = f.screenPosition.x;
         }
         private void UpdateTouchUp(Finger f)
@@ -110,7 +109,7 @@ namespace Core
             TouchDirection = _touchDownPoint - f.screenPosition;
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         private void OnClickDown()
         {
             if (Touch.activeFingers.Count > 0) return;

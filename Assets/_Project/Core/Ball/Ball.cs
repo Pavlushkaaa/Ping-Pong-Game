@@ -11,7 +11,7 @@ namespace Core
         public Vector2 Position { get => _ball.position; }
         [field:SerializeField] public float ColliderRadius { get; private set; }
 
-        [SerializeField] private float _speed;
+        [SerializeField] private BallSpeedSO _settings;
         [SerializeField] [ReadOnly] private Vector2 _moveDirection;
 
         [Space]
@@ -19,6 +19,8 @@ namespace Core
         [SerializeField] [ReadOnly] private Vector2 _currentNormal;
         [SerializeField] [ReadOnly] private Vector2 _lastNormal;
         [SerializeField] [ReadOnly] private float _sameNormals;
+
+        private float _currentSpeed;
 
         private Transform _ball;
         private Rigidbody2D _ballRigidbody;
@@ -33,6 +35,8 @@ namespace Core
         }
 
         public void SetMoveDirection(Vector2 direction) => _moveDirection = direction;
+        public void IncreaseSpeed() => ChangeSpeed(_settings.SpeedChangeStep);
+        public void DecreaseSpeed() => ChangeSpeed(-_settings.SpeedChangeStep);
 
         public void Die() { if (GameLoop.IsLooping) ForceDie(); }
 
@@ -43,6 +47,12 @@ namespace Core
 
             Died?.Invoke(this);
             Destroy(gameObject);
+        }
+
+        private void ChangeSpeed(float value)
+        {
+            var target = _currentSpeed + value;
+            _currentSpeed = Mathf.Clamp(target, _settings.MinSpeed, _settings.MaxSpeed);
         }
 
         private static float ClampReflectAngle(float angle)
@@ -65,11 +75,13 @@ namespace Core
             _ballRigidbody = GetComponent<Rigidbody2D>();
             _destructor = GetComponent<DestructibleSprite>();
             _soundPlayer = GetComponent<BallSoundPlayer>();
+
+            _currentSpeed = _settings.NormalSpeed;
         }
 
         private void Move()
         {
-            _ballRigidbody.velocity = _moveDirection.normalized * _speed;
+            _ballRigidbody.velocity = _moveDirection.normalized * _currentSpeed;
         }
 
         private void FixAxisStick()

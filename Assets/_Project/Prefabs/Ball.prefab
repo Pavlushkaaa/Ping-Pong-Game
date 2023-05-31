@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ColliderRadius>k__BackingField: 0.0625
-  _speed: 5
+  _settings: {fileID: 11400000, guid: 36a75ac4622e4754d80af8c51261a653, type: 2}
   _moveDirection: {x: 0, y: 0}
   _currentDegree: 0
   _currentNormal: {x: 0, y: 0}

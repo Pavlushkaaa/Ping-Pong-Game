@@ -21,8 +21,11 @@ namespace Core
         private void MultiplyBallsBy2() => _ballSystem.MultiplyBalls(2);
         private void MultiplyBallsBy3() => _ballSystem.MultiplyBalls(3);
 
-        private void ChangePlatformLenghtBy2() => _platformScaler.Increase();
-        private void ChangePlatformLenghtByD2() => _platformScaler.Decrease();
+        private void IncreasePlatformLenght() => _platformScaler.Increase();
+        private void DecreasePlatformLenght() => _platformScaler.Decrease();
+
+        private void IncreaseBallSpeed() => _ballSystem.IncreaseBallsSpeed();
+        private void DecreaseBallSpeed() => _ballSystem.DecreaseBallsSpeed();
 
         private void Start()
         {
@@ -30,8 +33,10 @@ namespace Core
             {
                 { EffectName.BallMultiplierX2, MultiplyBallsBy2 },
                 { EffectName.BallMultiplierX3, MultiplyBallsBy3 },
-                { EffectName.PlatformLenghtX2, ChangePlatformLenghtBy2 },
-                { EffectName.PlatformLenghtDX2, ChangePlatformLenghtByD2 }
+                { EffectName.PlatformLenghtX2, IncreasePlatformLenght },
+                { EffectName.PlatformLenghtDX2, DecreasePlatformLenght },
+                { EffectName.BallSpeedX2, IncreaseBallSpeed },
+                { EffectName.BallSpeedDX2, DecreaseBallSpeed }
             };
         }
 

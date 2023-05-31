@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Platform Lenght DX2
   m_EditorClassIdentifier: 
   <Name>k__BackingField: PlatformLenghtDX2
-  <Sprite>k__BackingField: {fileID: 21300000, guid: c7731056397bf4c4fad634e5a5741523, type: 3}
-  <DropChance>k__BackingField: 10
-  Id: 0
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 9012bd3a72698264dbee0d1183ff67ca, type: 3}
+  <DropChance>k__BackingField: 8
+  Id: 4

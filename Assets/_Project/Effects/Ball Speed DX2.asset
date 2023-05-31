@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98dcca39185ef87419f541953e73d495, type: 3}
-  m_Name: Ball Multiplier X3
+  m_Name: Ball Speed DX2
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: BallMultiplierX3
-  <Sprite>k__BackingField: {fileID: 21300000, guid: c7731056397bf4c4fad634e5a5741523, type: 3}
-  <DropChance>k__BackingField: 4
-  Id: 1
+  <Name>k__BackingField: BallSpeedDX2
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c1a327f327221b041a6211b90d276cc1, type: 3}
+  <DropChance>k__BackingField: 8
+  Id: 0

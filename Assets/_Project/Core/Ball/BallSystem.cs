@@ -55,6 +55,16 @@ namespace Core
                 for (int j = 0; j < multiplier; j++)
                     CreateNewBall(_balls[i].Position).SetMoveDirection(Random.insideUnitCircle.normalized);
         }
+        public void IncreaseBallsSpeed()
+        {
+            foreach(var ball in _balls)
+                ball.IncreaseSpeed();
+        }
+        public void DecreaseBallsSpeed()
+        {
+            foreach (var ball in _balls)
+                ball.DecreaseSpeed();
+        }
 
         private void Start()
         {

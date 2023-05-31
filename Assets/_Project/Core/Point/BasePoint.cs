@@ -1,6 +1,4 @@
-﻿using NaughtyAttributes;
-using System;
-using Unity.VisualScripting;
+﻿using System;
 using UnityEngine;
 
 namespace Core

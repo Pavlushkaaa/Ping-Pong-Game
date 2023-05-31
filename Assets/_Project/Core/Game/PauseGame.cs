@@ -1,6 +1,4 @@
-﻿using Core.Game;
-using Core.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Core
 {

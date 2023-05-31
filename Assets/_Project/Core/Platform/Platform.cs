@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Game
+namespace Core
 {
     [RequireComponent(typeof(DestructibleSprite))]
     public class Platform : MonoBehaviour

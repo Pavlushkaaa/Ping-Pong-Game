@@ -1,11 +1,10 @@
 using UnityEngine;
-using System;
 
 namespace Delaunay
-{	
-	namespace Geo
-	{
-		public sealed class Circle
+{
+    namespace Geo
+    {
+        public sealed class Circle
 		{
 			public Vector2 center;
 			public float radius;

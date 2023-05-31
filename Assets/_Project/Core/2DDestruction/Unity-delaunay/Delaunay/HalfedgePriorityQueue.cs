@@ -1,11 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic;
-using Delaunay.Utils;
 
 namespace Delaunay
 {
-	
-	internal sealed class HalfedgePriorityQueue: Utils.IDisposable // also known as heap
+
+    internal sealed class HalfedgePriorityQueue: Utils.IDisposable // also known as heap
 	{
 		private Halfedge[] _hash;
 		private int _count;

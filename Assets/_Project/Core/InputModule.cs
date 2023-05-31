@@ -1,5 +1,4 @@
 ﻿using Core.UI;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;

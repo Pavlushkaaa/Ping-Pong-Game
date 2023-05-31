@@ -1,7 +1,4 @@
-﻿using Core;
-using Core.Game;
-using Core.UI;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Core

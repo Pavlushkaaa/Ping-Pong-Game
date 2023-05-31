@@ -1,6 +1,4 @@
 ﻿using NaughtyAttributes;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 namespace Core

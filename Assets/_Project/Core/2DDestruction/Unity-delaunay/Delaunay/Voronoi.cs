@@ -16,12 +16,11 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using Delaunay.Geo;
-using Delaunay.Utils;
 using Delaunay.LR;
 
 namespace Delaunay
 {
-	public sealed class Voronoi: Utils.IDisposable
+    public sealed class Voronoi: Utils.IDisposable
 	{
 		private SiteList _sites;
 		private Dictionary <Vector2,Site> _sitesIndexedByLocation;

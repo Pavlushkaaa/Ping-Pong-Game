@@ -1,10 +1,9 @@
 using UnityEngine;
-using Delaunay.Utils;
 
 namespace Delaunay
 {
-	
-	internal sealed class EdgeList: Utils.IDisposable
+
+    internal sealed class EdgeList: Utils.IDisposable
 	{
 		private float _deltax;
 		private float _xmin;

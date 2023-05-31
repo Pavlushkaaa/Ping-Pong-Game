@@ -2,12 +2,11 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using Delaunay.Geo;
-using Delaunay.Utils;
 
 namespace Delaunay
 {
 
-	public sealed class SiteList: Utils.IDisposable
+    public sealed class SiteList: Utils.IDisposable
 	{
 		public List<Site> _sites;
 		private int _currentIndex;

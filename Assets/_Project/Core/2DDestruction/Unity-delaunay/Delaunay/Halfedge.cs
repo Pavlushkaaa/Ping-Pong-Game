@@ -2,14 +2,12 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using Delaunay.LR;
-using Delaunay.Geo;
-using Delaunay.Utils;
 
 namespace Delaunay
 {
 
-	
-	public sealed class Halfedge: Delaunay.Utils.IDisposable
+
+    public sealed class Halfedge: Delaunay.Utils.IDisposable
 	{
 		private static Stack<Halfedge> _pool = new Stack<Halfedge> ();
 		public static Halfedge Create (Edge edge, Nullable<Side> lr)

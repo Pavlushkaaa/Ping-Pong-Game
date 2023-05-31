@@ -1,12 +1,11 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 using Delaunay.LR;
 
 namespace Delaunay
 {
-	
-	public sealed class Vertex: ICoord
+
+    public sealed class Vertex: ICoord
 	{
 		public static readonly Vertex VERTEX_AT_INFINITY = new Vertex (float.NaN, float.NaN);
 		

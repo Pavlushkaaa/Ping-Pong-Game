@@ -98,10 +98,24 @@ namespace Core
         private IEnumerator SpawnBall()
         {
             var ball = CreateNewBall(_ballSpawnPosition);
+            bool canCreateTrajectory = false;
+
+            yield return new WaitForSecondsRealtime(0.4f); // pause to avoid an accidental click
 
             while (GameLoop.IsLooping)
             {
                 ball.SetMoveDirection(Vector2.zero);
+
+                if(!canCreateTrajectory)
+                {
+                    canCreateTrajectory = _input.IsTouchDown;
+
+                    if (!canCreateTrajectory)
+                    {
+                        yield return new WaitForEndOfFrame();
+                        continue;
+                    }
+                }
 
                 if(_input.IsTouchMove && _input.TouchDirection.magnitude > 50)
                 {

@@ -11,6 +11,6 @@ namespace Core
         [field: SerializeField] public int DropChance { get; private set; }
 
         [Space]
-        [ReadOnly] public int Id;
+        [ReadOnly] public EffectName Id;
     }
 }

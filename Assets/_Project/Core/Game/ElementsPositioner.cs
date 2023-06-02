@@ -23,7 +23,6 @@ namespace Core
         [SerializeField] private float _platformHeight = 1.5f;
         [SerializeField] private float _ballDeadZoneHeight = 0.7f;
         [SerializeField] private float _buttonOffset = 0.5f;
-        [SerializeField] private float _backButtonOffset = 1.5f;
 
         private void Start()
         {
@@ -34,11 +33,11 @@ namespace Core
         private void PositionMenuElements()
         {
             Vector2 buttonPosition = InputModule.WorlsScreenSize - _buttonOffset * Vector2.one;
+            
             _pauseButton.position = buttonPosition;
             _settingsButton.position = buttonPosition;
             _retryButton.position = buttonPosition;
-
-            _backToMainMenuButton.position = new Vector2(0, -InputModule.WorlsScreenSize.y + _backButtonOffset);
+            _backToMainMenuButton.position = buttonPosition;
         }
         private void PositionGameElements()
         {

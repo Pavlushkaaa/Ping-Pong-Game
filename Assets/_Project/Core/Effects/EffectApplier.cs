@@ -19,8 +19,8 @@ namespace Core
             result.Invoke();
         }
 
-        private void MultiplyBallsBy2() => _ballSystem.MultiplyBalls(2);
-        private void MultiplyBallsBy3() => _ballSystem.MultiplyBalls(3);
+        private void MultiplyBallsBy2() => _ballSystem.MultiplyBalls(1);
+        private void MultiplyBallsBy3() => _ballSystem.MultiplyBalls(2);
 
         private void IncreasePlatformLenght() => _platformScaler.Increase();
         private void DecreasePlatformLenght() => _platformScaler.Decrease();

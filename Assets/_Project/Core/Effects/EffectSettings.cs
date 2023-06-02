@@ -10,7 +10,6 @@ namespace Core
         [field: SerializeField] public Sprite Sprite { get; private set; }
         [field: SerializeField] public int DropChance { get; private set; }
 
-        [Space]
-        [ReadOnly] public EffectName Id;
+        [SerializeField] [ReadOnly] public EffectName Id;
     }
 }

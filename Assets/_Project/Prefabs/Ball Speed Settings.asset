@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ball Speed Settings
   m_EditorClassIdentifier: 
   NormalSpeed: 5
-  MinSpeed: 4
-  MaxSpeed: 9
-  SpeedChangeStep: 1
+  MinSpeed: 3
+  MaxSpeed: 11
+  SpeedChangeStep: 2

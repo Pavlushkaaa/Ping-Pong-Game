@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: BallMultiplierX3
   <Sprite>k__BackingField: {fileID: 21300000, guid: c7731056397bf4c4fad634e5a5741523, type: 3}
-  <DropChance>k__BackingField: 4
+  <DropChance>k__BackingField: 2
   Id: 1

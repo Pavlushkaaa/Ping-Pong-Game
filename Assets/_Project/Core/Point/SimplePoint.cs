@@ -6,6 +6,13 @@ namespace Core
     public class SimplePoint : BasePoint
     {
         private DestructibleSprite _spriteDestructor;
+
+        public void ForceDestroy() => Destroy(gameObject);
+        public void Destruct() => _spriteDestructor.Destruct();
+
+        public void Hide() => _spriteDestructor.Hide();
+        public void Show() => _spriteDestructor.Show();
+
         public override void Contact()
         {
             Die();
@@ -13,11 +20,7 @@ namespace Core
             Destroy(gameObject);
         }
 
-        protected new void Start()
-        {
-            base.Start();
-            _spriteDestructor = GetComponent<DestructibleSprite>();
-        }
+        protected void Start() => _spriteDestructor = GetComponent<DestructibleSprite>();
 
         [ContextMenu("Destroy Point")]
         private void DestroyPoint() => Contact();

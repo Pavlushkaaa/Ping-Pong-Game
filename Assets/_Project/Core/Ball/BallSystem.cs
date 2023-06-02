@@ -139,10 +139,17 @@ namespace Core
 
         private void SpawnRandomBall()
         {
+            var position = InputModule.CreateRandomPosition(0.1f);
+
+            RaycastHit2D[] temp = new RaycastHit2D[0];
+            while (Physics2D.CircleCastNonAlloc(position, 0.1f, Vector2.zero, temp) > 0)
+                position = InputModule.CreateRandomPosition(0.1f);
+
             var x = Random.Range(-0.95f, 0.95f);
             var y = Random.Range(0.15f, 0.95f);
             Vector2 randomDirection = new Vector2(x, y);
-            CreateNewBall(_ballSpawnPosition).SetMoveDirection(randomDirection);
+
+            CreateNewBall(position).SetMoveDirection(randomDirection);
         }
     }
 }

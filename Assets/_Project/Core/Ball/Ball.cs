@@ -12,6 +12,7 @@ namespace Core
         [field:SerializeField] public float ColliderRadius { get; private set; }
 
         [SerializeField] private BallSpeedSO _settings;
+        [SerializeField] private Transform _ball;
         [SerializeField] [ReadOnly] private Vector2 _moveDirection;
 
         [Space]
@@ -22,7 +23,6 @@ namespace Core
 
         private float _currentSpeed;
 
-        private Transform _ball;
         private Rigidbody2D _ballRigidbody;
         private DestructibleSprite _destructor;
         private BallSoundPlayer _soundPlayer;
@@ -70,8 +70,6 @@ namespace Core
 
         private void Start()
         {
-            _ball = transform;
-
             _ballRigidbody = GetComponent<Rigidbody2D>();
             _destructor = GetComponent<DestructibleSprite>();
             _soundPlayer = GetComponent<BallSoundPlayer>();

@@ -27,6 +27,16 @@ namespace Core
         private Vector2 _touchDownPoint;
         private Camera _camera;
 
+        public static Vector2 CreateRandomPosition(float offset)
+        {
+            var border = WorlsScreenSize;
+            border.x -= offset;
+            border.y -= offset;
+
+            var x = Random.Range(-border.x, border.x);
+            var y = Random.Range(-border.y, border.y);
+            return new Vector2(x, y);
+        }
         public void Reset() => PointerXAxisPosition = _defoultPointerXAxisPosition;
 
         private void OnEnable() => EnhancedTouchSupport.Enable();

@@ -29,6 +29,7 @@ namespace Core
             _platform.FreezeMove();
             _platform.Destroy();
             _platform.ShowPlatform();
+            _platform.Reset();
 
             _inputModule.Reset();
             _ballSystem.Reset();
@@ -43,7 +44,7 @@ namespace Core
             IsLooping = true;
 
             _platform.FreezeMove();
-
+            _platform.Reset();
             _inputModule.Reset();
             _ballSystem.Reset();
 
@@ -65,16 +66,21 @@ namespace Core
         {
             _platform.FreezeMove();
             _ballSystem.Reset();
+            _inputModule.Reset();
+            _platform.Reset();
             _timeManager.DoSlowmotion(1.5f);
             OnContinueLoop?.Invoke();
         }
 
         public void EndLoop()
         {
-            _timeManager.ForceNormal();
             IsLooping = false;
 
+            _timeManager.ForceNormal();
+
             _ballSystem.Reset();
+            _platform.Reset();
+            _inputModule.Reset();
 
             _platform.HidePlatform();
             _platform.Destroy();
@@ -94,7 +100,7 @@ namespace Core
 
             _platform.HidePlatform();
 
-            _ballSystem.OnTrajectoryChoose += _platform.StartMove;
+            _ballSystem.OnTrajectoryChoose += () => { _platform.StartMove(); _inputModule.Reset(); };
         }
     }
 }

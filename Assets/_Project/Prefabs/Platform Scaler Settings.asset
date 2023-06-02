@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a2dcdb843585a43a7586e68e612e42, type: 3}
+  m_Name: Platform Scaler Settings
+  m_EditorClassIdentifier: 
+  <NormalLength>k__BackingField: 1.8
+  <Height>k__BackingField: 0.08
+  <MinLength>k__BackingField: 0.8
+  <MaxLength>k__BackingField: 2.8

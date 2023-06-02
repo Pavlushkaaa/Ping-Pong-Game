@@ -1,5 +1,4 @@
 using Delaunay.LR;
-using Delaunay.Utils;
 using System.Collections.Generic;
 
 /** This class is horrible, and ought to be nuked from orbit. But the library is
@@ -21,7 +20,7 @@ and REMOVE IT from the rest of the library (all the places where it shouldn't be
 */
 namespace Delaunay
 {
-	public enum VertexOrSite
+    public enum VertexOrSite
 	{
 		VERTEX,
 		SITE

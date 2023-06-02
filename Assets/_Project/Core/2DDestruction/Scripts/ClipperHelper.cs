@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using ClipperLib;
 using Polygon = System.Collections.Generic.List<ClipperLib.IntPoint>;

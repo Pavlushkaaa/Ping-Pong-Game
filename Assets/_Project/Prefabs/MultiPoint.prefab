@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bf845d198f67647aaf1eee47d5eb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 8550747165641645262}
   _maxContact: 3
   _color:
   - {r: 0, g: 1, b: 1, a: 1}

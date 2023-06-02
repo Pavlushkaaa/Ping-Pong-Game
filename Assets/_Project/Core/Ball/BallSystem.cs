@@ -1,5 +1,4 @@
-﻿using Core.Game;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +55,16 @@ namespace Core
                 for (int j = 0; j < multiplier; j++)
                     CreateNewBall(_balls[i].Position).SetMoveDirection(Random.insideUnitCircle.normalized);
         }
+        public void IncreaseBallsSpeed()
+        {
+            foreach(var ball in _balls)
+                ball.IncreaseSpeed();
+        }
+        public void DecreaseBallsSpeed()
+        {
+            foreach (var ball in _balls)
+                ball.DecreaseSpeed();
+        }
 
         private void Start()
         {
@@ -89,10 +98,24 @@ namespace Core
         private IEnumerator SpawnBall()
         {
             var ball = CreateNewBall(_ballSpawnPosition);
+            bool canCreateTrajectory = false;
+
+            yield return new WaitForSecondsRealtime(0.4f); // pause to avoid an accidental click
 
             while (GameLoop.IsLooping)
             {
                 ball.SetMoveDirection(Vector2.zero);
+
+                if(!canCreateTrajectory)
+                {
+                    canCreateTrajectory = _input.IsTouchDown;
+
+                    if (!canCreateTrajectory)
+                    {
+                        yield return new WaitForEndOfFrame();
+                        continue;
+                    }
+                }
 
                 if(_input.IsTouchMove && _input.TouchDirection.magnitude > 50)
                 {
@@ -116,10 +139,17 @@ namespace Core
 
         private void SpawnRandomBall()
         {
+            var position = InputModule.CreateRandomPosition(0.1f);
+
+            RaycastHit2D[] temp = new RaycastHit2D[0];
+            while (Physics2D.CircleCastNonAlloc(position, 0.1f, Vector2.zero, temp) > 0)
+                position = InputModule.CreateRandomPosition(0.1f);
+
             var x = Random.Range(-0.95f, 0.95f);
             var y = Random.Range(0.15f, 0.95f);
             Vector2 randomDirection = new Vector2(x, y);
-            CreateNewBall(_ballSpawnPosition).SetMoveDirection(randomDirection);
+
+            CreateNewBall(position).SetMoveDirection(randomDirection);
         }
     }
 }

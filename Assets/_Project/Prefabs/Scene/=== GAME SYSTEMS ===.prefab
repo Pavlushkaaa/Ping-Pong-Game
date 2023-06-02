@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1752026514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752026515}
+  m_Layer: 0
+  m_Name: Decore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752026515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752026514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6561365101171880833}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1808945069300191771
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3753246000617771549}
-  - component: {fileID: 6561365100310737530}
+  - component: {fileID: 4142621122689657393}
   m_Layer: 0
   m_Name: Trajectory Points
   m_TagString: Untagged
@@ -72,7 +103,7 @@ Transform:
   m_Father: {fileID: 6561365101171880833}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6561365100310737530
+--- !u!114 &4142621122689657393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +181,10 @@ GameObject:
   - component: {fileID: 6561365101171880839}
   - component: {fileID: 6561365101171880056}
   - component: {fileID: 8306104772865287252}
+  - component: {fileID: 2501083029992391045}
   - component: {fileID: 1566542007494379211}
+  - component: {fileID: 6561365100310737530}
+  - component: {fileID: 6561365100310737540}
   m_Layer: 0
   m_Name: === GAME SYSTEMS ===
   m_TagString: Untagged
@@ -174,6 +208,7 @@ Transform:
   - {fileID: 3753246000617771549}
   - {fileID: 6561365100798505228}
   - {fileID: 6561365100226796335}
+  - {fileID: 1752026515}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,8 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 0}
+  _platform: {fileID: 0}
   _timeManager: {fileID: 6561365101171880838}
-  _trajectory: {fileID: 6561365100310737530}
+  _trajectory: {fileID: 4142621122689657393}
   _ballPrefab: {fileID: 2439647975965429609, guid: f14b2d321490f8340918e97bdf2aef06, type: 3}
   _ballsParent: {fileID: 6561365101951327340}
 --- !u!114 &6561365101171880834
@@ -275,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986b64c283dbb1b4fb09be85c83e885d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effectSystem: {fileID: 6561365100310737530}
   _zones:
   - {fileID: 487289503437842952, guid: 668623c69cb6f254ab32bbdfc8720a71, type: 3}
 --- !u!114 &8306104772865287252
@@ -290,6 +327,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 0}
+  _decorator: {fileID: 2501083029992391045}
+--- !u!114 &2501083029992391045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365101171880832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2095118e9fbc34397c7ca2ca1e86d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointsNumber: 100
+  _offsetFromBorder: 0.15
+  _minDistanceBettwenPoints: 0.1
+  _minScale: 0.1
+  _pointPrefab: {fileID: 9148653896138178057, guid: 5f20217281343f54fb0e33de209dd0be, type: 3}
+  _pointsParent: {fileID: 1752026515}
 --- !u!114 &1566542007494379211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +361,43 @@ MonoBehaviour:
   _view: {fileID: 0}
   _gameLoop: {fileID: 6561365101171880837}
   _endGame: {fileID: 6561365101171880834}
+--- !u!114 &6561365100310737530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365101171880832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d30eacae7679b945a736632417aaf56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectApplier: {fileID: 6561365100310737540}
+  _effectPrefab: {fileID: 5634515632341587168, guid: 68b365d509376224081c745435a48979, type: 3}
+  _offsetFromBorder: 0.15
+  _effects:
+  - {fileID: 11400000, guid: 8a4fe992de5844840a766dd6f8bc42e6, type: 2}
+  - {fileID: 11400000, guid: f3d9fe6a751e6064fa64e27a46a0c113, type: 2}
+  - {fileID: 11400000, guid: e22e03774c2c7904ab4c710400605953, type: 2}
+  - {fileID: 11400000, guid: cbfb5fc1c9967094883a99740a3d67d3, type: 2}
+  - {fileID: 11400000, guid: 60511be9d963ae44b8823ce4874f6e31, type: 2}
+  - {fileID: 11400000, guid: 3e5f39baf18d87c48b5bd3278b7192a0, type: 2}
+  _dropChanceIds: 0000000000000000000000000000000000000000000000000000000001000000010000000100000002000000020000000200000002000000020000000200000003000000030000000300000003000000030000000300000004000000040000000400000004000000040000000400000005000000050000000500000005000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+--- !u!114 &6561365100310737540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365101171880832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1e7c3b308a2d54d859b272c0e1b146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ballSystem: {fileID: 6561365101171880835}
+  _platformScaler: {fileID: 0}
 --- !u!1 &6561365101951327339
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6406016076932797459, guid: 1b926ca1a67babf44a225d0c99d06062, type: 3}
       propertyPath: m_Name
-      value: Ball Dead Zone
+      value: Dead Zone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b926ca1a67babf44a225d0c99d06062, type: 3}

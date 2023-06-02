@@ -1,6 +1,4 @@
 ﻿using NaughtyAttributes;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 namespace Core
@@ -12,7 +10,6 @@ namespace Core
         [field: SerializeField] public Sprite Sprite { get; private set; }
         [field: SerializeField] public int DropChance { get; private set; }
 
-        [Space]
-        [ReadOnly] public int Id;
+        [SerializeField] [ReadOnly] public EffectName Id;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NaughtyAttributes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,24 +9,35 @@ namespace Core
     public class EffectApplier : MonoBehaviour
     {
         [SerializeField] private BallSystem _ballSystem;
+        [SerializeField] private PlatformScaler _platformScaler;
 
-        private Dictionary<EffectName, Action> _effect;
+        private Dictionary<EffectName, Action> _effects;
 
         public void ApplyEffect(EffectSettings effect)
         {
-            _effect.TryGetValue((EffectName)effect.Id, out var result);
+            _effects.TryGetValue(effect.Id, out var result);
             result.Invoke();
         }
 
-        private void MultiplyBallsBy2() => _ballSystem.MultiplyBalls(2);
-        private void MultiplyBallsBy3() => _ballSystem.MultiplyBalls(3);
+        private void MultiplyBallsBy2() => _ballSystem.MultiplyBalls(1);
+        private void MultiplyBallsBy3() => _ballSystem.MultiplyBalls(2);
+
+        private void IncreasePlatformLenght() => _platformScaler.Increase();
+        private void DecreasePlatformLenght() => _platformScaler.Decrease();
+
+        private void IncreaseBallSpeed() => _ballSystem.IncreaseBallsSpeed();
+        private void DecreaseBallSpeed() => _ballSystem.DecreaseBallsSpeed();
 
         private void Start()
         {
-            _effect = new Dictionary<EffectName, Action>
+            _effects = new Dictionary<EffectName, Action>
             {
                 { EffectName.BallMultiplierX2, MultiplyBallsBy2 },
-                { EffectName.BallMultiplierX3, MultiplyBallsBy3 }
+                { EffectName.BallMultiplierX3, MultiplyBallsBy3 },
+                { EffectName.BallSpeedDX2, DecreaseBallSpeed },
+                { EffectName.BallSpeedX2, IncreaseBallSpeed },
+                { EffectName.PlatformLenghtDX2, DecreasePlatformLenght },
+                { EffectName.PlatformLenghtX2, IncreasePlatformLenght }
             };
         }
 
@@ -43,7 +55,7 @@ namespace Core
 
             for (int i = 0; i < effects.Count; i++)
             {
-                effects[i].Id = i;
+                effects[i].Id = (EffectName)i;
 
                 string result = "        " + effects[i].Name.Replace(" ", "").Trim();
                 if (i + 1 < effects.Count) result += ",";

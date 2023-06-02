@@ -1,7 +1,5 @@
 ﻿using NaughtyAttributes;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -14,10 +12,12 @@ namespace Core
 
         [Space]
         [SerializeField] private Effect _effectPrefab;
+        [SerializeField] private float _offsetFromBorder = 0.5f;
         [SerializeField] private List<EffectSettings> _effects;
         [HideInInspector] [SerializeField] private List<int> _dropChanceIds;
 
         private PointSystem _pointSystem;
+        private float _maxXAxisValue;
 
         private List<Effect> _existEffects = new List<Effect>();
 
@@ -40,12 +40,16 @@ namespace Core
                 _pointSystem.PointDestroyed += SpawnEffect;
         }
 
+        private void Start() => _maxXAxisValue = InputModule.WorlsScreenSize.x - _offsetFromBorder;
+
         private void SpawnEffect(Vector2 position)
         {
             if(!GameLoop.IsLooping) return;
 
             var id = _dropChanceIds[GenerateNumber()];
             if (id == -1) return;
+
+            position.x = Mathf.Clamp(position.x, -_maxXAxisValue, _maxXAxisValue);
 
             var effect = Instantiate(_effectPrefab, position, Quaternion.identity);
             effect.Initialize(_effects[id]);

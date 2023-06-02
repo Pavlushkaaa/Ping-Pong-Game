@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Game
+namespace Core
 {
     public static class QuitGame
     {

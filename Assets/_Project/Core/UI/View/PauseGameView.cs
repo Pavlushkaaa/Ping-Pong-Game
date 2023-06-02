@@ -1,5 +1,4 @@
-﻿using Core.Game;
-using Core.UI;
+﻿using Core.UI;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Game
+namespace Core
 {
     [RequireComponent(typeof(DestructibleSprite))]
     public class Platform : MonoBehaviour
@@ -10,18 +10,25 @@ namespace Core.Game
         [Space]
         [SerializeField] private float _speed;
 
-        private float _xAxisLimit;
-
         private Transform _platform;
         private Camera _camera;
         private DestructibleSprite _destructor;
+        private PlatformScaler _scaler;
 
+        private float _xAxisLimit { get => InputModule.WorlsScreenSize.x - _platform.localScale.x / 2; }
         private bool _isFreese;
+        private Vector2 _defoultPosition;
+
+        public void Reset() => _platform.position = _defoultPosition;
 
         public void FreezeMove()=> _isFreese = true;
         public void StartMove()=> _isFreese = false;
 
-        public void Destroy() => _destructor.Destruct();
+        public void Destroy()
+        {
+            _destructor.Destruct();
+            _scaler.Reset();
+        }
         public void HidePlatform() => _destructor.Hide();
         public void ShowPlatform() => _destructor.Show();
 
@@ -31,8 +38,10 @@ namespace Core.Game
             _camera = Camera.main;
             _platform = GetComponent<Transform>();
             _destructor = GetComponent<DestructibleSprite>();
+            _scaler = GetComponent<PlatformScaler>();
 
-            _xAxisLimit = InputModule.WorlsScreenSize.x - transform.localScale.x / 2;
+            _defoultPosition = _camera.ScreenToWorldPoint(new(_input.DefoultPointerXAxisPosition, 0));
+            _defoultPosition.y = _platform.position.y;
         }
 
         private void Update() => Move();

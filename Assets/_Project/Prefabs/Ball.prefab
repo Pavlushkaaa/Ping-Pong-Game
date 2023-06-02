@@ -293,7 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ColliderRadius>k__BackingField: 0.0625
-  _speed: 5
+  _settings: {fileID: 11400000, guid: 36a75ac4622e4754d80af8c51261a653, type: 2}
+  _ball: {fileID: 2439647975965429606}
   _moveDirection: {x: 0, y: 0}
   _currentDegree: 0
   _currentNormal: {x: 0, y: 0}
@@ -401,7 +402,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

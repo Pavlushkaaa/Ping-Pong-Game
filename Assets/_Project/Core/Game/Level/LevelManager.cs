@@ -17,6 +17,8 @@ namespace Core
         private Dictionary<LevelSO, LevelSave> _levelData = new Dictionary<LevelSO, LevelSave>();
 
         private int _currentLevelId = 0;
+        private int _lastLevelId = 0;
+        private int _numberAvailableLevels;
         private string _savePath;
 
         #if UNITY_EDITOR
@@ -78,16 +80,24 @@ namespace Core
 
         private LevelSO ChooseRandomLevel()
         {
-            bool result;
+            if(_numberAvailableLevels <= 1)
+                ResetSaveLevels();
+
+            bool result = true;
 
             do
             {
                 _currentLevelId = Random.Range(0, _levels.Count);
+
+                if (_currentLevelId == _lastLevelId) continue;
+
                 _levelData.TryGetValue(_levels[_currentLevelId], out var save);
                 result = save.IsComplete;
 
             } while (result);
 
+            _numberAvailableLevels--;
+            _lastLevelId = _currentLevelId;
             return _levels[_currentLevelId];
         }
 
@@ -112,6 +122,10 @@ namespace Core
 
             for (int i = 0; i < _levels.Count; i++)
                 _levelData.Add(_levels[i], _savesLevel.Find(x => x.Name == _levels[i].Name));
+
+            for (int i = 0; i < _savesLevel.Count; i++)
+                if (!_savesLevel[i].IsComplete)
+                    _numberAvailableLevels++;
         }
         private void ResetSaveLevels()
         {
@@ -121,6 +135,11 @@ namespace Core
                 _savesLevel.Add(new() { Name = _levels[i].Name, IsComplete = false });
 
             SaveLevels();
+
+            _savesLevel.Clear();
+            _levelData.Clear();
+
+            LoadLevels();
         }
 
         [Button]

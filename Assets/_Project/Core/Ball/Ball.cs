@@ -132,7 +132,12 @@ namespace Core
                 return;
             }
             else
-            if (collision.gameObject.TryGetComponent<BallTrigger>(out var t)) t.OnTrigger();
+            if (collision.gameObject.TryGetComponent<Platform>(out var t))
+            {
+                if (collision.contacts[0].normal != Vector2.up)
+                    if (_ball.position.y < t.Position.y)
+                        return;
+            }
 
             ChangeDirection(collision.contacts[0].normal);
         }

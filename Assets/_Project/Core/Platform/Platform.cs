@@ -5,6 +5,8 @@ namespace Core
     [RequireComponent(typeof(DestructibleSprite))]
     public class Platform : MonoBehaviour
     {
+        public Vector2 Position { get => _platform.position; }
+
         [SerializeField] private InputModule _input;
 
         [Space]

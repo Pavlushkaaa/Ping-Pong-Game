@@ -7,18 +7,16 @@ namespace Core
     {
         [SerializeField] private EffectSystem _effectSystem;
 
-        [Space]
-        [SerializeField] private List<GameObject> _zones;
-
-        private int _currentZoneId = 0;
         private GameObject _currentZone;
         private PointSystem _currentPointSystem;
 
         private EndGame _endGame;
 
-        public void CreateZone()
+        public void CreateZone(GameObject zone)
         {
-            _currentZone = Instantiate(_zones[_currentZoneId], Vector2.zero, Quaternion.identity);
+            if (_currentZone != null) DestroyZone();
+
+            _currentZone = Instantiate(zone, Vector2.zero, Quaternion.identity);
             _currentPointSystem = _currentZone.GetComponent<PointSystem>();
             _currentPointSystem.PointsEnded += _endGame.EndSuccess;
             _effectSystem.Reset(_currentPointSystem);

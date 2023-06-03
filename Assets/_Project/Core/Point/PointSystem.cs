@@ -13,9 +13,6 @@ namespace Core
 
         [SerializeField] [ReadOnly] private List<BasePoint> _points = new List<BasePoint>();
 
-        [ContextMenu("Get All Points")]
-        private void GetAllPoints() => _points = FindObjectsOfType<BasePoint>().ToList();
-
         private void Start()
         {
             foreach (var point in _points)
@@ -29,5 +26,8 @@ namespace Core
             
             if(_points.Count == 0) PointsEnded?.Invoke();
         }
+
+        [Button]
+        private void GetAllPoints() => _points = FindObjectsOfType<BasePoint>().ToList();
     }
 }

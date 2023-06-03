@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1566542007494379211}
   - component: {fileID: 6561365100310737530}
   - component: {fileID: 6561365100310737540}
+  - component: {fileID: 9136963080700744064}
   m_Layer: 0
   m_Name: === GAME SYSTEMS ===
   m_TagString: Untagged
@@ -245,6 +246,7 @@ MonoBehaviour:
   _view: {fileID: 0}
   _mainMenu: {fileID: 8306104772865287252}
   _gameLoop: {fileID: 6561365101171880837}
+  _levelsManager: {fileID: 9136963080700744064}
 --- !u!114 &6561365101171880837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +300,6 @@ MonoBehaviour:
   _platformHeight: 2
   _ballDeadZoneHeight: 0
   _buttonOffset: 0.5
-  _backButtonOffset: 1.5
 --- !u!114 &6561365101171880056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,8 +313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effectSystem: {fileID: 6561365100310737530}
-  _zones:
-  - {fileID: 487289503437842952, guid: 668623c69cb6f254ab32bbdfc8720a71, type: 3}
 --- !u!114 &8306104772865287252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +382,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbfb5fc1c9967094883a99740a3d67d3, type: 2}
   - {fileID: 11400000, guid: 60511be9d963ae44b8823ce4874f6e31, type: 2}
   - {fileID: 11400000, guid: 3e5f39baf18d87c48b5bd3278b7192a0, type: 2}
-  _dropChanceIds: 0000000000000000000000000000000000000000000000000000000001000000010000000100000002000000020000000200000002000000020000000200000003000000030000000300000003000000030000000300000004000000040000000400000004000000040000000400000005000000050000000500000005000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  _dropChanceIds: 000000000000000000000000000000000000000001000000010000000200000002000000020000000200000002000000030000000300000003000000030000000300000004000000040000000400000004000000040000000500000005000000050000000500000005000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 --- !u!114 &6561365100310737540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +397,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ballSystem: {fileID: 6561365101171880835}
   _platformScaler: {fileID: 0}
+--- !u!114 &9136963080700744064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561365101171880832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c439f35265febc44aae037b70d750079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameZone: {fileID: 6561365101171880056}
+  _levels:
+  - {fileID: 11400000, guid: 2d71d1dc970fb87468346e5e5f822e2d, type: 2}
+  - {fileID: 11400000, guid: 9b924cc7f2678b74b94643af5ec233cc, type: 2}
+  - {fileID: 11400000, guid: 538eaac699c849f45a7e0a0fab0f6211, type: 2}
+  _isDebug: 0
+  _debugLevel: {fileID: 0}
 --- !u!1 &6561365101951327339
 GameObject:
   m_ObjectHideFlags: 0

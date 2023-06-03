@@ -106,6 +106,13 @@ namespace Core
             {
                 ball.SetMoveDirection(Vector2.zero);
 
+                if(PauseGame.IsPause)
+                {
+                    _trajectory.Hide();
+                    yield return new WaitForEndOfFrame();
+                    continue;
+                }
+
                 if(!canCreateTrajectory)
                 {
                     canCreateTrajectory = _input.IsTouchDown;

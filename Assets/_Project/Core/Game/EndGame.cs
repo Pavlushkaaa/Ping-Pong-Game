@@ -12,6 +12,7 @@ namespace Core
 
         [SerializeField] private MainMenu _mainMenu;
         [SerializeField] private GameLoop _gameLoop;
+        [SerializeField] private LevelManager _levelsManager;
 
         public void ForceEndFail()
         {
@@ -30,6 +31,8 @@ namespace Core
         public void EndSuccess()
         {
             _gameLoop.StopLoop();
+            _levelsManager.SetLevelComplete();
+
             _view.ShowDonePanel();
             OnEndSuccess?.Invoke();
         }
@@ -45,7 +48,8 @@ namespace Core
         {
             _view.WatchedAd += WatchAd;
 
-            _view.PlayedAgain += _gameLoop.Restart; 
+            _view.PlayedAgain += _gameLoop.Restart;
+            _view.PlayedNext += _gameLoop.StartLoop;
             _view.ReturnedToMainMenu += ForceEndFail;
         }
     }

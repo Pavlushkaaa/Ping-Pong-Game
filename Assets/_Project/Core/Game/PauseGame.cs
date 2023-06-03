@@ -4,16 +4,18 @@ namespace Core
 {
     public class PauseGame : MonoBehaviour
     {
+        public static bool IsPause { get; private set; }
+
         [SerializeField] private PauseGameView _view;
         [SerializeField] private GameLoop _gameLoop;
         [SerializeField] private EndGame _endGame;
 
         private TimeManager _time;
 
-        private bool _isPaused;
-
         private void Start()
         {
+            IsPause = false;
+
             _time = GetComponentInParent<TimeManager>();
 
             _view.AppliedPause += ApplyPause;
@@ -33,12 +35,12 @@ namespace Core
         private void ApplyPause()
         {
             _time.DoSlowmotion();
-            _isPaused = true;
+            IsPause = true;
         }
         private void CanselPause()
         {
             _time.DoNormal();
-            _isPaused = false;
+            IsPause = false;
         }
         private void ReturnToMainMenu()
         {
@@ -52,7 +54,7 @@ namespace Core
         }
         private void Reset()
         {
-            if (!_isPaused) return;
+            if (!IsPause) return;
 
             CanselPause();
             _view.HidePanel();

@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.8901961}
+  m_Color: {r: 0.2, g: 0.18431373, b: 0.16862746, a: 0.8901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -877,6 +877,18 @@ PrefabInstance:
       propertyPath: _background
       value: 
       objectReference: {fileID: 1935032549}
+    - target: {fileID: 569551027410773627, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 569551027410773627, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.95686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 569551027410773627, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_Name
       value: === MENU ===

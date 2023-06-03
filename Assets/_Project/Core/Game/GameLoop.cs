@@ -15,13 +15,13 @@ namespace Core
         [SerializeField] private InputModule _inputModule;
         [SerializeField] private Platform _platform;
 
-        private GameZone _gameZone;
+        private LevelManager _levelsManager;
         private TimeManager _timeManager;
         private BallSystem _ballSystem;
 
         public void Restart()
         {
-            _gameZone.DestroyZone();
+            _levelsManager.Restart();
             OnEndLoop?.Invoke();
 
             IsLooping = true;
@@ -33,7 +33,6 @@ namespace Core
 
             _inputModule.Reset();
             _ballSystem.Reset();
-            _gameZone.CreateZone();
             _timeManager.DoSlowmotion(1.5f);
 
             OnStartLoop?.Invoke();
@@ -48,7 +47,7 @@ namespace Core
             _inputModule.Reset();
             _ballSystem.Reset();
 
-            _gameZone.CreateZone();
+            _levelsManager.StartNewLevel();
 
             _platform.ShowPlatform();
             _timeManager.DoSlowmotion(1.5f);
@@ -85,7 +84,7 @@ namespace Core
             _platform.HidePlatform();
             _platform.Destroy();
 
-            _gameZone.DestroyZone();
+            _levelsManager.StopLevel();
 
             OnEndLoop?.Invoke();
         }
@@ -94,7 +93,7 @@ namespace Core
         {
             IsLooping = false;
 
-            _gameZone = GetComponent<GameZone>();
+            _levelsManager = GetComponent<LevelManager>();
             _timeManager = GetComponent<TimeManager>();
             _ballSystem = GetComponent<BallSystem>();
 

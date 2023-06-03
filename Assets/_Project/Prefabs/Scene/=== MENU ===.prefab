@@ -909,7 +909,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 37669720}
         m_TargetAssemblyTypeName: Core.EndGameView, Assembly-CSharp
-        m_MethodName: OnPlayedAgain
+        m_MethodName: OnPlayedNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -7,6 +7,7 @@ namespace Core
     public class EndGameView : MonoBehaviour
     {
         public event Action PlayedAgain;
+        public event Action PlayedNext;
         public event Action ReturnedToMainMenu;
         public event Action WatchedAd;
 
@@ -44,6 +45,12 @@ namespace Core
         public void OnPlayedAgain()
         {
             PlayedAgain?.Invoke();
+            Hide();
+        }
+
+        public void OnPlayedNext()
+        {
+            PlayedNext?.Invoke();
             Hide();
         }
         public void OnQuitedGame() => QuitGame.Quit();

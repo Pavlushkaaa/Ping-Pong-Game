@@ -6,6 +6,9 @@ namespace Core
 {
     public class DestructibleSprite : MonoBehaviour
     {
+        public event Action OnShowed;
+        public event Action OnHidden;
+
         [SerializeField] [Range(0, 50)] private int _fragmentsNumber = 5;
         [SerializeField] private float _force = 250;
         [SerializeField] private Color _destroyColor;
@@ -21,6 +24,7 @@ namespace Core
         {
             _destructInfo.SpriteRenderer.enabled = false;
             _collider.enabled = false;
+            OnHidden?.Invoke();
         }
 
         [ContextMenu("Show")]
@@ -28,6 +32,7 @@ namespace Core
         {
             _destructInfo.SpriteRenderer.enabled = true;
             _collider.enabled = true;
+            OnShowed?.Invoke();
         }
 
         public List<GameObject> Destruct()

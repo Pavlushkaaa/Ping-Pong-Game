@@ -293,7 +293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platform: {fileID: 0}
   _ballDeadZone: {fileID: 6561365100226796335}
-  _settingsButton: {fileID: 0}
+  _menuSoundSwitchButton: {fileID: 0}
+  _pauseSoundSwitchButton: {fileID: 0}
   _pauseButton: {fileID: 0}
   _retryButton: {fileID: 0}
   _backToMainMenuButton: {fileID: 0}

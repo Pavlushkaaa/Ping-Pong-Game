@@ -25,14 +25,20 @@ namespace Core
                 {
                     var collider = (PolygonCollider2D)target;
                     PolygonCollider2D temp = child.AddComponent<PolygonCollider2D>();
+
                     var scale = temp.transform.localScale;
+                    collider.pathCount = temp.pathCount;
 
-                    Vector2[] points = new Vector2[temp.points.Length];
+                    for (int i = 0; i < temp.pathCount; i++)
+                    {
+                        Vector2[] points = temp.GetPath(i);
 
-                    for (int i = 0; i < temp.points.Length; i++)
-                        points[i] = temp.points[i] * scale;
+                        for (int j = 0; j < points.Length; j++)
+                            points[j] = points[j] * scale;
 
-                    collider.points = points;
+                        collider.SetPath(i, points);
+                    }
+
                     DestroyImmediate(temp);
                 }
                 else if (target is CircleCollider2D)

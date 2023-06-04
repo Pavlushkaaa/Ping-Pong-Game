@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class AutoDestroy : MonoBehaviour
+    public class PartsAutoDestroy : MonoBehaviour
     {
         private WaitForSeconds _pause = new WaitForSeconds(1);
         private Transform _transform;

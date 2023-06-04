@@ -142,6 +142,7 @@ namespace Core
             LoadLevels();
         }
 
+        #if UNITY_EDITOR
         [Button]
         private void AutoLoadLevels()
         {
@@ -153,5 +154,6 @@ namespace Core
                 _levels.Add((LevelSO)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(path), typeof(LevelSO)));
 
         }
+        #endif
     }
 }

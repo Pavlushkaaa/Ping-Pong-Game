@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using NaughtyAttributes;
+using System.Collections.Generic;
 
 namespace Core
 {
@@ -11,11 +12,16 @@ namespace Core
         public Vector2 Position { get => _ball.position; }
         [field:SerializeField] public float ColliderRadius { get; private set; }
 
+        [SerializeField] private Animator _collisionEffect;
         [SerializeField] private BallSpeedSO _settings;
         [SerializeField] private Transform _ball;
-        [SerializeField] [ReadOnly] private Vector2 _moveDirection;
 
         [Space]
+        [SerializeField] private SoundPlayer _soundPlayer;
+        [SerializeField] private List<AudioClip> _reflectionSounds;
+
+        [Space]
+        [SerializeField] [ReadOnly] private Vector2 _moveDirection;
         [SerializeField] [ReadOnly] private float _currentDegree;
         [SerializeField] [ReadOnly] private Vector2 _currentNormal;
         [SerializeField] [ReadOnly] private Vector2 _lastNormal;
@@ -25,7 +31,6 @@ namespace Core
 
         private Rigidbody2D _ballRigidbody;
         private DestructibleSprite _destructor;
-        private BallSoundPlayer _soundPlayer;
 
         public static Vector2 Reflect(Vector2 inDirection, Vector2 inNormal)
         {
@@ -72,7 +77,6 @@ namespace Core
         {
             _ballRigidbody = GetComponent<Rigidbody2D>();
             _destructor = GetComponent<DestructibleSprite>();
-            _soundPlayer = GetComponent<BallSoundPlayer>();
 
             _currentSpeed = _settings.NormalSpeed;
         }
@@ -112,13 +116,20 @@ namespace Core
             #if UNITY_EDITOR
             _currentDegree = -2F * Vector2.Dot(normal, _moveDirection) * Mathf.Rad2Deg;
             #endif
-            
+
+            CreateCollisionEffect(normal);
             _moveDirection = Reflect(_moveDirection.normalized, normal);
             
             FixSideStick(normal);
             FixAxisStick();
 
-            _soundPlayer.PlayReflection();
+            _soundPlayer.Play(_reflectionSounds);
+        }
+
+        private void CreateCollisionEffect(Vector2 collisionNormal)
+        {
+            var position = _ball.position - (Vector3)collisionNormal * ColliderRadius;
+            Instantiate(_collisionEffect, position, Quaternion.identity).SetTrigger("Play");
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -128,6 +139,7 @@ namespace Core
                 if(!point.IsLastTouch)
                     ChangeDirection(collision.contacts[0].normal);
 
+                _soundPlayer.Play(_reflectionSounds);
                 point.Contact();
                 return;
             }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 namespace Core
 {
@@ -10,7 +11,7 @@ namespace Core
         public event Action<Ball> Died;
         public Vector2 MoveDirection { get => _moveDirection; }
         public Vector2 Position { get => _ball.position; }
-        [field:SerializeField] public float ColliderRadius { get; private set; }
+        [field: SerializeField] public float ColliderRadius { get; private set; }
 
         [SerializeField] private Animator _collisionEffect;
         [SerializeField] private BallSpeedSO _settings;
@@ -19,6 +20,9 @@ namespace Core
         [Space]
         [SerializeField] private SoundPlayer _soundPlayer;
         [SerializeField] private List<AudioClip> _reflectionSounds;
+
+        [Space]
+        [SerializeField] private LayerMask _checkLayersForStick;
 
         [Space]
         [SerializeField] [ReadOnly] private Vector2 _moveDirection;
@@ -32,9 +36,11 @@ namespace Core
         private Rigidbody2D _ballRigidbody;
         private DestructibleSprite _destructor;
 
+        private int _stickNumber = 0;
+
         public static Vector2 Reflect(Vector2 inDirection, Vector2 inNormal)
         {
-            float num = ClampReflectAngle(- 2F * Vector2.Dot(inNormal, inDirection));
+            float num = ClampReflectAngle(-2F * Vector2.Dot(inNormal, inDirection));
 
             return new Vector2(num * inNormal.x + inDirection.x, num * inNormal.y + inDirection.y);
         }
@@ -86,9 +92,25 @@ namespace Core
             _ballRigidbody.velocity = _moveDirection.normalized * _currentSpeed;
         }
 
+        private void UpdateStick()
+        {
+            _stickNumber++;
+
+            if (_stickNumber > 10)
+            {
+                var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+
+                while (Physics2D.Raycast(_ball.position, direction, 0.1f, _checkLayersForStick))
+                    direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+
+                SetMoveDirection(direction);
+                _stickNumber = 0;
+            }
+        }
+
         private void FixAxisStick()
         {
-            if ((_lastNormal + _currentNormal).magnitude <= 0.05f)
+            if ((_lastNormal - _currentNormal).magnitude <= 0.05f)
             {
                 if (_sameNormals >= 5)
                 {
@@ -113,13 +135,13 @@ namespace Core
         {
             _currentNormal = normal;
 
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             _currentDegree = -2F * Vector2.Dot(normal, _moveDirection) * Mathf.Rad2Deg;
-            #endif
+#endif
 
             CreateCollisionEffect(normal);
             _moveDirection = Reflect(_moveDirection.normalized, normal);
-            
+
             FixSideStick(normal);
             FixAxisStick();
 
@@ -136,10 +158,12 @@ namespace Core
         {
             if (collision.gameObject.TryGetComponent<BasePoint>(out var point))
             {
-                if(!point.IsLastTouch)
+                if (!point.IsLastTouch)
+                {
                     ChangeDirection(collision.contacts[0].normal);
+                    _soundPlayer.Play(_reflectionSounds);
+                }
 
-                _soundPlayer.Play(_reflectionSounds);
                 point.Contact();
                 return;
             }
@@ -153,5 +177,7 @@ namespace Core
 
             ChangeDirection(collision.contacts[0].normal);
         }
+
+        private void OnCollisionStay2D(Collision2D collision) => UpdateStick();
     }
 }

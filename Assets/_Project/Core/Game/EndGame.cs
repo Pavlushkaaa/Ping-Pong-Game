@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Core
 {
+    [RequireComponent(typeof(SoundPlayer))]
     public class EndGame : MonoBehaviour
     {
         public event Action OnEndFail;
@@ -14,6 +15,11 @@ namespace Core
         [SerializeField] private GameLoop _gameLoop;
         [SerializeField] private LevelManager _levelsManager;
 
+        [Space]
+        [SerializeField] private AudioClip _doneClip;
+        [SerializeField] private AudioClip _failClip;
+        private SoundPlayer _soundPlayer;
+
         public void ForceEndFail()
         {
             _gameLoop.EndLoop();
@@ -23,6 +29,8 @@ namespace Core
 
         public void EndFail()
         {
+            _soundPlayer.Play(_failClip);
+
             _gameLoop.StopLoop();
             _view.ShowFailPanel();
             OnEndFail?.Invoke();
@@ -30,6 +38,7 @@ namespace Core
 
         public void EndSuccess()
         {
+            _soundPlayer.Play(_doneClip);
             _gameLoop.StopLoop();
             _levelsManager.SetLevelComplete();
 
@@ -51,6 +60,8 @@ namespace Core
             _view.PlayedAgain += _gameLoop.Restart;
             _view.PlayedNext += _gameLoop.StartLoop;
             _view.ReturnedToMainMenu += ForceEndFail;
+
+            _soundPlayer = GetComponent<SoundPlayer>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
@@ -13,8 +14,18 @@ namespace Core
 
         [SerializeField] private Transform _transform;
 
+        [Space]
+        [SerializeField] private SoundPlayer _soundPlayer;
+        [SerializeField] private List<AudioClip> _destroyClips = new List<AudioClip>();
+
         public abstract void Contact();
 
-        protected void Die() => OnDestroy?.Invoke(this);
+        protected void Die()
+        {
+            if(_destroyClips.Count != 0)
+                _soundPlayer.Play(_destroyClips);
+
+            OnDestroy?.Invoke(this);
+        }
     }
 }

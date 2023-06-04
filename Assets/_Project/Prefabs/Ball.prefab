@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5235c0397bec342bd06c57d014de64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _volume: 0.2
 --- !u!114 &8214644494967556335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +336,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b35d5334ad8696742a77a378ca309fad, type: 3}
   - {fileID: 8300000, guid: c5d43fa71491483479ce1be60b03ecbb, type: 3}
   - {fileID: 8300000, guid: 6b8bfe9a450e43448864dcbb8c0d18df, type: 3}
+  _checkLayersForStick:
+    serializedVersion: 2
+    m_Bits: 5897
   _moveDirection: {x: 0, y: 0}
   _currentDegree: 0
   _currentNormal: {x: 0, y: 0}

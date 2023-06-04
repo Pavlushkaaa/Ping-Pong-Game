@@ -17,7 +17,7 @@ namespace Core
         {
             Die();
             _spriteDestructor.Destruct();
-            Destroy(gameObject);
+            Destroy(gameObject, 0.35f);
         }
 
         protected void Start() => _spriteDestructor = GetComponent<DestructibleSprite>();

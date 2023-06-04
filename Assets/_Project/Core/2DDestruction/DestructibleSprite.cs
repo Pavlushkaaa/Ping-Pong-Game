@@ -74,7 +74,7 @@ namespace Core
             }
         }
 
-        private void Start()
+        protected void Start()
         {
             _destructInfo.GameObject = gameObject;
             _destructInfo.Transform = transform;

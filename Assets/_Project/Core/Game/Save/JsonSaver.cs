@@ -9,6 +9,12 @@ namespace Core
         {
             string jsonString = JsonUtility.ToJson(saveTarget);
 
+            if (!File.Exists(path))
+            {
+                var fs = new FileStream(path, FileMode.Create);
+                fs.Dispose();
+            }
+
             File.WriteAllText(path, jsonString);
         }
         public static bool Load(string path, out T result)

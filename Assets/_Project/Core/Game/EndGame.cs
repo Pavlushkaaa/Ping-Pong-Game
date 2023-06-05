@@ -38,9 +38,10 @@ namespace Core
 
         public void EndSuccess()
         {
-            _soundPlayer.Play(_doneClip);
-            _gameLoop.StopLoop();
             _levelsManager.SetLevelComplete();
+            _soundPlayer.Play(_doneClip);
+
+            _gameLoop.StopLoop();
 
             _view.ShowDonePanel();
             OnEndSuccess?.Invoke();

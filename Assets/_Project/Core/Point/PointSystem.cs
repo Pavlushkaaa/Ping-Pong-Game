@@ -27,7 +27,16 @@ namespace Core
             if(_points.Count == 0) PointsEnded?.Invoke();
         }
 
+        #if UNITY_EDITOR
         [Button]
         private void GetAllPoints() => _points = FindObjectsOfType<BasePoint>().ToList();
+
+        [ContextMenu("Destroy 90% Effect")]
+        private void TryDestroyAllEffects()
+        {
+            for (int i = (int)(_points.Count * 0.1f); i < _points.Count; i++)
+                _points[i].Contact();
+        }
+        #endif
     }
 }

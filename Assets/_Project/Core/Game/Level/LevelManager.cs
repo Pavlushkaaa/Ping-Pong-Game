@@ -49,6 +49,10 @@ namespace Core
 
         public void SetLevelComplete()
         {
+            #if UNITY_EDITOR
+            if (_isDebug) return;
+            #endif
+
             _numberAvailableLevels--;
             _levelData.TryGetValue(_levels[_currentLevelId], out var save);
             save.IsComplete = true;

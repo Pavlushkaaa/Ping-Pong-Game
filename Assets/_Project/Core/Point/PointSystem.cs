@@ -11,31 +11,35 @@ namespace Core
         public event Action PointsEnded;
         public event Action<Vector2> PointDestroyed;
 
-        [SerializeField] [ReadOnly] private List<BasePoint> _points = new List<BasePoint>();
-
+        [SerializeField][ReadOnly] private List<ScorePoint> _scorePoints = new List<ScorePoint>();
+        
         private void Start()
         {
-            foreach (var point in _points)
-                point.OnDestroy += UpdateSystem;
+            foreach (var point in _scorePoints)
+                point.OnDestroy += UpdateScorePoints;
         }
 
-        private void UpdateSystem(BasePoint handler)
+        private void UpdateScorePoints(BasePoint handler)
         {
-            PointDestroyed?.Invoke(handler.Position);
-            _points.Remove(handler);
-            
-            if(_points.Count == 0) PointsEnded?.Invoke();
+            var scorePoint = (ScorePoint)handler;
+
+            if (scorePoint.CheckEffectDrop())
+                PointDestroyed?.Invoke(handler.Position);
+
+            _scorePoints.Remove(scorePoint);
+
+            if (_scorePoints.Count == 0) PointsEnded?.Invoke();
         }
 
         #if UNITY_EDITOR
         [Button]
-        private void GetAllPoints() => _points = FindObjectsOfType<BasePoint>().ToList();
+        private void GetAllPoints() => _scorePoints = FindObjectsOfType<ScorePoint>().ToList();
 
         [ContextMenu("Destroy 90% Effect")]
         private void TryDestroyAllEffects()
         {
-            for (int i = (int)(_points.Count * 0.1f); i < _points.Count; i++)
-                _points[i].Contact();
+            for (int i = (int)(_scorePoints.Count * 0.1f); i < _scorePoints.Count; i++)
+                _scorePoints[i].Contact();
         }
         #endif
     }

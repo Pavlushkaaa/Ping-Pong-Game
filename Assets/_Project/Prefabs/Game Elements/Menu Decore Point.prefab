@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8214132095746531432}
   - component: {fileID: 4835341308351595644}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 4344197798213355756}
   - component: {fileID: 6884656088437988208}
   - component: {fileID: 9148653896138178057}
-  m_Layer: 0
-  m_Name: Decore Point
+  m_Layer: 13
+  m_Name: Menu Decore Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 6884656088437988215}
+  _soundPlayer: {fileID: 0}
+  _destroyClips: []
   _spriteRenderer: {fileID: 4835341308351595644}
+  _reflectBall: 1
   _startColor: {r: 0.06666667, g: 0.94509804, b: 0.77254903, a: 1}
   _endColor: {r: 0.06666667, g: 0.94509804, b: 0.77254903, a: 0.12156863}
-  _animationTimeLimit: {x: 0.25, y: 2}
+  _animationTimeLimit: {x: 0.7, y: 2.5}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class MultiPoint : SimplePoint
+    public class MultiPoint : ScorePoint
     {
         [SerializeField] private int _maxContact = 3;
         [SerializeField] private List<Color> _color;

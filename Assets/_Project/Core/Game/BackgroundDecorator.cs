@@ -1,15 +1,16 @@
-﻿using NaughtyAttributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
 {
-    public class MenuBackgroundDecorator : MonoBehaviour
+    public class BackgroundDecorator : MonoBehaviour
     {
         [SerializeField] private int _pointsNumber;
-        [SerializeField] private float _offsetFromBorder;
-        [SerializeField] private float _minDistanceBettwenPoints = 0.5f;
-        [SerializeField] private float _minScale = 0.15f;
+        [SerializeField] [Range(0f, 1f)] private float _minPointsToDecore;
+        [SerializeField] private float _offsetFromBorder = 0.15f;
+        [SerializeField] private float _minDistanceBettwenPoints = 0.1f;
+        [SerializeField] private float _maxScale = 1;
+        [SerializeField] private float _minScale = 0.1f;
 
         [Space]
         [SerializeField] private DecorativePoint _pointPrefab;
@@ -18,7 +19,7 @@ namespace Core
 
         public void Show()
         {
-            if(_points.Count / _pointsNumber < 0.7f)
+            if(_points.Count / _pointsNumber < _minPointsToDecore)
             {
                 foreach (var point in _points)
                     point.ForceDestroy();
@@ -30,16 +31,20 @@ namespace Core
             }
 
             foreach (var point in _points)
+            {
                 point.Show();
+                point.IsPlayColorAnimation = true;
+            }
         }
-
         public void Hide()
         {
             foreach (var point in _points)
+            {
                 point.Hide();
+                point.IsPlayColorAnimation = false;
+            }
         }
 
-        [Button]
         private void Decore()
         {
             for (int i = 0; i < _pointsNumber; i++)
@@ -52,6 +57,7 @@ namespace Core
                 var point = Instantiate(_pointPrefab, position, Quaternion.identity, _pointsParent);
                 point.Scale = CreateRandomScale();
                 point.OnDestroy += UpdateList;
+                point.IsPlayColorAnimation = true;
 
                 _points.Add(point);
             }
@@ -61,7 +67,7 @@ namespace Core
 
         private Vector2 CreateRandomScale()
         {
-            var number = Random.Range(_minScale, 1);
+            var number = Random.Range(_minScale, _maxScale);
             return new Vector2(number, number);
         }
 

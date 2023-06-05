@@ -147,7 +147,9 @@ namespace Core
         private IEnumerator StartSpawnRandomBall()
         {
             yield return new WaitForSecondsRealtime(0.25f);
-            SpawnRandomBall();
+
+            if(!GameLoop.IsLooping)
+                SpawnRandomBall();
         }
 
         private void SpawnRandomBall()

@@ -8,7 +8,8 @@ namespace Core
         [SerializeField] private Transform _ballDeadZone;
 
         [Space]
-        [SerializeField] private Transform _settingsButton;
+        [SerializeField] private Transform _menuSoundSwitchButton;
+        [SerializeField] private Transform _pauseSoundSwitchButton;
         [SerializeField] private Transform _pauseButton;
         [SerializeField] private Transform _retryButton;
         [SerializeField] private Transform _backToMainMenuButton;
@@ -35,9 +36,12 @@ namespace Core
             Vector2 buttonPosition = InputModule.WorlsScreenSize - _buttonOffset * Vector2.one;
             
             _pauseButton.position = buttonPosition;
-            _settingsButton.position = buttonPosition;
+            _menuSoundSwitchButton.position = buttonPosition;
             _retryButton.position = buttonPosition;
             _backToMainMenuButton.position = buttonPosition;
+
+            buttonPosition.x *= -1;
+            _pauseSoundSwitchButton.position = buttonPosition;
         }
         private void PositionGameElements()
         {

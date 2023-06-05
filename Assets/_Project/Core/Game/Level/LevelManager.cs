@@ -49,6 +49,7 @@ namespace Core
 
         public void SetLevelComplete()
         {
+            _numberAvailableLevels--;
             _levelData.TryGetValue(_levels[_currentLevelId], out var save);
             save.IsComplete = true;
             SaveLevels();
@@ -96,7 +97,6 @@ namespace Core
 
             } while (result);
 
-            _numberAvailableLevels--;
             _lastLevelId = _currentLevelId;
             return _levels[_currentLevelId];
         }
@@ -117,11 +117,11 @@ namespace Core
                 for (int i = _savesLevel.Count; i < _levels.Count; i++)
                     _savesLevel.Add(new() { Name = _levels[i].Name, IsComplete = false });
 
+                for (int i = 0; i < _levels.Count; i++)
+                    _levelData.Add(_levels[i], _savesLevel.Find(x => x.Name == _levels[i].Name));
+
                 SaveLevels();
             }
-
-            for (int i = 0; i < _levels.Count; i++)
-                _levelData.Add(_levels[i], _savesLevel.Find(x => x.Name == _levels[i].Name));
 
             for (int i = 0; i < _savesLevel.Count; i++)
                 if (!_savesLevel[i].IsComplete)
@@ -142,6 +142,7 @@ namespace Core
             LoadLevels();
         }
 
+        #if UNITY_EDITOR
         [Button]
         private void AutoLoadLevels()
         {
@@ -153,5 +154,6 @@ namespace Core
                 _levels.Add((LevelSO)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(path), typeof(LevelSO)));
 
         }
+        #endif
     }
 }

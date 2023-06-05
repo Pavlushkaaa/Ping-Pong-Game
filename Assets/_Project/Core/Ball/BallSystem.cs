@@ -41,7 +41,7 @@ namespace Core
             if (GameLoop.IsLooping)
                 StartCoroutine(SpawnBall());
             else
-                SpawnRandomBall();
+                StartCoroutine(StartSpawnRandomBall());
         }
 
         public void MultiplyBalls(int multiplier)
@@ -73,7 +73,7 @@ namespace Core
             _ballSpawnPosition = _platform.transform.position;
             _ballSpawnPosition.y += 1;
 
-            SpawnRandomBall();
+            StartCoroutine(StartSpawnRandomBall());
         }
 
         private void UpdateSystem(Ball ball)
@@ -142,6 +142,14 @@ namespace Core
 
             _trajectory.Hide();
             yield break;
+        }
+
+        private IEnumerator StartSpawnRandomBall()
+        {
+            yield return new WaitForSecondsRealtime(0.25f);
+
+            if(!GameLoop.IsLooping)
+                SpawnRandomBall();
         }
 
         private void SpawnRandomBall()

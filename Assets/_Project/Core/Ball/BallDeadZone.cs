@@ -9,7 +9,7 @@ namespace Core
             if (collision.TryGetComponent<Ball>(out var ball))
                 ball.Die();
             else if(collision.TryGetComponent<Effect>(out var effect))
-                effect.Destroy();
+                effect.FailDestroy();
         }
     }
 }

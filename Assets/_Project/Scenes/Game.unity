@@ -327,6 +327,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &244368231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7098264924746791618, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+  m_PrefabInstance: {fileID: 872354904977935686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &467928794
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +851,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935032547}
   m_CullTransparentMesh: 1
+--- !u!4 &1964726858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1964726858, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+  m_PrefabInstance: {fileID: 872354904977935686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2027305170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2027305170, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
@@ -877,18 +887,6 @@ PrefabInstance:
       propertyPath: _background
       value: 
       objectReference: {fileID: 1935032549}
-    - target: {fileID: 569551027410773627, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
-      propertyPath: m_Color.b
-      value: 0.8627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 569551027410773627, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
-      propertyPath: m_Color.g
-      value: 0.95686275
-      objectReference: {fileID: 0}
-    - target: {fileID: 569551027410773627, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_Name
       value: === MENU ===
@@ -937,13 +935,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2784678546028545219, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
---- !u!4 &872354904977935687 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7979110919698978109, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
-  m_PrefabInstance: {fileID: 872354904977935686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5124829133985178185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1117,13 +1114,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2027305170}
     - target: {fileID: 6561365101171880839, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
-      propertyPath: _settingsButton
-      value: 
-      objectReference: {fileID: 872354904977935687}
-    - target: {fileID: 6561365101171880839, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _backToMainMenuButton
       value: 
       objectReference: {fileID: 1142138516}
+    - target: {fileID: 6561365101171880839, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _menuSoundSwitchButton
+      value: 
+      objectReference: {fileID: 1964726858}
+    - target: {fileID: 6561365101171880839, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _pauseSoundSwitchButton
+      value: 
+      objectReference: {fileID: 244368231}
     - target: {fileID: 8306104772865287252, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _view
       value: 

@@ -76,7 +76,7 @@ public static class SpriteExploder
 
         foreach (var piece in morePieces)
         {
-            piece.AddComponent<AutoDestroy>();
+            piece.AddComponent<PartsAutoDestroy>();
             piece.layer = info.LayerId;
         }
 

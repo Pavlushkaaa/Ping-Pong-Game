@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8238263f0c8e4fe429b4a44a5b171891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 1
-  _force: 350
+  _fragmentsNumber: 2
+  _force: 100
   _destroyColor: {r: 0.4433962, g: 0.06441792, b: 0.08033675, a: 1}
   _layerId: 7
 --- !u!114 &9148653896138178057

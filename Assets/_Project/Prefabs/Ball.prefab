@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2439647975965429608}
   - component: {fileID: 2439647975965429610}
   - component: {fileID: 2439647975965429611}
-  - component: {fileID: 2439647975965429609}
-  - component: {fileID: 2439647975965429612}
+  - component: {fileID: 1088672968171318575}
   - component: {fileID: 8214644494967556335}
+  - component: {fileID: 2439647975965429609}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
@@ -75,7 +75,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!96 &2439647975965429610
 TrailRenderer:
   serializedVersion: 2
@@ -194,10 +194,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 14c6591d3955c5140a49168752fb7fa6, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
-  m_Pitch: 3
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -280,7 +280,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2439647975965429609
+--- !u!114 &1088672968171318575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,31 +289,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2439647975965429604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f0e3d577764694fb8bfa7c44a3d582, type: 3}
+  m_Script: {fileID: 11500000, guid: ac5235c0397bec342bd06c57d014de64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ColliderRadius>k__BackingField: 0.0625
-  _settings: {fileID: 11400000, guid: 36a75ac4622e4754d80af8c51261a653, type: 2}
-  _ball: {fileID: 2439647975965429606}
-  _moveDirection: {x: 0, y: 0}
-  _currentDegree: 0
-  _currentNormal: {x: 0, y: 0}
-  _lastNormal: {x: 0, y: 0}
-  _sameNormals: 0
---- !u!114 &2439647975965429612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2439647975965429604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164c9dc3899019748b2002d5f553a6c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _reflectionSound: {fileID: 8300000, guid: 14c6591d3955c5140a49168752fb7fa6, type: 3}
-  _destroySound: {fileID: 0}
+  _volume: 0.2
 --- !u!114 &8214644494967556335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +309,41 @@ MonoBehaviour:
   _force: 1250
   _destroyColor: {r: 0.46226418, g: 0.07152008, b: 0.07152008, a: 1}
   _layerId: 7
+--- !u!114 &2439647975965429609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439647975965429604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f0e3d577764694fb8bfa7c44a3d582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ColliderRadius>k__BackingField: 0.0625
+  _collisionEffect: {fileID: 4349141579790302136, guid: a89eb083e4d97ab42a2e3dd09c1723ba, type: 3}
+  _settings: {fileID: 11400000, guid: 36a75ac4622e4754d80af8c51261a653, type: 2}
+  _ball: {fileID: 2439647975965429606}
+  _soundPlayer: {fileID: 1088672968171318575}
+  _reflectionSounds:
+  - {fileID: 8300000, guid: bfd1925494ede9d4a95f7677d03c4d67, type: 3}
+  - {fileID: 8300000, guid: 47542c7d861f20e4d89b795c98f6a830, type: 3}
+  - {fileID: 8300000, guid: 380b1a243aacf52459de8271fbf47b33, type: 3}
+  - {fileID: 8300000, guid: ca99e2dc6c042cd4d981e2b387dc9265, type: 3}
+  - {fileID: 8300000, guid: e29b3ca3ff82cb145b4976ee6f8f2038, type: 3}
+  - {fileID: 8300000, guid: 2e6d7ffdd28249d4284376f444419caf, type: 3}
+  - {fileID: 8300000, guid: b35d5334ad8696742a77a378ca309fad, type: 3}
+  - {fileID: 8300000, guid: c5d43fa71491483479ce1be60b03ecbb, type: 3}
+  - {fileID: 8300000, guid: 6b8bfe9a450e43448864dcbb8c0d18df, type: 3}
+  _checkLayersForStick:
+    serializedVersion: 2
+    m_Bits: 5897
+  _moveDirection: {x: 0, y: 0}
+  _currentDegree: 0
+  _currentNormal: {x: 0, y: 0}
+  _lastNormal: {x: 0, y: 0}
+  _sameNormals: 0
 --- !u!1 &8669994414535894023
 GameObject:
   m_ObjectHideFlags: 0

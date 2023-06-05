@@ -22,10 +22,12 @@ namespace Core
 
         [SerializeField] private float _sensivity;
         [SerializeField] private LayerMask _ignoreLayers;
+        [SerializeField] private AudioClip _touchClip;
 
         private float _defoultPointerXAxisPosition;
         private Vector2 _touchDownPoint;
         private Camera _camera;
+        private SoundPlayer _soundPlayer;
 
         public static Vector2 CreateRandomPosition(float offset)
         {
@@ -44,6 +46,8 @@ namespace Core
 
         private void Awake()
         {
+            _soundPlayer = GetComponent<SoundPlayer>();
+
             _defoultPointerXAxisPosition = Camera.main.WorldToScreenPoint(Vector2.zero).x;
             PointerXAxisPosition = _defoultPointerXAxisPosition;
         }
@@ -73,6 +77,7 @@ namespace Core
 
             if (IsTouchDown)
             {
+                _soundPlayer.Play(_touchClip);
                 if (TryClick(Mouse.current.position.ReadValue(), out var t))
                 {
                     IsTouchDown = false;
@@ -118,6 +123,8 @@ namespace Core
         }
         private void UpdateTouchDown(Finger f)
         {
+            _soundPlayer.Play(_touchClip);
+
             if (TryClick(f.screenPosition, out var button))
             {
                 button.OnClicked();

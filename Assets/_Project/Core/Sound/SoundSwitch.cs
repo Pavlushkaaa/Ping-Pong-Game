@@ -1,4 +1,5 @@
 ﻿using Core.UI;
+using System;
 using UnityEngine;
 
 namespace Core
@@ -12,6 +13,8 @@ namespace Core
         private SpriteRenderer _spriteRenderer;
         private DestructibleButton _button;
 
+        private string _settingsPath;
+
         public void Switch()
         {
             if (AudioListener.volume == 1)
@@ -20,6 +23,8 @@ namespace Core
                 TurnOffSound();
             else
                 TurnOnSound();
+
+            SaveSettings();
         }
 
         private void TurnOffSound()
@@ -50,12 +55,44 @@ namespace Core
 
         private void Start()
         {
+            _settingsPath = Application.persistentDataPath + @"\SoundSettings.json";
+
+            #if UNITY_EDITOR
+            _settingsPath = Application.dataPath + @"\SoundSettings.json";
+            #endif
+
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _button = GetComponent<DestructibleButton>();
 
             _button.OnShowed += CheckAudioState;
 
-            TurnOnSound();
+            LoadSettings();
         }
+
+        private void LoadSettings()
+        {
+            if (JsonSaver<SoundSettings>.Load(_settingsPath, out var settings))
+            {
+                AudioListener.volume = settings.Volume;
+                CheckAudioState();
+            }
+            else
+            {
+                AudioListener.volume = 1;
+                SaveSettings();
+            }
+        }
+
+        private void SaveSettings()
+        {
+            var settings = new SoundSettings { Volume = AudioListener.volume };
+            JsonSaver<SoundSettings>.Save(settings, _settingsPath);
+        }
+    }
+
+    [Serializable]
+    public class SoundSettings
+    {
+        public float Volume;
     }
 }

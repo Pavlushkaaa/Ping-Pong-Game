@@ -11,7 +11,7 @@ namespace Core
         public event Action PointsEnded;
         public event Action<Vector2> PointDestroyed;
 
-        [SerializeField][ReadOnly] private List<ScorePoint> _scorePoints = new List<ScorePoint>();
+        [SerializeField] [ReadOnly] private List<ScorePoint> _scorePoints = new List<ScorePoint>();
         
         private void Start()
         {

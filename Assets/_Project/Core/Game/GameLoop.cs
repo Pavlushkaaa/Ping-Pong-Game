@@ -13,6 +13,7 @@ namespace Core
         public event Action OnEndLoop;
 
         [SerializeField] private InputModule _inputModule;
+        [SerializeField] private BackgroundDecorator _gameBackgroundDecorator;
         [SerializeField] private Platform _platform;
 
         private LevelManager _levelsManager;
@@ -21,6 +22,7 @@ namespace Core
 
         public void Restart()
         {
+            _gameBackgroundDecorator.Show();
             _levelsManager.Restart();
             OnEndLoop?.Invoke();
 
@@ -42,6 +44,7 @@ namespace Core
         {
             IsLooping = true;
 
+            _gameBackgroundDecorator.Show();
             _platform.FreezeMove();
             _platform.Reset();
             _inputModule.Reset();
@@ -75,6 +78,7 @@ namespace Core
         {
             IsLooping = false;
 
+            _gameBackgroundDecorator.Hide();
             _timeManager.ForceNormal();
 
             _ballSystem.Reset();

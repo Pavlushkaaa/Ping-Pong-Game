@@ -5,20 +5,20 @@ namespace Core
     public class MainMenu : MonoBehaviour
     {
         [SerializeField] private MainMenuView _view;
-        [SerializeField] private MenuBackgroundDecorator _decorator;
+        [SerializeField] private BackgroundDecorator _menuBackgroundDecorator;
 
         private GameLoop _gameLoop;
 
         public void Show()
         {
             _view.ShowPanel();
-            _decorator.Show();
+            _menuBackgroundDecorator.Show();
         }
         private void Hide() => _view.HidePanel();
 
         private void StartGame()
         {
-            _decorator.Hide();
+            _menuBackgroundDecorator.Hide();
             Hide(); 
             _gameLoop.StartLoop();
         }
@@ -27,7 +27,7 @@ namespace Core
         {
             _gameLoop= GetComponentInParent<GameLoop>();
 
-            _decorator.Show();
+            _menuBackgroundDecorator.Show();
             _view.StartedGame += StartGame;
         }
     }

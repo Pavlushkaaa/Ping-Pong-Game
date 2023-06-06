@@ -1,19 +1,24 @@
-﻿using System.Collections;
+﻿using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
 
 namespace Core
 {
     public class DecorativePoint : SimplePoint
     {
+        public bool IsPlayColorAnimation { get; set; }
+
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         [Space]
+        [SerializeField] private bool _reflectBall = false;
         [SerializeField] private Color _startColor;
         [SerializeField] private Color _endColor;
         [SerializeField] private Vector2 _animationTimeLimit;
 
         private new void Start()
         {
+            IsLastTouch = !_reflectBall;
             base.Start();
             StartCoroutine(AnimateColor());
         }
@@ -26,7 +31,7 @@ namespace Core
 
             while (true)
             {
-                if (GameLoop.IsLooping)
+                if (!IsPlayColorAnimation)
                 {
                     yield return new WaitForEndOfFrame();
                     continue;

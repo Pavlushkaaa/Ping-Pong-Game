@@ -9,7 +9,7 @@ namespace Core
 {
     public class InputModule : MonoBehaviour
     {
-        public static Vector2 WorlsScreenSize { get => Camera.main.ScreenToWorldPoint(new(Camera.main.pixelWidth, Camera.main.pixelHeight)); }
+        public static Vector2 WorlsScreenSize { get => CalculationWorlsScreenSize(); }
 
         public bool IsTouchDown { get; private set; }
         public bool IsTouchMove { get; private set; }
@@ -139,6 +139,20 @@ namespace Core
             if (CheckClick(f.screenPosition)) return;
 
             TouchDirection = _touchDownPoint - f.screenPosition;
+        }
+
+        private static Vector2 CalculationWorlsScreenSize()
+        {
+            var camera = Camera.main;
+            var width = camera.pixelWidth;
+            var height = camera.pixelHeight;
+
+            if (height / width == 2) 
+                camera.orthographicSize = 5.5f;
+            else
+                camera.orthographicSize = 5.2f;
+
+            return camera.ScreenToWorldPoint(new(width, height));
         }
     }
 }

@@ -279,7 +279,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7544aedd96ceea4880707507461199e, type: 3}
   - {fileID: 8300000, guid: 1bb06b4480c6e6a4db79b7134281396f, type: 3}
   - {fileID: 8300000, guid: f53ef5369f8cfce4a8ffce2343ae1f79, type: 3}
-  _effectDropChance: 59
+  _effectDropChance: 25
   _maxContact: 2
   _color:
   - {r: 0.8666667, g: 0.6156863, b: 0.14901961, a: 1}

@@ -17,7 +17,7 @@ namespace Core
         private Dictionary<LevelSO, LevelSave> _levelData = new Dictionary<LevelSO, LevelSave>();
 
         private int _currentLevelId = 0;
-        private int _lastLevelId = 0;
+        private int _lastLevelId = -1;
         private int _numberAvailableLevels;
         private string _savePath;
 
@@ -95,10 +95,7 @@ namespace Core
                 _currentLevelId = Random.Range(0, _levels.Count);
 
                 if (_currentLevelId == _lastLevelId)
-                {
-                    result = true;
                     continue;
-                }
 
                 _levelData.TryGetValue(_levels[_currentLevelId], out var save);
                 result = save.IsComplete;

@@ -379,7 +379,7 @@ MonoBehaviour:
   _borderLeft: {fileID: 6561365100337719409}
   _platformHeight: 2
   _ballDeadZoneHeight: 0
-  _buttonOffset: 0.5
+  _buttonOffset: 0.6
 --- !u!114 &6561365101171880056
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ MonoBehaviour:
   _failPanel: {fileID: 251992753}
   _backgroundImage: {fileID: 0}
   _backDoneColor: {r: 0.003921569, g: 0.20784314, b: 0.15686275, a: 0.8901961}
-  _backFailColor: {r: 0.16862746, g: 0.03137255, b: 0.023529412, a: 0.8901961}
+  _backFailColor: {r: 0.2, g: 0.15294118, b: 0.078431375, a: 0.8901961}
 --- !u!1 &251992751
 GameObject:
   m_ObjectHideFlags: 0
@@ -4770,9 +4770,9 @@ MonoBehaviour:
   Clicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2123086705}
         m_TargetAssemblyTypeName: Core.PauseGameView, Assembly-CSharp
-        m_MethodName: OnReturnedToMainMenu
+        m_MethodName: OnPlayedNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

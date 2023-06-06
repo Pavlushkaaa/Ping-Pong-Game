@@ -10,6 +10,7 @@ namespace Core
         public event Action AppliedPause;
         public event Action RestartedGame;
         public event Action PlayedAgain;
+        public event Action PlayedNext;
         public event Action ReturnedToMainMenu;
 
         [SerializeField] private DestructibleButton _pauseButton;
@@ -63,6 +64,13 @@ namespace Core
             HideAll();
             ReturnedToMainMenu?.Invoke();
         }
+        public void OnPlayedNext()
+        {
+            HidePanel();
+            ShowPauseButton();
+            PlayedNext?.Invoke();
+        }
+
         public void OnQuitedGame() => QuitGame.Quit();
         #endregion
 

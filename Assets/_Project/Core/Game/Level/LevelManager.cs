@@ -94,7 +94,11 @@ namespace Core
             {
                 _currentLevelId = Random.Range(0, _levels.Count);
 
-                if (_currentLevelId == _lastLevelId) continue;
+                if (_currentLevelId == _lastLevelId)
+                {
+                    result = true;
+                    continue;
+                }
 
                 _levelData.TryGetValue(_levels[_currentLevelId], out var save);
                 result = save.IsComplete;

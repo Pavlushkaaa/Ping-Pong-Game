@@ -21,6 +21,7 @@ namespace Core
             _view.AppliedPause += ApplyPause;
             _view.RestartedGame += RestartGame;
             _view.PlayedAgain += CanselPause;
+            _view.PlayedNext += NextLevel;
             _view.ReturnedToMainMenu += ReturnToMainMenu;
 
             _gameLoop.OnStartLoop += _view.ShowPauseButton;
@@ -52,6 +53,13 @@ namespace Core
             CanselPause(); 
             _gameLoop.Restart();
         }
+
+        private void NextLevel()
+        {
+            CanselPause();
+            _gameLoop.StartLoop();
+        }
+
         private void Reset()
         {
             if (!IsPause) return;

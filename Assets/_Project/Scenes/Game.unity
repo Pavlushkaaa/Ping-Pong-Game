@@ -1316,10 +1316,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: === MENU ===
       objectReference: {fileID: 0}
-    - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 872354906987918870, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1363,6 +1359,14 @@ PrefabInstance:
     - target: {fileID: 872354906987918870, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975632114685317789, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: Clicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2123086705}
+    - target: {fileID: 3975632114685317789, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: Clicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlayedNext
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}

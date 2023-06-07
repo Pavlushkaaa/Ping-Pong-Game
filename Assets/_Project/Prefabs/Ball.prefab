@@ -305,8 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8238263f0c8e4fe429b4a44a5b171891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 6
-  _force: 1250
+  _fragmentsNumber: 2
+  _force: 150
   _destroyColor: {r: 0.46226418, g: 0.07152008, b: 0.07152008, a: 1}
   _layerId: 7
 --- !u!114 &2439647975965429609
@@ -338,7 +338,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6b8bfe9a450e43448864dcbb8c0d18df, type: 3}
   _checkLayersForStick:
     serializedVersion: 2
-    m_Bits: 5897
+    m_Bits: 1289
   _moveDirection: {x: 0, y: 0}
   _currentDegree: 0
   _currentNormal: {x: 0, y: 0}

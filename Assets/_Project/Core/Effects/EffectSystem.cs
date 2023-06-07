@@ -71,15 +71,21 @@ namespace Core
             _existEffects.Remove(effect);
         }
          
-        private int GenerateNumber(bool regenerate = false)
+        private int GenerateNumber()
         {
             int customSeed = new System.Random().Next(0, 1000000);
-            UnityEngine.Random.InitState(new System.Random().Next(0, 1000000));
+            Random.InitState(customSeed);
 
-            return UnityEngine.Random.Range(0, 101);
+            return Random.Range(0, 101);
         }
 
         #if UNITY_EDITOR
+        [Button("Spawn Effect")]
+        private void EditorSpawnRandomEffect()
+        {
+            SpawnEffect(new Vector2(0,2));
+        }
+
         [Button]
         private void CheckEffects()
         {
@@ -115,6 +121,7 @@ namespace Core
             else
                 print($"SUCCSESS! Sum of effects drop chance: {sum}");
         }
+
         [Button]
         private void GenerateEffectData()
         {

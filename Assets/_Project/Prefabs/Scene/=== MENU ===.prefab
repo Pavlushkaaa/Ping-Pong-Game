@@ -50,7 +50,7 @@ MonoBehaviour:
   _failPanel: {fileID: 251992753}
   _backgroundImage: {fileID: 0}
   _backDoneColor: {r: 0.09411765, g: 0.14117648, b: 0.13725491, a: 0.8901961}
-  _backFailColor: {r: 0.14509805, g: 0.11764706, b: 0.078431375, a: 0.8901961}
+  _backFailColor: {r: 0.101960786, g: 0, b: 0.011764706, a: 0.972549}
 --- !u!1 &251992751
 GameObject:
   m_ObjectHideFlags: 0

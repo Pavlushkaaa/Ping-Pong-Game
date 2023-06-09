@@ -21,7 +21,11 @@ namespace Core
         private bool _isFreese;
         private Vector2 _defoultPosition;
 
-        public void Reset() => _platform.position = _defoultPosition;
+        public void Reset()
+        {
+            _scaler.Reset();
+            _platform.position = _defoultPosition;
+        }
 
         public void FreezeMove()=> _isFreese = true;
         public void StartMove()=> _isFreese = false;

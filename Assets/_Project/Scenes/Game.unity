@@ -1081,6 +1081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: === MENU ===
       objectReference: {fileID: 0}
+    - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 872354906987918870, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1388,6 +1392,22 @@ PrefabInstance:
       propertyPath: _view
       value: 
       objectReference: {fileID: 1408556847}
+    - target: {fileID: 9136963080700744064, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _levels.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136963080700744064, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _levels.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 382a22ecdc3b1994287ee6c90baaca34, type: 2}
+    - target: {fileID: 9136963080700744064, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _levels.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 566012c66ac34e042acad22de005bdbc, type: 2}
+    - target: {fileID: 9136963080700744064, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _levels.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f197390d114efd4c84219d3ba9bb176, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
 --- !u!1001 &9206810075539877635

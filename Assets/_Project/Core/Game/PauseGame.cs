@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Core
 {
     public class PauseGame : MonoBehaviour
     {
+        public event Action Showed;
+        public event Action Hidden;
         public static bool IsPause { get; private set; }
 
         [SerializeField] private PauseGameView _view;
@@ -37,11 +40,13 @@ namespace Core
         {
             _time.DoSlowmotion();
             IsPause = true;
+            Showed?.Invoke();
         }
         private void CanselPause()
         {
             _time.DoNormal();
             IsPause = false;
+            Hidden?.Invoke();
         }
         private void ReturnToMainMenu()
         {

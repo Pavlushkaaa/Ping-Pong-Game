@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Core
 {
     public class MainMenu : MonoBehaviour
     {
+        public event Action Showed;
+
         [SerializeField] private MainMenuView _view;
         [SerializeField] private BackgroundDecorator _menuBackgroundDecorator;
 
@@ -13,6 +16,8 @@ namespace Core
         {
             _view.ShowPanel();
             _menuBackgroundDecorator.Show();
+
+            Showed?.Invoke();
         }
         private void Hide() => _view.HidePanel();
 

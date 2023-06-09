@@ -92,6 +92,8 @@ namespace Core
 
             do
             {
+                int customSeed = new System.Random().Next(0, 1000000);
+                Random.InitState(customSeed);
                 _currentLevelId = Random.Range(0, _levels.Count);
 
                 if (_currentLevelId == _lastLevelId)

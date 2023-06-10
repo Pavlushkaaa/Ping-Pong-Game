@@ -6,11 +6,13 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
+using GoogleMobileAds.Api;
 
 namespace Core
 {
     public class InputModule : MonoBehaviour
     {
+        [SerializeField] private AdController _adController;
         public static Vector2 WorlsScreenSize { get => CalculationWorlsScreenSize(); }
 
         public event Action Touched;
@@ -32,6 +34,8 @@ namespace Core
         private Vector2 _touchDownPoint;
         private Camera _camera;
         private SoundPlayer _soundPlayer;
+
+        private bool _stopInput = false;
 
         public static Vector2 CreateRandomPosition(float offset)
         {
@@ -62,9 +66,14 @@ namespace Core
             Touch.onFingerUp += UpdateTouchUp;
 
             _camera = Camera.main;
+
+            _adController.ShowedAd += () => _stopInput = true;
+            _adController.ClosedAd += () => _stopInput = false;
         }
         private void Update()
         {
+            if (_stopInput) return;
+
             if (Touch.activeFingers.Count == 1)
             {
                 IsTouchDown = Touch.activeTouches[0].phase == TouchPhase.Began && !CheckClick(Touch.activeTouches[0].screenPosition);

@@ -66,7 +66,7 @@ namespace Core
         {
             while (GameLoop.IsLooping)
             {
-                yield return new WaitForSecondsRealtime(20);
+                yield return new WaitForSecondsRealtime(12);
                 Show();
             }
         }

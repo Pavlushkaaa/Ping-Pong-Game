@@ -929,9 +929,9 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1921471437 stripped
+--- !u!114 &1878533803 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1921471437, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
+  m_CorrespondingSourceObject: {fileID: 157446917, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
   m_PrefabInstance: {fileID: 42465687754196874}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -979,19 +979,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1921471436, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921471436, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921471436, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 185
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921471437, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
+    - target: {fileID: 157446917, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1298,7 +1286,7 @@ PrefabInstance:
     - target: {fileID: 213172448, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _gameTime
       value: 
-      objectReference: {fileID: 1921471437}
+      objectReference: {fileID: 1878533803}
     - target: {fileID: 213172448, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _levelTime
       value: 

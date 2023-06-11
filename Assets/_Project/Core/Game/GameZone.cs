@@ -17,6 +17,9 @@ namespace Core
             if (_currentZone != null) DestroyZone();
 
             _currentZone = Instantiate(zone, Vector2.zero, Quaternion.identity);
+
+            Resources.UnloadUnusedAssets();
+
             _currentPointSystem = _currentZone.GetComponent<PointSystem>();
             _currentPointSystem.PointsEnded += _endGame.EndSuccess;
             _effectSystem.Reset(_currentPointSystem);

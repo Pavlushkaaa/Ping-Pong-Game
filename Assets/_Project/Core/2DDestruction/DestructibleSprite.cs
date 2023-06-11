@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NaughtyAttributes;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,9 +17,10 @@ namespace Core
         [Space]
         [SerializeField] private int _layerId = 7;
 
-        private DestructInfo _destructInfo;
-        private Collider2D _collider;
-
+        [Space]
+        [SerializeField] private DestructInfo _destructInfo;
+        [HideInInspector] [SerializeField] private Collider2D _collider;
+        
         [ContextMenu("Hide")]
         public void Hide()
         {
@@ -41,7 +43,8 @@ namespace Core
             return SpriteExploder.Explode(_destructInfo);
         }
 
-        private void Awake()
+        [Button]
+        private void Configure()
         {
             if (TryGetComponent<SpriteRenderer>(out var sprite))
                 _destructInfo.SpriteRenderer = sprite;
@@ -66,10 +69,7 @@ namespace Core
                 _destructInfo.BoxCollider.enabled = false;
                 _collider = _destructInfo.BoxCollider;
             }
-        }
 
-        protected void Start()
-        {
             _destructInfo.GameObject = gameObject;
             _destructInfo.Transform = transform;
             _destructInfo.Rigidbody = GetComponent<Rigidbody2D>();
@@ -82,11 +82,7 @@ namespace Core
         }
 
         [ContextMenu("Destruct")]
-        private void InspectorDestroy()
-        {
-            Start();
-            Destruct();
-        }
+        private void InspectorDestroy() => Destruct();
     }
 
     [Serializable]

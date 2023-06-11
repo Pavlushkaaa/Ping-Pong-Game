@@ -55,32 +55,17 @@ public static class SpriteExploder
                 pieces.Add(generateVoronoiPiece(info, clippedRegion, origVelocity, origScale, origRotation, mat));
         }
 
-        List<GameObject> morePieces = new List<GameObject>();
-        //if (subshatterSteps > 0)
-        //{
-        //    subshatterSteps--;pu
-        //    foreach (GameObject piece in pieces)
-        //    {
-        //        morePieces.AddRange(SpriteExploder.Explode(piece, force, extraPoints, subshatterSteps));
-        //        GameObject.DestroyImmediate(piece);
-        //    }
-        //}
-        //else
-        morePieces = pieces;
-
         //reset transform information
         info.Transform.localScale = origScale;
         info.Transform.localRotation = origRotation;
 
-        Resources.UnloadUnusedAssets();
-
-        foreach (var piece in morePieces)
+        foreach (var piece in pieces)
         {
             piece.AddComponent<PartsAutoDestroy>();
             piece.layer = info.LayerId;
         }
 
-        return morePieces;
+        return pieces;
     }
 
     private static GameObject generateVoronoiPiece(DestructInfo info, List<Vector2> region, Vector2 origVelocity, Vector3 origScale, Quaternion origRotation, Material mat)

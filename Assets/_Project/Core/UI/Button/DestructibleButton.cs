@@ -17,10 +17,6 @@ namespace Core.UI
             _soundPlayer.Play(_clickClip);
         }
 
-        private new void Start()
-        {
-            base.Start();
-            _soundPlayer = GetComponent<SoundPlayer>();
-        }
+        private void Start() => _soundPlayer = GetComponent<SoundPlayer>();
     }
 }

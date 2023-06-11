@@ -1,15 +1,21 @@
 ﻿using Core.UI;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+using Random = UnityEngine.Random;
+using GoogleMobileAds.Api;
 
 namespace Core
 {
     public class InputModule : MonoBehaviour
     {
+        [SerializeField] private AdController _adController;
         public static Vector2 WorlsScreenSize { get => CalculationWorlsScreenSize(); }
+
+        public event Action Touched;
 
         public bool IsTouchDown { get; private set; }
         public bool IsTouchMove { get; private set; }
@@ -28,6 +34,8 @@ namespace Core
         private Vector2 _touchDownPoint;
         private Camera _camera;
         private SoundPlayer _soundPlayer;
+
+        private bool _stopInput = false;
 
         public static Vector2 CreateRandomPosition(float offset)
         {
@@ -58,14 +66,21 @@ namespace Core
             Touch.onFingerUp += UpdateTouchUp;
 
             _camera = Camera.main;
+
+            _adController.ShowedAd += () => _stopInput = true;
+            _adController.ClosedAd += () => _stopInput = false;
         }
         private void Update()
         {
+            if (_stopInput) return;
+
             if (Touch.activeFingers.Count == 1)
             {
                 IsTouchDown = Touch.activeTouches[0].phase == TouchPhase.Began && !CheckClick(Touch.activeTouches[0].screenPosition);
                 IsTouchMove = Touch.activeTouches[0].phase == TouchPhase.Moved || Touch.activeTouches[0].phase == TouchPhase.Stationary;
                 IsTouchUp = Touch.activeTouches[0].phase == TouchPhase.Ended;
+
+                if(IsTouchDown || IsTouchMove) Touched?.Invoke();
             }
 
             #if UNITY_EDITOR
@@ -77,6 +92,7 @@ namespace Core
 
             if (IsTouchDown)
             {
+                Touched?.Invoke();
                 _soundPlayer.Play(_touchClip);
                 if (TryClick(Mouse.current.position.ReadValue(), out var t))
                 {
@@ -96,6 +112,8 @@ namespace Core
 
             if (IsTouchMove && !CheckClick(Mouse.current.position.ReadValue()))
             {
+                Touched?.Invoke();
+
                 var t = Mouse.current.delta.ReadValue().x * _sensivity;
                 PointerXAxisPosition = Mathf.Clamp(PointerXAxisPosition + t, 0, Camera.main.pixelWidth);
 

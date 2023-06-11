@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NormalSpeed: 5
   MinSpeed: 3
-  MaxSpeed: 11
+  MaxSpeed: 9
   SpeedChangeStep: 2

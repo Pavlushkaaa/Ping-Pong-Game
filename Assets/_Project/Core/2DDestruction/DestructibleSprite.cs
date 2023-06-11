@@ -40,17 +40,6 @@ namespace Core
             Hide();
             return SpriteExploder.Explode(_destructInfo);
         }
-        public List<GameObject> Destruct(Transform parent)
-        {
-            Hide();
-
-            var fragments = SpriteExploder.Explode(_destructInfo);
-
-            foreach (var fragment in fragments)
-                fragment.transform.SetParent(parent);
-
-            return fragments;
-        }
 
         private void Awake()
         {

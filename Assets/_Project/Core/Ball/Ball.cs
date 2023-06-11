@@ -98,10 +98,18 @@ namespace Core
 
             if (_stickNumber > 10)
             {
-                var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                var direction = Random.insideUnitCircle.normalized;
 
-                while (Physics2D.Raycast(_ball.position, direction, 0.1f, _checkLayersForStick))
-                    direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                var badDirectionNumber = 0;
+
+                while (Physics2D.Raycast(_ball.position, direction, 0.07f, _checkLayersForStick))
+                {
+                    badDirectionNumber++;
+                    direction = Random.insideUnitCircle.normalized;
+
+                    if (badDirectionNumber >= 20)
+                        break;
+                }
 
                 SetMoveDirection(direction);
                 _stickNumber = 0;
@@ -135,9 +143,9 @@ namespace Core
         {
             _currentNormal = normal;
 
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             _currentDegree = -2F * Vector2.Dot(normal, _moveDirection) * Mathf.Rad2Deg;
-#endif
+            #endif
 
             CreateCollisionEffect(normal);
             _moveDirection = Reflect(_moveDirection.normalized, normal);
@@ -159,10 +167,7 @@ namespace Core
             if (collision.gameObject.TryGetComponent<BasePoint>(out var point))
             {
                 if (!point.IsLastTouch)
-                {
                     ChangeDirection(collision.contacts[0].normal);
-                    _soundPlayer.Play(_reflectionSounds);
-                }
 
                 point.Contact();
                 return;

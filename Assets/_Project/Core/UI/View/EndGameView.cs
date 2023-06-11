@@ -13,7 +13,10 @@ namespace Core
 
         [SerializeField] private Panel _donePanel;
         [SerializeField] private Panel _failPanel;
+
         [SerializeField] private Image _backgroundImage;
+        [SerializeField] private Color _backDoneColor;
+        [SerializeField] private Color _backFailColor;
 
         private Panel _currentShowed;
 
@@ -28,12 +31,14 @@ namespace Core
             _donePanel.Show();
             _currentShowed = _donePanel;
             _backgroundImage.enabled = true;
+            _backgroundImage.color = _backDoneColor;
         }
         public void ShowFailPanel()
         {
             _backgroundImage.enabled = true;
             _failPanel.Show();
             _currentShowed = _failPanel;
+            _backgroundImage.color = _backFailColor;
         }
 
         public void OnWatchedAd() => WatchedAd?.Invoke();

@@ -27,6 +27,8 @@ namespace Core
 
         public void Reset()
         {
+            ClearNullItems();
+
             if (_balls.Count > 0)
             {
                 foreach (var ball in _balls)
@@ -48,8 +50,10 @@ namespace Core
         {
             if (!GameLoop.IsLooping) return;
 
+            ClearNullItems();
+
             var ballsNumber = _balls.Count;
-            if (ballsNumber * multiplier >= 40) return;
+            if (ballsNumber * multiplier >= 30) return;
 
             for (int i = 0; i < ballsNumber; i++)
                 for (int j = 0; j < multiplier; j++)
@@ -57,11 +61,15 @@ namespace Core
         }
         public void IncreaseBallsSpeed()
         {
-            foreach(var ball in _balls)
+            ClearNullItems();
+
+            foreach (var ball in _balls)
                 ball.IncreaseSpeed();
         }
         public void DecreaseBallsSpeed()
         {
+            ClearNullItems();
+
             foreach (var ball in _balls)
                 ball.DecreaseSpeed();
         }
@@ -78,7 +86,10 @@ namespace Core
 
         private void UpdateSystem(Ball ball)
         {
-            _balls.Remove(ball);
+            if(ball == null)
+                ClearNullItems();
+            else
+                _balls.Remove(ball);
 
             if (_balls.Count == 0) _endGame.EndFail();
         }
@@ -146,7 +157,7 @@ namespace Core
 
         private IEnumerator StartSpawnRandomBall()
         {
-            yield return new WaitForSecondsRealtime(0.25f);
+            yield return new WaitForSecondsRealtime(0.1f);
 
             if(!GameLoop.IsLooping)
                 SpawnRandomBall();
@@ -166,5 +177,7 @@ namespace Core
 
             CreateNewBall(position).SetMoveDirection(randomDirection);
         }
+
+        private void ClearNullItems() => _balls.RemoveAll(ball => ball == null);
     }
 }

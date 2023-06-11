@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Core
@@ -9,6 +10,7 @@ namespace Core
         public event Action OnEndFail;
         public event Action OnEndSuccess;
 
+        [SerializeField] private AdController _adController;
         [SerializeField] private EndGameView _view;
 
         [SerializeField] private MainMenu _mainMenu;
@@ -18,7 +20,14 @@ namespace Core
         [Space]
         [SerializeField] private AudioClip _doneClip;
         [SerializeField] private AudioClip _failClip;
+
         private SoundPlayer _soundPlayer;
+
+        private int _failEndNumber;
+        private bool _canShowInterstitialAd;
+
+        private const int _minFailsNumberToShowAd = 3;
+        private const int _pauseBetweenAdsAtSeconds = 30;
 
         public void ForceEndFail()
         {
@@ -29,6 +38,8 @@ namespace Core
 
         public void EndFail()
         {
+            ShowInterstitialAd();
+
             _soundPlayer.Play(_failClip);
 
             _gameLoop.StopLoop();
@@ -47,11 +58,26 @@ namespace Core
             OnEndSuccess?.Invoke();
         }
 
-        private void WatchAd()
+        private void WatchAd() => _adController.ShowRewardAd(ContinueGame);
+
+        private void ContinueGame()
         {
-            ///TRUE
+            _failEndNumber = 0;
+
             _gameLoop.ContinueLoop();
             _view.Hide();
+        }
+
+        private void ShowInterstitialAd()
+        {
+            _failEndNumber++;
+
+            if (_failEndNumber >= _minFailsNumberToShowAd && _canShowInterstitialAd)
+            {
+                _failEndNumber = 0;
+                _adController.ShowInterstitialAd();
+                StartCoroutine(StartTimer());
+            }
         }
 
         private void Start()
@@ -63,6 +89,20 @@ namespace Core
             _view.ReturnedToMainMenu += ForceEndFail;
 
             _soundPlayer = GetComponent<SoundPlayer>();
+
+            _canShowInterstitialAd = true;
+            StartCoroutine(StartTimer());
+        }
+
+        private IEnumerator StartTimer()
+        {
+            if (!_canShowInterstitialAd) yield break;
+
+            _canShowInterstitialAd = false;
+
+            yield return new WaitForSecondsRealtime(_pauseBetweenAdsAtSeconds);
+
+            _canShowInterstitialAd = true;
         }
     }
 }

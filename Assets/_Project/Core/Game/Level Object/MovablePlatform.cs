@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
 
 namespace Core
@@ -10,7 +11,7 @@ namespace Core
 
         [Space]
         [SerializeField] private float _speed = 1;
-        [SerializeField] private MovablePlatformDirection _startDirection = MovablePlatformDirection.Right;
+        [SerializeField] private PlatformDirection _startDirection = PlatformDirection.Right;
 
         private Transform _transform;
 
@@ -52,9 +53,14 @@ namespace Core
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        [Button]
+        private void SetStart() => _start = transform.position;
+        [Button]
+        private void SetEnd() => _end = transform.position;
     }
 
-    public enum MovablePlatformDirection
+    public enum PlatformDirection
     {
         Left = -1,
         Right = 1

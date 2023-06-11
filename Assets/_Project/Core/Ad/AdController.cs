@@ -36,6 +36,8 @@ namespace Core
             MobileAds.Initialize(initStatus => { });
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
 
+            if (_isDebugAd) return;
+
             _rewardedAd.LoadAd();
             _interstitialAd.LoadAd();
 

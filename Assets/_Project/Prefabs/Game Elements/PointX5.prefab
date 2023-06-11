@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7544aedd96ceea4880707507461199e, type: 3}
   - {fileID: 8300000, guid: 1bb06b4480c6e6a4db79b7134281396f, type: 3}
   - {fileID: 8300000, guid: f53ef5369f8cfce4a8ffce2343ae1f79, type: 3}
-  _effectDropChance: 99
+  _effectDropChance: 85
   _maxContact: 5
   _color:
   - {r: 1, g: 0.90588236, b: 0.7490196, a: 1}

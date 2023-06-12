@@ -36,6 +36,7 @@ namespace Core
 
             gameLoop.OnStartLoop += StartCheck;
             gameLoop.OnEndLoop += Hide;
+            gameLoop.OnStopLoop += Hide;
             gameLoop.OnEndLoop += StopTimer;
             ballSystem.OnTrajectoryChoose += StopTimer;
             _inputModule.Touched += Hide;

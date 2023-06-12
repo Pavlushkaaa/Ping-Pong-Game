@@ -9,12 +9,12 @@ namespace Core
         [SerializeField] private GameObject _learnPanel;
         [SerializeField] private InputModule _inputModule;
 
-        private bool _firstPlay = false;
-        private bool _canHide = false;
+        public bool IsFirstPlay { get; private set; }
 
         private Coroutine _coroutine;
 
         private string _infoPath;
+        private bool _canHide = false;
 
         private class EmptyFile { }
 
@@ -28,7 +28,7 @@ namespace Core
 
             if (!File.Exists(_infoPath))
             {
-                _firstPlay = true;
+                IsFirstPlay = true;
                 JsonSaver<EmptyFile>.Save(new EmptyFile(), _infoPath);
             }
 
@@ -53,10 +53,10 @@ namespace Core
 
         private void StartCheck()
         {
-            if(_firstPlay)
+            if(IsFirstPlay)
             {
+                IsFirstPlay = false;
                 Show();
-                _firstPlay = false;
             }
 
             StopTimer();

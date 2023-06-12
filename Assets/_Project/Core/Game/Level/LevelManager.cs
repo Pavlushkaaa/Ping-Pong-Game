@@ -8,8 +8,10 @@ namespace Core
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameZone _gameZone;
+        [SerializeField] private GameTeacher _gameTeacher;
 
         [Space]
+        [SerializeField] private int _firstPlayLevelId;
         [SerializeField] private List<LevelSO> _levels = new();
 
         private List<LevelSave> _savesLevel = new();
@@ -20,6 +22,8 @@ namespace Core
         private int _lastLevelId = -1;
         private int _numberAvailableLevels;
         private string _savePath;
+
+        private const int _minAvailableLevels = 4;
 
         #if UNITY_EDITOR
         [SerializeField] private bool _isDebug;
@@ -61,6 +65,14 @@ namespace Core
 
         public void StartNewLevel()
         {
+            if(_gameTeacher.IsFirstPlay)
+            {
+                _gameZone.CreateZone(_levels[_firstPlayLevelId].LevelPrefab);
+                _lastLevelId = _firstPlayLevelId;
+                _currentLevelId = _firstPlayLevelId;
+                return;
+            }
+
             #if UNITY_EDITOR
             if (_isDebug)
             {
@@ -85,7 +97,7 @@ namespace Core
 
         private LevelSO ChooseRandomLevel()
         {
-            if(_numberAvailableLevels <= 1)
+            if(_numberAvailableLevels <= _minAvailableLevels)
                 ResetSaveLevels();
 
             bool result = true;

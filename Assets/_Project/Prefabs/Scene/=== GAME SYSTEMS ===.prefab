@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2095118e9fbc34397c7ca2ca1e86d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointsNumber: 100
+  _pointsNumber: 120
   _minPointsToDecore: 0.7
   _offsetFromBorder: 0.15
   _minDistanceBettwenPoints: 0.1
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2095118e9fbc34397c7ca2ca1e86d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointsNumber: 40
+  _pointsNumber: 60
   _minPointsToDecore: 0.7
   _offsetFromBorder: 0.15
   _minDistanceBettwenPoints: 0.1
@@ -682,6 +682,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc4c16a7db5ee99419c99fdbd2c2ad5c, type: 2}
   - {fileID: 11400000, guid: 29247ed08696e1a439cdbbcb246be5c0, type: 2}
   - {fileID: 11400000, guid: e458949878f397141816869e526ed146, type: 2}
+  - {fileID: 11400000, guid: 749a8797f99412e4d98d69ad3b8292ef, type: 2}
+  - {fileID: 11400000, guid: 307c53095f9bf6a468e7fcca8a794a2c, type: 2}
+  - {fileID: 11400000, guid: 19b031ba0f3e7914dbc4c783a761ace8, type: 2}
+  - {fileID: 11400000, guid: 70300ad0bfea9d34583ffa1611becdcf, type: 2}
+  - {fileID: 11400000, guid: eb452e70850ed3148951a2b0337502f0, type: 2}
   _isDebug: 0
   _debugLevel: {fileID: 11400000, guid: 94daa8d23f0d52740adf6a645606bdb7, type: 2}
 --- !u!114 &8681299421785131745

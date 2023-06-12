@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98dcca39185ef87419f541953e73d495, type: 3}
-  m_Name: Platform Lenght DX2
+  m_Script: {fileID: 11500000, guid: 8e382472058319546b39480cbf2ed60f, type: 3}
+  m_Name: Lv 36
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: PlatformLenghtDX2
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 9012bd3a72698264dbee0d1183ff67ca, type: 3}
-  <DropChance>k__BackingField: 6
-  Id: 4
+  <Name>k__BackingField: Lv_36
+  <LevelPrefab>k__BackingField: {fileID: 7922927184239360918, guid: 7816fea9b86db9548be5cfddedabb12a, type: 3}

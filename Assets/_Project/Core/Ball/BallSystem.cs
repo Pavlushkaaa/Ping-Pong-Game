@@ -25,6 +25,7 @@ namespace Core
         private EndGame _endGame;
 
         private Vector2 _ballSpawnPosition;
+        private const int _maxBallsNumber = 20;
 
         public void Reset()
         {
@@ -55,10 +56,10 @@ namespace Core
 
             var ballsNumber = _balls.Count;
 
-            if (ballsNumber >= 36) return;
+            if (ballsNumber >= _maxBallsNumber) return;
 
-            if (ballsNumber * multiplier >= 36)
-                ballsNumber = (36 - ballsNumber) / multiplier;
+            if (ballsNumber * multiplier >= _maxBallsNumber)
+                ballsNumber = (_maxBallsNumber - ballsNumber) / multiplier;
 
             for (int i = 0; i < ballsNumber; i++)
                 for (int j = 0; j < multiplier; j++)

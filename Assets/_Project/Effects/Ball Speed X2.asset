@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: BallSpeedX2
   <Sprite>k__BackingField: {fileID: 21300000, guid: e16dad8af55c9e3458513d9e23841113, type: 3}
-  <DropChance>k__BackingField: 6
+  <DropChance>k__BackingField: 4
   Id: 3

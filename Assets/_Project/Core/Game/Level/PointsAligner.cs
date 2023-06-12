@@ -62,5 +62,7 @@ namespace Core
                 return result;
             }
         }
+
+        private void Start() => Destroy(this, 1);
     }
 }

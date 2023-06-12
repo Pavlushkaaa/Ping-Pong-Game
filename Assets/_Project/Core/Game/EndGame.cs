@@ -25,6 +25,7 @@ namespace Core
 
         private int _failEndNumber;
         private bool _canShowInterstitialAd;
+        private bool _canFreeContinue;
 
         private const int _minFailsNumberToShowAd = 3;
         private const int _pauseBetweenAdsAtSeconds = 30;
@@ -58,7 +59,23 @@ namespace Core
             OnEndSuccess?.Invoke();
         }
 
-        private void WatchAd() => _adController.ShowRewardAd(ContinueGame);
+        private void WatchAd()
+        {
+            if(_canFreeContinue)
+            {
+                ContinueGame();
+                ResetWathAdButton();
+                return;
+            }
+
+            _adController.ShowRewardAd(ContinueGame);
+        }
+
+        private void ResetWathAdButton()
+        {
+            _canFreeContinue = false;
+            _view.SetWatchAdSprite();
+        }
 
         private void ContinueGame()
         {
@@ -75,6 +92,9 @@ namespace Core
             if (_failEndNumber >= _minFailsNumberToShowAd && _canShowInterstitialAd)
             {
                 _failEndNumber = 0;
+                _canFreeContinue = true;
+                _view.SetFreeContinueSprite();
+
                 _adController.ShowInterstitialAd();
                 StartCoroutine(StartTimer());
             }
@@ -87,6 +107,10 @@ namespace Core
             _view.PlayedAgain += _gameLoop.Restart;
             _view.PlayedNext += _gameLoop.StartLoop;
             _view.ReturnedToMainMenu += ForceEndFail;
+
+            _view.PlayedAgain += ResetWathAdButton;
+            _view.PlayedNext += ResetWathAdButton;
+            _view.ReturnedToMainMenu += ResetWathAdButton;
 
             _soundPlayer = GetComponent<SoundPlayer>();
 

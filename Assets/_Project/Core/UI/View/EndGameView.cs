@@ -14,9 +14,15 @@ namespace Core
         [SerializeField] private Panel _donePanel;
         [SerializeField] private Panel _failPanel;
 
+        [Space]
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private Color _backDoneColor;
         [SerializeField] private Color _backFailColor;
+
+        [Space]
+        [SerializeField] private SpriteRenderer _continueGameButton;
+        [SerializeField] private Sprite _wathAd;
+        [SerializeField] private Sprite _freeContinue;
 
         private Panel _currentShowed;
 
@@ -40,6 +46,9 @@ namespace Core
             _currentShowed = _failPanel;
             _backgroundImage.color = _backFailColor;
         }
+
+        public void SetWatchAdSprite() => _continueGameButton.sprite = _wathAd;
+        public void SetFreeContinueSprite() => _continueGameButton.sprite = _freeContinue;
 
         public void OnWatchedAd() => WatchedAd?.Invoke();
         public void OnReturnedToMainMenu()

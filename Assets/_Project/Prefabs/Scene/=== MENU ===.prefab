@@ -51,6 +51,9 @@ MonoBehaviour:
   _backgroundImage: {fileID: 0}
   _backDoneColor: {r: 0.09411765, g: 0.14117648, b: 0.13725491, a: 0.8901961}
   _backFailColor: {r: 0.101960786, g: 0, b: 0.011764706, a: 0.972549}
+  _continueGameButton: {fileID: 1323654195}
+  _wathAd: {fileID: 21300000, guid: b4ccda4a620fe6d428e899eccef35223, type: 3}
+  _freeContinue: {fileID: 21300000, guid: c3d2b8102a1032b4ca0df7ec5491b1be, type: 3}
 --- !u!1 &251992751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,7 +2421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 300
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -2430,7 +2433,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 2027305174}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 300
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 2027305173}
@@ -2997,7 +3000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 300
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -3009,7 +3012,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 872354905015031716}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 300
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 872354905015031719}
@@ -3265,7 +3268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 300
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -3277,7 +3280,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 872354905535612471}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 300
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 872354905535612470}
@@ -3533,7 +3536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 300
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -3545,7 +3548,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 872354905794909319}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 300
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 872354905794909318}
@@ -4134,7 +4137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 300
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -4146,7 +4149,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 872354906555823644}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 300
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 872354906555823647}
@@ -5131,7 +5134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 300
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -5143,7 +5146,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 3252974868811944482}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 300
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 8782443176940651296}
@@ -5400,7 +5403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 3
-  _force: 500
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -5412,7 +5415,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 2784678546028545219}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 500
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 5732010865034748186}
@@ -5808,7 +5811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 7
-  _force: 500
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
   _destructInfo:
@@ -5820,7 +5823,7 @@ MonoBehaviour:
     SpriteRenderer: {fileID: 7831288020645970638}
     DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
     LayerId: 7
-    Force: 500
+    Force: 100
     FragmentsNumber: 7
     SubshatterSteps: 0
   _collider: {fileID: 5720302282677329167}

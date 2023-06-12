@@ -275,10 +275,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 157446917, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 42465687973971337, guid: 16f7ca15f0e6d1d4b8781e6835107f92, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -391,10 +387,6 @@ PrefabInstance:
     - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_Name
       value: === MENU ===
-      objectReference: {fileID: 0}
-    - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 872354906987918870, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_RootOrder

@@ -53,7 +53,11 @@ namespace Core
             ClearNullItems();
 
             var ballsNumber = _balls.Count;
-            if (ballsNumber * multiplier >= 35) return;
+
+            if (ballsNumber >= 36) return;
+
+            if (ballsNumber * multiplier >= 36)
+                ballsNumber = (36 - ballsNumber) / multiplier;
 
             for (int i = 0; i < ballsNumber; i++)
                 for (int j = 0; j < multiplier; j++)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9f40944b17f674cbc05e596c219e96, type: 3}
   m_Name: Ball Speed Settings
   m_EditorClassIdentifier: 
-  NormalSpeed: 5
-  MinSpeed: 3
-  MaxSpeed: 9
-  SpeedChangeStep: 2
+  NormalSpeed: 4.25
+  MinSpeed: 2.5
+  MaxSpeed: 9.5
+  SpeedChangeStep: 1.5

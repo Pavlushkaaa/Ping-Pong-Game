@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df491bcfa9d25b44991307d59032985f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDebugAd: 1
+  _disableAds: 0
   _gameLoop: {fileID: 6561365101171880837}
   _rewardedAd: {fileID: 2180875519271417099}
   _interstitialAd: {fileID: 623677122641100899}
@@ -695,6 +695,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 932a31e29ec642c48a84809d16ae716f, type: 2}
   - {fileID: 11400000, guid: 24ac4087dd7afbb4e818925ca970a22e, type: 2}
   - {fileID: 11400000, guid: f0a1741736e8d2b48b1de3c221abb7d7, type: 2}
+  - {fileID: 11400000, guid: de93f2b0057dbc949bb62b00cec5fc3e, type: 2}
+  - {fileID: 11400000, guid: f2817a230342ac046baf8160113d8081, type: 2}
+  - {fileID: 11400000, guid: 62d254e3d72d0c24c95acc9df8b5251c, type: 2}
+  - {fileID: 11400000, guid: 0bba50df691e5ae42a354d98262b8d52, type: 2}
   _isDebug: 0
   _debugLevel: {fileID: 11400000, guid: f0a1741736e8d2b48b1de3c221abb7d7, type: 2}
 --- !u!114 &8681299421785131745

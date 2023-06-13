@@ -10,14 +10,14 @@ namespace Core
         public event Action ShowedAd;
         public event Action ClosedAd;
 
+        public bool CanShowAd { get => _interstitialAd != null && _interstitialAd.CanShowAd(); }
+
         #if UNITY_EDITOR
         private const string _adUnitId = "ca-app-pub-3940256099942544/1033173712";
         [SerializeField] private bool _skipAd;
         #else
         private const string _adUnitId = "ca-app-pub-1652184728384639/9275411447";
         #endif
-
-        private bool _canShowAd => _interstitialAd != null && _interstitialAd.CanShowAd();
 
         private InterstitialAd _interstitialAd;
         private bool _waitLoadAd = false;
@@ -28,7 +28,7 @@ namespace Core
             if (_skipAd) return;
             #endif
 
-            if (_canShowAd)
+            if (CanShowAd)
             {
                 _interstitialAd.Show();
                 ShowedAd?.Invoke();
@@ -86,7 +86,7 @@ namespace Core
             _waitLoadAd = true;
             yield return new WaitForSeconds(10);
 
-            if (!_canShowAd) LoadAd();
+            if (!CanShowAd) LoadAd();
 
             _waitLoadAd = false;
         }

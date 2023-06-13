@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: === MENU ===
       objectReference: {fileID: 0}
+    - target: {fileID: 872354906987918857, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 872354906987918870, guid: eb565be3d946c88489ec1d854e333b8e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -751,6 +755,10 @@ PrefabInstance:
     - target: {fileID: 8497085391175976827, guid: 93de9337fd73d154daab7c7327882672, type: 3}
       propertyPath: m_Name
       value: DEBUG
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497085391175976827, guid: 93de9337fd73d154daab7c7327882672, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93de9337fd73d154daab7c7327882672, type: 3}

@@ -9,14 +9,31 @@ namespace Core
         public event Action ShowedAd;
         public event Action ClosedAd;
 
-        [SerializeField] private bool _isDebugAd;
+        public bool CanShowInterstitialAd 
+        { 
+            get 
+            {
+                if (_disableAds) return false;
+
+                bool result = _interstitialAd.CanShowAd;
+                if (!result) _interstitialAd.LoadAd();  
+                return result; 
+            } 
+        }
+        public bool DisableAds { get => _disableAds; }
+
+        [SerializeField] private bool _disableAds;
+
+        [Space]
+        [SerializeField] private GameLoop _gameLoop;
 
         [Space]
         [SerializeField] private RewardedAdController _rewardedAd;
         [SerializeField] private InterstitialAdController _interstitialAd;
+
         public void ShowRewardAd(Action reward)
         {
-            if (_isDebugAd)
+            if (_disableAds)
             {
                 reward?.Invoke();
                 return;
@@ -26,7 +43,7 @@ namespace Core
         }
         public void ShowInterstitialAd()
         {
-            if (_isDebugAd) return;
+            if (_disableAds) return;
 
             _interstitialAd.ShowAd();
         }
@@ -36,7 +53,14 @@ namespace Core
             MobileAds.Initialize(initStatus => { });
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
 
-            if (_isDebugAd) return;
+            _gameLoop.OnStartLoop += InitializeAd;
+        }
+
+        private void InitializeAd()
+        {
+            _gameLoop.OnStartLoop -= InitializeAd;
+
+            if (_disableAds) return;
 
             _rewardedAd.LoadAd();
             _interstitialAd.LoadAd();

@@ -1,6 +1,4 @@
 ﻿using NaughtyAttributes;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Core
@@ -47,7 +45,7 @@ namespace Core
 
         private void ChangeTargetLenght(float value)
         {
-            _targetScale.x = Mathf.Clamp(_targetScale.x + value, _settings.MinLength, _settings.MaxLength);
+            _targetScale.x = Mathf.Clamp(_targetScale.x + _settings.Step * value, _settings.MinLength, _settings.MaxLength);
         }
     }
 }

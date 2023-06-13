@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: PlatformLenghtDX2
   <Sprite>k__BackingField: {fileID: 21300000, guid: 9012bd3a72698264dbee0d1183ff67ca, type: 3}
-  <DropChance>k__BackingField: 4
+  <DropChance>k__BackingField: 6
   Id: 4

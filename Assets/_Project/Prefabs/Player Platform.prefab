@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5124829133458273205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.5, z: 0}
-  m_LocalScale: {x: 1.8, y: 0.08, z: 1}
+  m_LocalScale: {x: 1.6, y: 0.08, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -130,6 +130,19 @@ MonoBehaviour:
   _force: 500
   _destroyColor: {r: 0.5660378, g: 0, b: 0, a: 1}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 5124829133458273205}
+    Transform: {fileID: 5124829133458273206}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 5124829133458273204}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 5124829133458273207}
+    DestroyCcolor: {r: 0.5660378, g: 0, b: 0, a: 1}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 1
+    SubshatterSteps: 0
+  _collider: {fileID: 5124829133458273204}
 --- !u!114 &5124829133458272329
 MonoBehaviour:
   m_ObjectHideFlags: 0

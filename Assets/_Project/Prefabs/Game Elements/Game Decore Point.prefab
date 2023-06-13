@@ -110,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6884656088437988210}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -161,6 +161,19 @@ MonoBehaviour:
   _force: 100
   _destroyColor: {r: 0.4433962, g: 0.06441792, b: 0.08033675, a: 1}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 6884656088437988210}
+    Transform: {fileID: 6884656088437988215}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 4344197798213355756}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 4835341308351595644}
+    DestroyCcolor: {r: 0.4433962, g: 0.06441792, b: 0.08033675, a: 1}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 2
+    SubshatterSteps: 0
+  _collider: {fileID: 4344197798213355756}
 --- !u!114 &9148653896138178057
 MonoBehaviour:
   m_ObjectHideFlags: 0

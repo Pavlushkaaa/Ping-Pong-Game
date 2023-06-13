@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a2dcdb843585a43a7586e68e612e42, type: 3}
   m_Name: Platform Scaler Settings
   m_EditorClassIdentifier: 
-  <NormalLength>k__BackingField: 1.8
+  <NormalLength>k__BackingField: 1.6
   <Height>k__BackingField: 0.08
-  <MinLength>k__BackingField: 0.8
-  <MaxLength>k__BackingField: 2.8
+  <Step>k__BackingField: 0.8
+  <MinLength>k__BackingField: 0.2
+  <MaxLength>k__BackingField: 4

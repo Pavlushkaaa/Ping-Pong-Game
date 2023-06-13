@@ -55,9 +55,9 @@ namespace Core
         }
 
         [Button]
-        private void SetStart() => _start = transform.position;
+        private void SetStart() => _start = transform.localPosition;
         [Button]
-        private void SetEnd() => _end = transform.position;
+        private void SetEnd() => _end = transform.localPosition;
     }
 
     public enum PlatformDirection

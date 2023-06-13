@@ -51,6 +51,9 @@ MonoBehaviour:
   _backgroundImage: {fileID: 0}
   _backDoneColor: {r: 0.09411765, g: 0.14117648, b: 0.13725491, a: 0.8901961}
   _backFailColor: {r: 0.101960786, g: 0, b: 0.011764706, a: 0.972549}
+  _continueGameButton: {fileID: 1323654195}
+  _wathAd: {fileID: 21300000, guid: b4ccda4a620fe6d428e899eccef35223, type: 3}
+  _freeContinue: {fileID: 21300000, guid: c3d2b8102a1032b4ca0df7ec5491b1be, type: 3}
 --- !u!1 &251992751
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,10 +237,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 380226866}
+    Transform: {fileID: 380226867}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 380226870}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 380226871}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 380226870}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -489,10 +505,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 409339311}
+    Transform: {fileID: 409339312}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 409339315}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 409339316}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 409339315}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -797,10 +826,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 582644336}
+    Transform: {fileID: 582644337}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 582644340}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 582644341}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 582644340}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -1052,10 +1094,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 300
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 765662583}
+    Transform: {fileID: 765662584}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 765662588}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 765662589}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 300
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 765662588}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -1406,6 +1461,19 @@ MonoBehaviour:
   _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 905008889}
+    Transform: {fileID: 905008890}
+    PolygonCollider: {fileID: 905008893}
+    BoxCollider: {fileID: 0}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 905008894}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 905008893}
 --- !u!1 &956967654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,10 +1600,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 956967654}
+    Transform: {fileID: 956967655}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 956967658}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 956967659}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 956967658}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -1787,10 +1868,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 1323654190}
+    Transform: {fileID: 1323654191}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 1323654194}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 1323654195}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 1323654194}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -2043,10 +2137,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 1964726857}
+    Transform: {fileID: 1964726858}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 1964726862}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 1964726863}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 1964726862}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -2313,10 +2420,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 300
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 2027305169}
+    Transform: {fileID: 2027305170}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 2027305173}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 2027305174}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 2027305173}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -2740,6 +2860,19 @@ MonoBehaviour:
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 2028961804}
+    Transform: {fileID: 2028961805}
+    PolygonCollider: {fileID: 2028961810}
+    BoxCollider: {fileID: 0}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 2028961809}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 2028961810}
 --- !u!1 &872354905015031707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,10 +2999,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 300
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 872354905015031707}
+    Transform: {fileID: 872354905015031704}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 872354905015031719}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 872354905015031716}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 872354905015031719}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -3121,10 +3267,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 300
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 872354905535612458}
+    Transform: {fileID: 872354905535612459}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 872354905535612470}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 872354905535612471}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 872354905535612470}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -3376,10 +3535,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 300
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 872354905794909434}
+    Transform: {fileID: 872354905794909435}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 872354905794909318}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 872354905794909319}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 872354905794909318}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -3631,10 +3803,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 872354905813144159}
+    Transform: {fileID: 872354905813144153}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 872354905813144166}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 872354905813144152}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 872354905813144166}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -3951,10 +4136,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 300
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 872354906555823635}
+    Transform: {fileID: 872354906555823632}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 872354906555823647}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 872354906555823644}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 872354906555823647}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -4206,10 +4404,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 872354906583612171}
+    Transform: {fileID: 872354906583612182}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 872354906583612168}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 872354906583612169}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 872354906583612168}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -4570,10 +4781,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 1312842511254625125}
+    Transform: {fileID: 7979110919698978109}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 6861540783954673882}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 7730506995002769176}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 6861540783954673882}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -4909,10 +5133,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 300
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 2074296525233146930}
+    Transform: {fileID: 4271538659472691556}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 8782443176940651296}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 3252974868811944482}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 8782443176940651296}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -5165,10 +5402,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
-  _force: 500
+  _fragmentsNumber: 3
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 2510941489794941583}
+    Transform: {fileID: 7098264924746791618}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 5732010865034748186}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 2784678546028545219}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 5732010865034748186}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -5561,9 +5811,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fragmentsNumber: 7
-  _force: 500
+  _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 3308019049501905935}
+    Transform: {fileID: 7979783974122625348}
+    PolygonCollider: {fileID: 5720302282677329167}
+    BoxCollider: {fileID: 0}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 7831288020645970638}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 5720302282677329167}
 --- !u!1 &4222173166627777796
 GameObject:
   m_ObjectHideFlags: 0
@@ -5690,10 +5953,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 100
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 4222173166627777796}
+    Transform: {fileID: 3405077143933056954}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 302552625001141913}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 7452508690005491727}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 100
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 302552625001141913}
   Clicked:
     m_PersistentCalls:
       m_Calls:
@@ -5945,10 +6221,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536a4225fb4f574ea243a27285a5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fragmentsNumber: 7
+  _fragmentsNumber: 3
   _force: 500
   _destroyColor: {r: 1, g: 1, b: 1, a: 0.1764706}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 5036675497825672152}
+    Transform: {fileID: 4767124243239210942}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 1077020619354449427}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 364430311754855122}
+    DestroyCcolor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    LayerId: 7
+    Force: 500
+    FragmentsNumber: 7
+    SubshatterSteps: 0
+  _collider: {fileID: 1077020619354449427}
   Clicked:
     m_PersistentCalls:
       m_Calls:

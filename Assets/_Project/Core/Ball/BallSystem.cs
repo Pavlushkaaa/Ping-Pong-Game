@@ -8,7 +8,8 @@ namespace Core
 {
     public class BallSystem : MonoBehaviour
     {
-        public event Action OnTrajectoryChoose;
+        public event Action OnTrajectoryChose;
+        public event Action OnTrajectoryChoosing;
 
         [SerializeField] private InputModule _input;
         [SerializeField] private Platform _platform;
@@ -24,6 +25,7 @@ namespace Core
         private EndGame _endGame;
 
         private Vector2 _ballSpawnPosition;
+        private const int _maxBallsNumber = 20;
 
         public void Reset()
         {
@@ -53,7 +55,11 @@ namespace Core
             ClearNullItems();
 
             var ballsNumber = _balls.Count;
-            if (ballsNumber * multiplier >= 30) return;
+
+            if (ballsNumber >= _maxBallsNumber) return;
+
+            if (ballsNumber * multiplier >= _maxBallsNumber)
+                ballsNumber = (_maxBallsNumber - ballsNumber) / multiplier;
 
             for (int i = 0; i < ballsNumber; i++)
                 for (int j = 0; j < multiplier; j++)
@@ -138,11 +144,12 @@ namespace Core
                 if(_input.IsTouchMove && _input.TouchDirection.magnitude > 50)
                 {
                     _trajectory.CreateTrajectory(_ballSpawnPosition, _input.TouchDirection.normalized);
+                    OnTrajectoryChoosing?.Invoke();
                 }
                 else if(_input.IsTouchUp && _input.TouchDirection.magnitude > 50)
                 {
                     ball.SetMoveDirection(_input.TouchDirection.normalized);
-                    OnTrajectoryChoose?.Invoke();
+                    OnTrajectoryChose?.Invoke();
                     break;
                 }
                 else

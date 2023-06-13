@@ -14,6 +14,8 @@ namespace Core
 
         public void Show()
         {
+            Resources.UnloadUnusedAssets();
+
             _view.ShowPanel();
             _menuBackgroundDecorator.Show();
 

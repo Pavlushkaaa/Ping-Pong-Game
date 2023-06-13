@@ -1,5 +1,4 @@
 ﻿using NaughtyAttributes;
-using System;
 using UnityEngine;
 
 namespace Core

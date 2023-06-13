@@ -25,7 +25,7 @@ namespace Core
             pauseGame.Showed += HideAll;
             pauseGame.Hidden += ShowGameText;
 
-            ballSystem.OnTrajectoryChoose += StartTimer;
+            ballSystem.OnTrajectoryChose += StartTimer;
 
             gameLoop.OnEndLoop += StopTimer;
             gameLoop.OnContinueLoop += ContinueTimer;

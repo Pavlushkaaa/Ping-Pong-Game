@@ -9,11 +9,12 @@ namespace Core
         [SerializeField] private GameObject _learnPanel;
         [SerializeField] private InputModule _inputModule;
 
-        private bool _firstPlay = false;
+        public bool IsFirstPlay { get; private set; }
 
         private Coroutine _coroutine;
 
         private string _infoPath;
+        private bool _canHide = false;
 
         private class EmptyFile { }
 
@@ -27,7 +28,7 @@ namespace Core
 
             if (!File.Exists(_infoPath))
             {
-                _firstPlay = true;
+                IsFirstPlay = true;
                 JsonSaver<EmptyFile>.Save(new EmptyFile(), _infoPath);
             }
 
@@ -36,39 +37,62 @@ namespace Core
 
             gameLoop.OnStartLoop += StartCheck;
             gameLoop.OnEndLoop += Hide;
+            gameLoop.OnStopLoop += Hide;
             gameLoop.OnEndLoop += StopTimer;
-            ballSystem.OnTrajectoryChoose += StopTimer;
+            ballSystem.OnTrajectoryChose += StopTimer;
+            ballSystem.OnTrajectoryChoosing += ResetTimer;
             _inputModule.Touched += Hide;
         }
 
         private void Show() => _learnPanel.SetActive(true);
-        private void Hide() => _learnPanel.SetActive(false);
+        private void Hide()
+        {
+            if (_canHide) 
+                _learnPanel.SetActive(false);
+        }
 
         private void StartCheck()
         {
-            if(_firstPlay)
+            if(IsFirstPlay)
             {
+                IsFirstPlay = false;
                 Show();
-                _firstPlay = false;
             }
 
             StopTimer();
+            StartCoroutine(StartHideTimer());
             _coroutine = StartCoroutine(StartTimer());
         }
 
         private void StopTimer()
         {
+            Hide();
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
+        }
+
+        private void ResetTimer()
+        {
+            Hide();
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
+            _coroutine = StartCoroutine(StartTimer());
         }
 
         private IEnumerator StartTimer()
         {
             while (GameLoop.IsLooping)
             {
-                yield return new WaitForSecondsRealtime(12);
+                yield return new WaitForSecondsRealtime(10);
                 Show();
             }
+        }
+
+        private IEnumerator StartHideTimer()
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
+            _canHide = true;
         }
     }
 }

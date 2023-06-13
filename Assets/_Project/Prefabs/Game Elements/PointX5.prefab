@@ -175,6 +175,19 @@ MonoBehaviour:
   _force: 150
   _destroyColor: {r: 0.249911, g: 0.4245283, b: 0.36384934, a: 1}
   _layerId: 7
+  _destructInfo:
+    GameObject: {fileID: 359020537959365465}
+    Transform: {fileID: 359020537959365468}
+    PolygonCollider: {fileID: 0}
+    BoxCollider: {fileID: 7438250704176294087}
+    Rigidbody: {fileID: 0}
+    SpriteRenderer: {fileID: 1759460735439692887}
+    DestroyCcolor: {r: 0.249911, g: 0.4245283, b: 0.36384934, a: 1}
+    LayerId: 7
+    Force: 150
+    FragmentsNumber: 2
+    SubshatterSteps: 0
+  _collider: {fileID: 7438250704176294087}
 --- !u!114 &1119459313625157522
 MonoBehaviour:
   m_ObjectHideFlags: 0

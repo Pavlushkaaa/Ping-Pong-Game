@@ -103,7 +103,7 @@ namespace Core
 
             _platform.HidePlatform();
 
-            _ballSystem.OnTrajectoryChoose += () => { _platform.StartMove(); _inputModule.Reset(); };
+            _ballSystem.OnTrajectoryChose += () => { _platform.StartMove(); _inputModule.Reset(); };
         }
     }
 }

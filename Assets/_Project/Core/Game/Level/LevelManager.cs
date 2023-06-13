@@ -8,8 +8,10 @@ namespace Core
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameZone _gameZone;
+        [SerializeField] private GameTeacher _gameTeacher;
 
         [Space]
+        [SerializeField] private int _firstPlayLevelId;
         [SerializeField] private List<LevelSO> _levels = new();
 
         private List<LevelSave> _savesLevel = new();
@@ -17,9 +19,12 @@ namespace Core
         private Dictionary<LevelSO, LevelSave> _levelData = new Dictionary<LevelSO, LevelSave>();
 
         private int _currentLevelId = 0;
-        private int _lastLevelId = -1;
+        private Queue<int> _lastLevelIds = new Queue<int>();
         private int _numberAvailableLevels;
         private string _savePath;
+
+        private const int _minAvailableLevels = 4;
+        private const int _maxLastLevelIds = 3;
 
         #if UNITY_EDITOR
         [SerializeField] private bool _isDebug;
@@ -61,6 +66,14 @@ namespace Core
 
         public void StartNewLevel()
         {
+            if(_gameTeacher.IsFirstPlay)
+            {
+                _gameZone.CreateZone(_levels[_firstPlayLevelId].LevelPrefab);
+                _currentLevelId = _firstPlayLevelId;
+                UpdateLastLevelIds(_currentLevelId);
+                return;
+            }
+
             #if UNITY_EDITOR
             if (_isDebug)
             {
@@ -85,7 +98,7 @@ namespace Core
 
         private LevelSO ChooseRandomLevel()
         {
-            if(_numberAvailableLevels <= 1)
+            if(_numberAvailableLevels <= _minAvailableLevels)
                 ResetSaveLevels();
 
             bool result = true;
@@ -96,7 +109,7 @@ namespace Core
                 Random.InitState(customSeed);
                 _currentLevelId = Random.Range(0, _levels.Count);
 
-                if (_currentLevelId == _lastLevelId)
+                if (_lastLevelIds.Contains(_currentLevelId))
                     continue;
 
                 _levelData.TryGetValue(_levels[_currentLevelId], out var save);
@@ -104,15 +117,21 @@ namespace Core
 
             } while (result);
 
-            _lastLevelId = _currentLevelId;
+            UpdateLastLevelIds(_currentLevelId);
             return _levels[_currentLevelId];
         }
 
+        private void UpdateLastLevelIds(int newid)
+        {
+            _lastLevelIds.Enqueue(newid);
+
+            if (_lastLevelIds.Count >= _maxLastLevelIds)
+                _lastLevelIds.Dequeue();
+        }
         private void SaveLevels()
         {
             JsonSaver<SerializableList<LevelSave>>.Save(_savesLevel.ToSerializable(), _savePath);
         }
-
         private void LoadLevels()
         {
             if (!JsonSaver<SerializableList<LevelSave>>.Load(_savePath, out var list))

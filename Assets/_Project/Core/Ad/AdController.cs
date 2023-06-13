@@ -12,8 +12,12 @@ namespace Core
         [SerializeField] private bool _isDebugAd;
 
         [Space]
+        [SerializeField] private GameLoop _gameLoop;
+
+        [Space]
         [SerializeField] private RewardedAdController _rewardedAd;
         [SerializeField] private InterstitialAdController _interstitialAd;
+
         public void ShowRewardAd(Action reward)
         {
             if (_isDebugAd)
@@ -35,6 +39,13 @@ namespace Core
         {
             MobileAds.Initialize(initStatus => { });
             MobileAds.RaiseAdEventsOnUnityMainThread = true;
+
+            _gameLoop.OnStartLoop += InitializeAd;
+        }
+
+        private void InitializeAd()
+        {
+            _gameLoop.OnStartLoop -= InitializeAd;
 
             if (_isDebugAd) return;
 

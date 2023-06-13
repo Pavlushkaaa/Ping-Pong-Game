@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDebugAd: 1
+  _gameLoop: {fileID: 6561365101171880837}
   _rewardedAd: {fileID: 2180875519271417099}
   _interstitialAd: {fileID: 623677122641100899}
 --- !u!1 &4577067755411095690

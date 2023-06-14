@@ -34,7 +34,9 @@ namespace Core
 
             var gameLoop = GetComponent<GameLoop>();
             var ballSystem = GetComponent<BallSystem>();
+            var pause = GetComponent<PauseGame>();
 
+            pause.Showed += ResetTimer;
             gameLoop.OnStartLoop += StartCheck;
             gameLoop.OnEndLoop += Hide;
             gameLoop.OnStopLoop += Hide;
@@ -85,7 +87,9 @@ namespace Core
             while (GameLoop.IsLooping)
             {
                 yield return new WaitForSecondsRealtime(10);
-                Show();
+
+                if(!PauseGame.IsPause)
+                    Show();
             }
         }
 

@@ -595,6 +595,10 @@ PrefabInstance:
       propertyPath: _inputModule
       value: 
       objectReference: {fileID: 1280914964}
+    - target: {fileID: 540378347821204548, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _disableAds
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1566542007494379211, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _view
       value: 

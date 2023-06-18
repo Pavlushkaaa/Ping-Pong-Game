@@ -28,8 +28,8 @@ namespace Core
         private bool _canFreeContinue;
         private Coroutine _waitCoroutine;
 
-        private const int _minFailsNumberToShowAd = 3;
-        private const int _pauseBetweenAdsAtSeconds = 40;
+        private const int _minFailsNumberToShowAd = 4;
+        private const int _pauseBetweenAdsAtSeconds = 60;
 
         public void ForceEndFail()
         {

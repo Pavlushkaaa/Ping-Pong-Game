@@ -15,6 +15,7 @@ namespace Core
 
         private string _infoPath;
         private bool _canHide = false;
+        private bool _stopShow = false;
 
         private class EmptyFile { }
 
@@ -34,8 +35,11 @@ namespace Core
 
             var gameLoop = GetComponent<GameLoop>();
             var ballSystem = GetComponent<BallSystem>();
+            var pause = GetComponent<PauseGame>();
 
+            pause.Showed += ResetTimer;
             gameLoop.OnStartLoop += StartCheck;
+            gameLoop.OnStartLoop += () => _stopShow = false;
             gameLoop.OnEndLoop += Hide;
             gameLoop.OnStopLoop += Hide;
             gameLoop.OnEndLoop += StopTimer;
@@ -59,7 +63,9 @@ namespace Core
                 Show();
             }
 
-            StopTimer();
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
             StartCoroutine(StartHideTimer());
             _coroutine = StartCoroutine(StartTimer());
         }
@@ -67,6 +73,9 @@ namespace Core
         private void StopTimer()
         {
             Hide();
+
+            _stopShow = true;
+
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
         }
@@ -74,6 +83,9 @@ namespace Core
         private void ResetTimer()
         {
             Hide();
+
+            if (_stopShow) return;
+
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
 
@@ -84,8 +96,13 @@ namespace Core
         {
             while (GameLoop.IsLooping)
             {
+                if (_stopShow) yield break;
+
                 yield return new WaitForSecondsRealtime(10);
-                Show();
+                if (_stopShow) yield break;
+
+                if (!PauseGame.IsPause)
+                    Show();
             }
         }
 

@@ -85,7 +85,7 @@ namespace Core
             _endGame = GetComponent<EndGame>();
 
             _ballSpawnPosition = _platform.transform.position;
-            _ballSpawnPosition.y += 1;
+            _ballSpawnPosition.y += 0.15f;
 
             StartCoroutine(StartSpawnRandomBall());
         }

@@ -599,6 +599,30 @@ PrefabInstance:
       propertyPath: _view
       value: 
       objectReference: {fileID: 2123086705}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _dropChanceIds.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _dropChanceIds.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _dropChanceIds.Array.data[7]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _dropChanceIds.Array.data[11]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _dropChanceIds.Array.data[17]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561365100310737530, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
+      propertyPath: _dropChanceIds.Array.data[21]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6561365100310737540, guid: 0bc0c4a93639c0740ae86c07f5d3cd03, type: 3}
       propertyPath: _platformScaler
       value: 

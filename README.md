@@ -2,7 +2,7 @@
 This game was inspired by the old retro games that many of us played in our childhood. I tried to breathe new life into the old mechanics and give the game a nice visual style.
 
 Links:<br />
-=> [GOOGLE PLAY]([http://google.com/](https://play.google.com/store/apps/details?id=com.RivgoGames.RetroPong)) <=<br />
+=> [GOOGLE PLAY]([https://play.google.com/store/apps/details?id=com.RivgoGames.RetroPong]) <=<br />
 => [ITCH.IO](https://rivgogames.itch.io/retro-pong) <=
 
 # ~ Other ~

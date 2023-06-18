@@ -118,11 +118,15 @@ namespace Core
 
         private void FixAxisStick()
         {
-            if ((_lastNormal - _currentNormal).magnitude <= 0.05f)
+            if ((_lastNormal + _currentNormal).magnitude <= 0.05f)
             {
                 if (_sameNormals >= 5)
                 {
-                    _moveDirection.x += 0.01f * Mathf.Sign(_moveDirection.x);
+                    if(Math.Abs(_moveDirection.x) <= 0.98f)
+                        _moveDirection.x += 0.25f * Mathf.Sign(_moveDirection.x);
+                    else
+                        _moveDirection.y += 0.25f * Mathf.Sign(_moveDirection.y);
+
                     _sameNormals = 0;
                 }
                 else
